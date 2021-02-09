@@ -40,9 +40,10 @@ public class ImageController {
 
     @PostMapping("/upload")
     public ResponseEntity uploadImage(@RequestParam("imageFile") MultipartFile file , @RequestParam("categoryId") Integer categoryId) throws IOException {
-        System.out.println("Original Image Byte Size - " + file.getBytes().length);
-        ChildCategory cat = categoryRepo.getOne(categoryId);
-        if (cat == null) {
+
+        ChildCategory cat = null;
+        boolean flag  = categoryRepo.existsById(categoryId);
+        if (!flag) {
             return new ResponseEntity("Category Not Found!",HttpStatus.BAD_REQUEST);
         }
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),compressBytes(file.getBytes()) , cat);
@@ -54,10 +55,6 @@ public class ImageController {
     public ResponseEntity getImage(@PathVariable Integer id) throws IOException {
 
         ImageModel retrievedImage = imageRepository.getOne(id);
-//        ChildCategory cat = categoryRepo.getOne(categoryId);
-//        if (cat == null) {
-//            return new ResponseEntity("Category Not Found!",HttpStatus.BAD_REQUEST);
-//        }
         if(retrievedImage == null){
         return new ResponseEntity("Image not found!",HttpStatus.BAD_REQUEST);
         }
