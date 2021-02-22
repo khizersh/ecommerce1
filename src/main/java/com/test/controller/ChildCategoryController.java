@@ -48,4 +48,17 @@ public class ChildCategoryController {
         return ResponseEntity.ok(childCategoryService.updateCategory(id , cat));
     }
 
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteCategory(@PathVariable Integer id ){
+        System.out.println("Delete: "+ id);
+        if(childCategoryService.deleteCategory(id)){
+            return ResponseEntity.ok().build();
+        }else{
+            return new ResponseEntity("Something went wrong!",HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 }

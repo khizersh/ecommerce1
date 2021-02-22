@@ -31,6 +31,7 @@ public class ParentCategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCategory(@PathVariable Integer id ){
+
         return ResponseEntity.ok(service.delete(id));
     }
 }

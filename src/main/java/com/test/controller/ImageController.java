@@ -35,18 +35,30 @@ public class ImageController {
     @GetMapping("")
     public ResponseEntity getAll(){
        List<ImageModel> list = imageRepository.findAll();
-       return ResponseEntity.ok(list);
+
+      List<ImageModel> listToSend = new ArrayList<>();
+        for (ImageModel i: list){
+
+            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) , i.getCategory() , i.getTitle() , i.getDescription());
+           img.setId(i.getId());
+            listToSend.add(img);
+        }
+       return ResponseEntity.ok(listToSend);
     }
 
     @PostMapping("/upload")
-    public ResponseEntity uploadImage(@RequestParam("imageFile") MultipartFile file , @RequestParam("categoryId") Integer categoryId) throws IOException {
+    public ResponseEntity uploadImage(@RequestParam("imageFile") MultipartFile imageFile , @RequestParam("categoryId") Integer categoryId , @RequestParam("title") String title, @RequestParam("description") String description ) throws IOException {
 
         ChildCategory cat = null;
         boolean flag  = categoryRepo.existsById(categoryId);
         if (!flag) {
             return new ResponseEntity("Category Not Found!",HttpStatus.BAD_REQUEST);
         }
-        ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),compressBytes(file.getBytes()) , cat);
+        if(imageFile == null){
+            return new ResponseEntity("Invalid Image",HttpStatus.BAD_REQUEST);
+        }
+        cat = categoryRepo.getOne(categoryId);
+        ImageModel img = new ImageModel(imageFile.getOriginalFilename(), imageFile.getContentType() ,compressBytes(imageFile.getBytes()) ,cat, title , description);
         ImageModel responseImage =  imageRepository.save(img);
         return  ResponseEntity.ok(responseImage);
     }
@@ -59,7 +71,7 @@ public class ImageController {
         return new ResponseEntity("Image not found!",HttpStatus.BAD_REQUEST);
         }
 
-        ImageModel img = new ImageModel(retrievedImage.getName(), retrievedImage.getType(), decompressBytes(retrievedImage.getPicByte()) , retrievedImage.getCategory());
+        ImageModel img = new ImageModel(retrievedImage.getName(), retrievedImage.getType(), decompressBytes(retrievedImage.getPicByte()) , retrievedImage.getCategory() , retrievedImage.getTitle() , retrievedImage.getDescription());
         return ResponseEntity.ok(img);
 
     }
@@ -71,10 +83,49 @@ public class ImageController {
 //        final Optional<ImageModel> retrievedImage = imageRepository.findByName(imageName);
 
         ImageModel img = new ImageModel(retrievedImage.get().getName(), retrievedImage.get().getType(),
-                decompressByteArray(retrievedImage.get().getPicByte()) ,retrievedImage.get().getCategory());
+                decompressByteArray(retrievedImage.get().getPicByte()) ,retrievedImage.get().getCategory() , retrievedImage.get().getTitle() , retrievedImage.get().getDescription());
 
         return ResponseEntity.ok(img);
 
+    }
+
+    @PostMapping(path = { "/update" })
+    public  ResponseEntity updateImage(@RequestParam("id") Integer id ,  @RequestParam(value = "imageFile" , required = false) MultipartFile imageFile , @RequestParam("categoryId") Integer categoryId , @RequestParam("title") String title, @RequestParam("description") String description ) throws IOException {
+
+        if(!imageRepository.existsById(id)){
+            return new ResponseEntity("Image not found!", HttpStatus.BAD_REQUEST);
+        }
+          ImageModel imageDb = imageRepository.getOne(id);
+        if(imageFile != null){
+            System.out.println("in image");
+            imageDb.setPicByte(compressBytes(imageFile.getBytes()));
+            imageDb.setName(imageFile.getOriginalFilename());
+            imageDb.setType(imageFile.getContentType());
+        }
+        if(categoryId != 0){
+          ChildCategory  cat = categoryRepo.getOne(categoryId);
+          imageDb.setCategory(cat);
+        }
+        if(title != null){
+            imageDb.setTitle(title);
+        }
+        if(description != null){
+            imageDb.setDescription(description);
+        }
+        ImageModel savedImage =  imageRepository.save(imageDb);
+
+        return ResponseEntity.ok(savedImage);
+
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable Integer id){
+        if(imageRepository.existsById(id)){
+            imageRepository.deleteById(id);
+            return new ResponseEntity("Delete successfully!",HttpStatus.OK);
+        }
+        return new ResponseEntity("Invalid Request!",HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/getByCategory/{id}")
@@ -88,7 +139,7 @@ public class ImageController {
         imageRepository.findByCategory(cat).forEach(i -> System.out.println(i.getCategory().getCategoryName()));
         for (ImageModel i: imageRepository.findByCategory(cat)){
 
-            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) , i.getCategory());
+            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) , i.getCategory() , i.getTitle() , i.getDescription());
             list.add(img);
         }
 

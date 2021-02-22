@@ -32,7 +32,7 @@ public class ParentCategoryImpl implements ParentCategoryService {
 
     @Override
     public ResponseEntity add(ParentCategory p) {
-        if(p.getCategoryName() == null){
+        if(p.getCategoryName() == null || p.getCategoryName().isEmpty() ){
             return new ResponseEntity("Enter Category name!",HttpStatus.BAD_REQUEST);
         }
         if(p.getActive() == null){

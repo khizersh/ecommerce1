@@ -76,6 +76,11 @@ public class ChildCategoryImpl  implements ChildCategoryService {
         if(catDb == null){
             return new ResponseEntity("Not Found!",HttpStatus.NOT_FOUND);
         }
+
+        if(cat.getParentId() != null) {
+            ParentCategory p = parentCategoryRepo.getOne(cat.getParentId());
+            catDb.setParentCategory(p);
+        }
         if (cat.getCategoryName() != null) {
             catDb.setCategoryName(cat.getCategoryName());
         }

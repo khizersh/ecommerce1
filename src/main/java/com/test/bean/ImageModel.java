@@ -13,19 +13,58 @@ public class ImageModel {
     private Integer id;
     private String name;
     private String type;
+    private String title;
+
+    @Column(name = "description", length = 1000)
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ChildCategory category;
 
+    //    @Lob
+    @Column(name = "picByte", length = 1000)
+    private byte[] picByte;
+
+
+    @Transient
+    private Integer categoryId;
+
+
     public ImageModel() {
         super();
     }
-    public ImageModel( String name, String type, byte[] picByte , ChildCategory cat) {
-        this.category = cat;
+    public ImageModel( String name, String type, byte[] picByte , ChildCategory categoryId , String title , String desc) {
+        this.title = title;
+        this.description = desc;
+        this.category = categoryId;
         this.name = name;
         this.type = type;
         this.picByte = picByte;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public ChildCategory getCategory() {
@@ -44,9 +83,7 @@ public class ImageModel {
         this.type = type;
     }
 
-//    @Lob
-    @Column(name = "picByte", length = 1000)
-    private byte[] picByte;
+
 
 
     public Integer getId() {
