@@ -17,4 +17,5 @@ public interface ChildCategoryService {
     public ResponseEntity getById(Integer id);
 
     public Boolean changeStatus(Integer id);
+
 }

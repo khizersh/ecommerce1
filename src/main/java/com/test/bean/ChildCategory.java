@@ -2,6 +2,9 @@ package com.test.bean;
 
 import javax.persistence.*;
 
+import java.util.*;
+
+
 @Entity
 public class ChildCategory {
 
@@ -18,8 +21,27 @@ public class ChildCategory {
     @JoinColumn(name = "parent_id")
     private ParentCategory parentCategory;
 
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_attribute")
+    private List<ChildCategoryAttribute> attributeList = new ArrayList<>();
+
+
     @Transient
     private Integer parentId;
+
+
+   //getter setter
+
+
+    public List<ChildCategoryAttribute> getAttributeList() {
+        return attributeList;
+    }
+
+    public void setAttributeList(List<ChildCategoryAttribute> attributeList) {
+        this.attributeList = attributeList;
+    }
 
     public Integer getParentId() {
         return parentId;

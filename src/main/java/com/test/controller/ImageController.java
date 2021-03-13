@@ -39,7 +39,7 @@ public class ImageController {
       List<ImageModel> listToSend = new ArrayList<>();
         for (ImageModel i: list){
 
-            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) , i.getCategory() , i.getTitle() , i.getDescription());
+            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) );
            img.setId(i.getId());
             listToSend.add(img);
         }
@@ -58,7 +58,7 @@ public class ImageController {
             return new ResponseEntity("Invalid Image",HttpStatus.BAD_REQUEST);
         }
         cat = categoryRepo.getOne(categoryId);
-        ImageModel img = new ImageModel(imageFile.getOriginalFilename(), imageFile.getContentType() ,compressBytes(imageFile.getBytes()) ,cat, title , description);
+        ImageModel img = new ImageModel(imageFile.getOriginalFilename(), imageFile.getContentType() ,compressBytes(imageFile.getBytes()) );
         ImageModel responseImage =  imageRepository.save(img);
         return  ResponseEntity.ok(responseImage);
     }
@@ -71,7 +71,7 @@ public class ImageController {
         return new ResponseEntity("Image not found!",HttpStatus.BAD_REQUEST);
         }
 
-        ImageModel img = new ImageModel(retrievedImage.getName(), retrievedImage.getType(), decompressBytes(retrievedImage.getPicByte()) , retrievedImage.getCategory() , retrievedImage.getTitle() , retrievedImage.getDescription());
+        ImageModel img = new ImageModel(retrievedImage.getName(), retrievedImage.getType(), decompressBytes(retrievedImage.getPicByte()));
         return ResponseEntity.ok(img);
 
     }
@@ -82,8 +82,7 @@ public class ImageController {
         Optional<ImageModel> retrievedImage = imageRepository.findByName(imageName);
 //        final Optional<ImageModel> retrievedImage = imageRepository.findByName(imageName);
 
-        ImageModel img = new ImageModel(retrievedImage.get().getName(), retrievedImage.get().getType(),
-                decompressByteArray(retrievedImage.get().getPicByte()) ,retrievedImage.get().getCategory() , retrievedImage.get().getTitle() , retrievedImage.get().getDescription());
+        ImageModel img = new ImageModel(retrievedImage.get().getName(), retrievedImage.get().getType(),decompressByteArray(retrievedImage.get().getPicByte()) );
 
         return ResponseEntity.ok(img);
 
@@ -139,7 +138,7 @@ public class ImageController {
         imageRepository.findByCategory(cat).forEach(i -> System.out.println(i.getCategory().getCategoryName()));
         for (ImageModel i: imageRepository.findByCategory(cat)){
 
-            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) , i.getCategory() , i.getTitle() , i.getDescription());
+            ImageModel img = new ImageModel(i.getName(), i.getType(), decompressBytes(i.getPicByte()) );
             list.add(img);
         }
 

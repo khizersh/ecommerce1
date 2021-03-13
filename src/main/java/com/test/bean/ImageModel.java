@@ -34,10 +34,8 @@ public class ImageModel {
     public ImageModel() {
         super();
     }
-    public ImageModel( String name, String type, byte[] picByte , ChildCategory categoryId , String title , String desc) {
-        this.title = title;
-        this.description = desc;
-        this.category = categoryId;
+    public ImageModel( String name, String type, byte[] picByte ) {
+
         this.name = name;
         this.type = type;
         this.picByte = picByte;

@@ -1,51 +1,100 @@
 package com.test.controller;
 
+import com.test.bean.ChildAttribute;
 import com.test.bean.ChildCategory;
+import com.test.bean.ChildCategoryAttribute;
+import com.test.bean.ParentAttributes;
+import com.test.dto.ChildAttributeDto;
+import com.test.dto.ParentAttributeDto;
+import com.test.dto.childCategoryDto;
+import com.test.repo.ChildAttributeRepo;
+import com.test.repo.ChildCategoryAttributeRepo;
+import com.test.repo.ParentAttributeRepo;
 import com.test.service.ChildCategoryService;
+import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.*;
 
 @RestController
-@RequestMapping("api/childCategory")
+@RequestMapping("/api/childCategory")
 public class ChildCategoryController {
 
     @Autowired
     private ChildCategoryService childCategoryService;
 
+    @Autowired
+    private ChildCategoryAttributeRepo attributeRepo;
+
+    @Autowired
+    private ParentAttributeRepo parentAttributeRepo;
+
+    @Autowired
+    private ChildAttributeRepo childAttributeRepo;
+
+    @Autowired
+    private GlobalService service;
+
     @GetMapping
     public ResponseEntity getAll(){
-        return ResponseEntity.ok(childCategoryService.getAll());
+
+        List<childCategoryDto> list = new ArrayList<>();
+
+        for (ChildCategory i:childCategoryService.getAll()) {
+            list.add(convertDto(i));
+        }
+
+        return service.getSuccessResponse(list);
+
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable Integer id){
         if(id == null){
-            return new ResponseEntity("Enter id!", HttpStatus.BAD_REQUEST);
+            return service.getErrorResponse("Enter id!");
         }
 
-       return ResponseEntity.ok(childCategoryService.getById(id));
+        return service.getSuccessResponse(childCategoryService.getById(id));
+
     }
 
     @PostMapping
     public ResponseEntity addCategory(@RequestBody ChildCategory cat){
         if(cat == null){
-            return new ResponseEntity("Enter all fields!",HttpStatus.BAD_REQUEST);
+            return service.getErrorResponse("Enter all fields!");
         }
-        return ResponseEntity.ok(childCategoryService.addCategory(cat));
+        if(cat.getAttributeList().size() == 0){
+            return service.getErrorResponse("Please add attribute!");
+        }
+        List<ChildCategoryAttribute> list = new ArrayList<>();
+        for ( ChildCategoryAttribute i: cat.getAttributeList()) {
+           if(parentAttributeRepo.existsById(i.getParentAttributeId())){
+               ParentAttributes pcat = parentAttributeRepo.getOne(i.getParentAttributeId());
+               ChildCategoryAttribute att = new ChildCategoryAttribute();
+               att.setParentAttributes(pcat);
+               list.add(att);
+
+           }
+        }
+        cat.setAttributeList(list);
+        return (childCategoryService.addCategory(cat));
+
     }
 
     @PutMapping("/{id}")
     public ResponseEntity updateCategory(@RequestBody ChildCategory cat , @PathVariable Integer id){
         if(cat == null){
-            return new ResponseEntity("Enter all fields!",HttpStatus.BAD_REQUEST);
+            return service.getErrorResponse("Enter all fields!");
         }
         if(id == null){
-            return new ResponseEntity("Enter id!",HttpStatus.BAD_REQUEST);
+            return service.getErrorResponse("Enter id!");
         }
 
-        return ResponseEntity.ok(childCategoryService.updateCategory(id , cat));
+        return service.getSuccessResponse(childCategoryService.updateCategory(id , cat));
+
     }
 
 
@@ -56,9 +105,57 @@ public class ChildCategoryController {
         if(childCategoryService.deleteCategory(id)){
             return ResponseEntity.ok().build();
         }else{
-            return new ResponseEntity("Something went wrong!",HttpStatus.BAD_REQUEST);
+            return service.getErrorResponse("Something went wrong!");
         }
 
     }
 
+
+
+
+    public childCategoryDto convertDto(ChildCategory child){
+
+        childCategoryDto dto = new childCategoryDto();
+
+
+        dto.setTitle(child.getCategoryName());
+        dto.setActive(child.getActive());
+        dto.setId(child.getId());
+        dto.setParentCategoryId(child.getParentCategory().getId());
+        dto.setParentCategoryTitle(child.getParentCategory().getCategoryName());
+
+        List<ParentAttributeDto> list = new ArrayList<>();
+
+        for (ChildCategoryAttribute i: child.getAttributeList()) {
+            ParentAttributeDto attributeDto = new ParentAttributeDto();
+            System.out.println("attribute list" + i.getParentAttributes().toString());
+            if(i.getParentAttributes().getActive() == null){
+                attributeDto.setActive(false);
+            }else{
+                attributeDto.setActive(i.getParentAttributes().getActive());
+            }
+
+            attributeDto.setParentTitle(i.getParentAttributes().getTitle());
+            attributeDto.setId(i.getParentAttributes().getId());
+
+            List<ChildAttribute> childList = childAttributeRepo.findByParentAttributes(i.getParentAttributes());
+           List<ChildAttributeDto> listChild = new ArrayList<>();
+
+            childList.forEach(j -> {
+                ChildAttributeDto childAtt = new ChildAttributeDto();
+                childAtt.setId(j.getId());
+                childAtt.setTitle(j.getTitle());
+                listChild.add(childAtt);
+            });
+
+            attributeDto.setChildAttributeList(listChild);
+
+            list.add(attributeDto);
+        }
+
+        dto.setAttributeList(list);
+
+        return dto;
+
+    }
 }

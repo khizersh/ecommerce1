@@ -2,6 +2,7 @@ package com.test.controller;
 
 import com.test.bean.ParentCategory;
 import com.test.service.ParentCategoryService;
+import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,13 @@ public class ParentCategoryController {
     @Autowired
     private ParentCategoryService service;
 
+    @Autowired
+    private GlobalService responseService;
+
     @GetMapping
     public ResponseEntity getAllCategories(){
-        return ResponseEntity.ok(service.getAll());
+
+        return responseService.getSuccessResponse(service.getAll());
     }
 
     @PostMapping
