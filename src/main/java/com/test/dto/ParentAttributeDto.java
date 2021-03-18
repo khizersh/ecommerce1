@@ -13,6 +13,9 @@ public class ParentAttributeDto {
 
     private List<ChildAttributeDto> childAttributeList = new ArrayList<>();
 
+
+//    getter setter
+
     public Integer getId() {
         return id;
     }

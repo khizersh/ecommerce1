@@ -13,14 +13,8 @@ public class ImageModel {
     private Integer id;
     private String name;
     private String type;
-    private String title;
 
-    @Column(name = "description", length = 1000)
-    private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private ChildCategory category;
 
     //    @Lob
     @Column(name = "picByte", length = 1000)
@@ -41,47 +35,7 @@ public class ImageModel {
         this.picByte = picByte;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ChildCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(ChildCategory category) {
-        this.category = category;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-
+//   getter setter\
 
 
     public Integer getId() {
@@ -100,6 +54,14 @@ public class ImageModel {
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public byte[] getPicByte() {
         return picByte;
     }
@@ -108,5 +70,11 @@ public class ImageModel {
         this.picByte = picByte;
     }
 
+    public Integer getCategoryId() {
+        return categoryId;
+    }
 
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 }

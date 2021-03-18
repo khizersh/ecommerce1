@@ -8,9 +8,4 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ImageRepository extends JpaRepository<ImageModel , Integer> {
-    Optional<ImageModel> findByName(String name);
-
-    List<ImageModel> findByCategory(ChildCategory cat);
-//    Optional<ImageModel> findById(Long id);
-}
+public interface ImageRepository extends JpaRepository<ImageModel , Integer> { }

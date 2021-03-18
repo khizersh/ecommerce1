@@ -44,7 +44,7 @@ public class ChildCategoryController {
         List<childCategoryDto> list = new ArrayList<>();
 
         for (ChildCategory i:childCategoryService.getAll()) {
-            list.add(convertDto(i));
+            list.add(service.convertChildCategoryDto(i));
         }
 
         return service.getSuccessResponse(list);
@@ -112,50 +112,4 @@ public class ChildCategoryController {
 
 
 
-
-    public childCategoryDto convertDto(ChildCategory child){
-
-        childCategoryDto dto = new childCategoryDto();
-
-
-        dto.setTitle(child.getCategoryName());
-        dto.setActive(child.getActive());
-        dto.setId(child.getId());
-        dto.setParentCategoryId(child.getParentCategory().getId());
-        dto.setParentCategoryTitle(child.getParentCategory().getCategoryName());
-
-        List<ParentAttributeDto> list = new ArrayList<>();
-
-        for (ChildCategoryAttribute i: child.getAttributeList()) {
-            ParentAttributeDto attributeDto = new ParentAttributeDto();
-            System.out.println("attribute list" + i.getParentAttributes().toString());
-            if(i.getParentAttributes().getActive() == null){
-                attributeDto.setActive(false);
-            }else{
-                attributeDto.setActive(i.getParentAttributes().getActive());
-            }
-
-            attributeDto.setParentTitle(i.getParentAttributes().getTitle());
-            attributeDto.setId(i.getParentAttributes().getId());
-
-            List<ChildAttribute> childList = childAttributeRepo.findByParentAttributes(i.getParentAttributes());
-           List<ChildAttributeDto> listChild = new ArrayList<>();
-
-            childList.forEach(j -> {
-                ChildAttributeDto childAtt = new ChildAttributeDto();
-                childAtt.setId(j.getId());
-                childAtt.setTitle(j.getTitle());
-                listChild.add(childAtt);
-            });
-
-            attributeDto.setChildAttributeList(listChild);
-
-            list.add(attributeDto);
-        }
-
-        dto.setAttributeList(list);
-
-        return dto;
-
-    }
 }

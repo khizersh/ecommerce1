@@ -14,14 +14,37 @@ public class Product {
 
     private String description;
 
+    private Boolean priceSet = false;
+
+
     @ManyToOne
     private ChildCategory category;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
     private List<ImageModel> imageList = new ArrayList<>();
+
+    @Transient
+    private Integer categoryId;
 
 //    getter setter
 
+
+    public Boolean getPriceSet() {
+        return priceSet;
+    }
+
+    public void setPriceSet(Boolean priceSet) {
+        this.priceSet = priceSet;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public Integer getId() {
         return id;
@@ -61,5 +84,18 @@ public class Product {
 
     public void setImageList(List<ImageModel> imageList) {
         this.imageList = imageList;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", imageList=" + imageList +
+                ", categoryId=" + categoryId +
+                '}';
     }
 }
