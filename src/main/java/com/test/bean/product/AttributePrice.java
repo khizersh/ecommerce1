@@ -1,4 +1,4 @@
-package com.test.bean;
+package com.test.bean.product;
 
 import javax.persistence.*;
 
@@ -19,6 +19,10 @@ public class AttributePrice {
 
     private Double price;
 
+    private Double discountPrice;
+
+    private Boolean discount = false;
+
     private Integer productId;
 
     private String productName;
@@ -26,6 +30,22 @@ public class AttributePrice {
 
 //    getter setter
 
+
+    public Double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public Boolean getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Boolean discount) {
+        this.discount = discount;
+    }
 
     public Double getPrice() {
         return price;

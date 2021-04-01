@@ -1,6 +1,6 @@
 package com.test.dto;
 
-import com.test.bean.ImageModel;
+import com.test.bean.product.ImageModel;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -13,11 +13,19 @@ public class ProductDto {
     private String description;
     private Integer categoryId;
     private String categoryName;
-    private childCategoryDto categoryDto;
     private  List<ImageModel> imageList = new ArrayList<>();
+    private  List<ParentAttributeDto> attributeList = new ArrayList<>();
 
 //    getter setter
 
+
+    public List<ParentAttributeDto> getAttributeList() {
+        return attributeList;
+    }
+
+    public void setAttributeList(List<ParentAttributeDto> attributeList) {
+        this.attributeList = attributeList;
+    }
 
     public Boolean getPriceSet() {
         return priceSet;
@@ -67,13 +75,7 @@ public class ProductDto {
         this.categoryName = categoryName;
     }
 
-    public childCategoryDto getCategoryDto() {
-        return categoryDto;
-    }
 
-    public void setCategoryDto(childCategoryDto categoryDto) {
-        this.categoryDto = categoryDto;
-    }
 
     public List<ImageModel> getImageList() {
         return imageList;

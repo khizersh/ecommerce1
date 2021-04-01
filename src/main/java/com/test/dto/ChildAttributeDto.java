@@ -1,14 +1,15 @@
 package com.test.dto;
 
 
+import com.test.bean.product.ImageModel;
+
+import java.util.*;
+
 public class ChildAttributeDto {
 
     private Integer id;
-
     private String title;
-
-
-
+    private List<ImageModel> attributeImage = new ArrayList<>();
 
 //    getter setter
 
@@ -28,5 +29,11 @@ public class ChildAttributeDto {
         this.title = title;
     }
 
+    public List<ImageModel> getAttributeImage() {
+        return attributeImage;
+    }
 
+    public void setAttributeImage(List<ImageModel> attributeImage) {
+        this.attributeImage = attributeImage;
+    }
 }

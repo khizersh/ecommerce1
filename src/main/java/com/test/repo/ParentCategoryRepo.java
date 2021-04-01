@@ -1,6 +1,6 @@
 package com.test.repo;
 
-import com.test.bean.ParentCategory;
+import com.test.bean.category.ParentCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

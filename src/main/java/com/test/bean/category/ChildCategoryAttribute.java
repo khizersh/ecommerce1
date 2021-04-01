@@ -1,4 +1,6 @@
-package com.test.bean;
+package com.test.bean.category;
+
+import com.test.bean.attribute.ParentAttributes;
 
 import javax.persistence.*;
 

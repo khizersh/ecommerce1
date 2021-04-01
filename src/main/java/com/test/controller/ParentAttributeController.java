@@ -1,11 +1,9 @@
 package com.test.controller;
 
-import com.test.bean.ParentAttributes;
+import com.test.bean.attribute.ParentAttributes;
 import com.test.repo.ParentAttributeRepo;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,4 +63,22 @@ public class ParentAttributeController {
 
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity edit(@RequestBody ParentAttributes attribute){
+        if(!attributeRepo.existsById(attribute.getId())){
+            return responseService.getErrorResponse("Invalid Request");
+        }
+        ParentAttributes p = attributeRepo.getOne(attribute.getId());
+
+        if(attribute.getTitle() != null){
+            p.setTitle(attribute.getTitle());
+        }
+        if(attribute.getActive() != null){
+            p.setActive(attribute.getActive());
+        }
+        attributeRepo.save(p);
+        return responseService.getSuccessResponse(p);
+
+    }
 }

@@ -1,4 +1,7 @@
-package com.test.bean;
+package com.test.bean.product;
+
+import com.test.bean.category.ChildCategory;
+import com.test.bean.product_attribute.ProductAttribute;
 
 import javax.persistence.*;
 import java.util.*;
@@ -20,6 +23,12 @@ public class Product {
     @ManyToOne
     private ChildCategory category;
 
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<ProductAttribute> attributeList = new ArrayList<>();
+
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private List<ImageModel> imageList = new ArrayList<>();
@@ -29,6 +38,14 @@ public class Product {
 
 //    getter setter
 
+
+    public List<ProductAttribute> getAttributeList() {
+        return attributeList;
+    }
+
+    public void setAttributeList(List<ProductAttribute> attributeList) {
+        this.attributeList = attributeList;
+    }
 
     public Boolean getPriceSet() {
         return priceSet;

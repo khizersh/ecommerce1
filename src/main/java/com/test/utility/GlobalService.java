@@ -2,11 +2,7 @@ package com.test.utility;
 
 
 
-import com.test.bean.ChildAttribute;
-import com.test.bean.ChildCategory;
-import com.test.bean.ChildCategoryAttribute;
-import com.test.dto.ChildAttributeDto;
-import com.test.dto.ParentAttributeDto;
+import com.test.bean.category.ChildCategory;
 import com.test.dto.childCategoryDto;
 import com.test.repo.ChildAttributeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -58,36 +52,6 @@ public class GlobalService {
         dto.setParentCategoryId(child.getParentCategory().getId());
         dto.setParentCategoryTitle(child.getParentCategory().getCategoryName());
 
-        List<ParentAttributeDto> list = new ArrayList<>();
-
-        for (ChildCategoryAttribute i: child.getAttributeList()) {
-            ParentAttributeDto attributeDto = new ParentAttributeDto();
-            System.out.println("attribute list" + i.getParentAttributes().toString());
-            if(i.getParentAttributes().getActive() == null){
-                attributeDto.setActive(false);
-            }else{
-                attributeDto.setActive(i.getParentAttributes().getActive());
-            }
-
-            attributeDto.setParentTitle(i.getParentAttributes().getTitle());
-            attributeDto.setId(i.getParentAttributes().getId());
-
-            List<ChildAttribute> childList = childAttributeRepo.findByParentAttributes(i.getParentAttributes());
-            List<ChildAttributeDto> listChild = new ArrayList<>();
-
-            childList.forEach(j -> {
-                ChildAttributeDto childAtt = new ChildAttributeDto();
-                childAtt.setId(j.getId());
-                childAtt.setTitle(j.getTitle());
-                listChild.add(childAtt);
-            });
-
-            attributeDto.setChildAttributeList(listChild);
-
-            list.add(attributeDto);
-        }
-
-        dto.setAttributeList(list);
 
         return dto;
 

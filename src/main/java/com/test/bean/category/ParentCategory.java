@@ -1,4 +1,4 @@
-package com.test.bean;
+package com.test.bean.category;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

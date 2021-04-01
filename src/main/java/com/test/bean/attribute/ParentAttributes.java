@@ -1,4 +1,4 @@
-package com.test.bean;
+package com.test.bean.attribute;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,7 +1,7 @@
 //package com.test.controller;
 //
-//import com.test.bean.ChildCategory;
-//import com.test.bean.ImageModel;
+//import com.test.bean.category.ChildCategory;
+//import com.test.bean.product.ImageModel;
 //import com.test.repo.ChildCategoryRepo;
 //import com.test.repo.ImageRepository;
 //import com.test.service.ChildCategoryService;

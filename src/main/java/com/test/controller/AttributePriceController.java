@@ -1,7 +1,6 @@
 package com.test.controller;
 
-import com.test.bean.AttributePrice;
-import com.test.bean.Product;
+import com.test.bean.product.AttributePrice;
 import com.test.repo.AttributePriceRepo;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,26 +31,41 @@ public class AttributePriceController {
     }
 
 
-    @PutMapping()
-    public ResponseEntity updatePrice(@RequestBody AttributePrice price){
-        if(price.getId() == null){
-            return service.getErrorResponse("Invalid request!");
-        }
-        if(!priceRepo.existsById(price.getId())){
-            return service.getErrorResponse("Attribute not found!");
-        }
-        AttributePrice attributePrice = priceRepo.getOne(price.getId());
+    @PostMapping("/update")
+    public ResponseEntity updatePrice(@RequestBody List<AttributePrice> priceList){
 
-        if(attributePrice.getProductId() != price.getProductId()){
-            return service.getErrorResponse("Invalid request!");
-        }
-        if(price.getPrice() <= 0){
-            return service.getErrorResponse("Invalid amount!");
-        }
-        attributePrice.setPrice(price.getPrice());
-        priceRepo.save(attributePrice);
+        if(priceList.size() > 0) {
 
-        return service.getSuccessResponse(attributePrice);
+            for (AttributePrice price: priceList) {
+                if (price.getId() == null) {
+                    return service.getErrorResponse("Invalid request!");
+                }
+                if (priceRepo.existsById(price.getId())) {
+
+                AttributePrice attributePrice = priceRepo.getOne(price.getId());
+
+                if(price.getDiscount() != null && price.getDiscount() != false){
+                    if(price.getPrice() != null && price.getDiscountPrice() != null){
+                            attributePrice.setDiscountPrice(price.getDiscountPrice());
+                            attributePrice.setPrice(price.getPrice());
+                            attributePrice.setDiscount(true);
+                            priceRepo.save(attributePrice);
+
+                    }
+                }else{
+                    if(price.getPrice() != null){
+                        attributePrice.setPrice(price.getPrice());
+                        priceRepo.save(attributePrice);
+                    }
+                }
+
+
+                }
+            }
+
+
+        }
+        return service.getSuccessResponse(priceList);
     }
 
     @GetMapping("/product/{id}")

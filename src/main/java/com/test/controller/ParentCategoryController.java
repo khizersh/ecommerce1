@@ -1,6 +1,6 @@
 package com.test.controller;
 
-import com.test.bean.ParentCategory;
+import com.test.bean.category.ParentCategory;
 import com.test.service.ParentCategoryService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;

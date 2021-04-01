@@ -1,4 +1,4 @@
-package com.test.bean;
+package com.test.bean.product;
 
 
 import javax.persistence.*;
@@ -21,8 +21,6 @@ public class ImageModel {
     private byte[] picByte;
 
 
-    @Transient
-    private Integer categoryId;
 
 
     public ImageModel() {
@@ -70,11 +68,5 @@ public class ImageModel {
         this.picByte = picByte;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
 }

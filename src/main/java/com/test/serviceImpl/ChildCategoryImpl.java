@@ -1,7 +1,7 @@
 package com.test.serviceImpl;
 
-import com.test.bean.ChildCategory;
-import com.test.bean.ParentCategory;
+import com.test.bean.category.ChildCategory;
+import com.test.bean.category.ParentCategory;
 import com.test.repo.ChildCategoryRepo;
 import com.test.repo.ParentCategoryRepo;
 import com.test.service.ChildCategoryService;

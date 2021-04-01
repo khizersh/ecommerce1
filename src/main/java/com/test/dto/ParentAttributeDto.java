@@ -1,20 +1,25 @@
 package com.test.dto;
 
-import com.test.bean.ChildAttribute;
 import java.util.*;
 
 public class ParentAttributeDto {
 
     private Integer id;
-
     private String parentTitle;
-
-    private boolean active;
-
+    private  Boolean multi;
     private List<ChildAttributeDto> childAttributeList = new ArrayList<>();
 
 
 //    getter setter
+
+
+    public Boolean getMulti() {
+        return multi;
+    }
+
+    public void setMulti(Boolean multi) {
+        this.multi = multi;
+    }
 
     public Integer getId() {
         return id;
@@ -32,13 +37,6 @@ public class ParentAttributeDto {
         this.parentTitle = parentTitle;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 
     public List<ChildAttributeDto> getChildAttributeList() {
         return childAttributeList;

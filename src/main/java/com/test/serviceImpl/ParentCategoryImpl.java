@@ -1,6 +1,6 @@
 package com.test.serviceImpl;
 
-import com.test.bean.ParentCategory;
+import com.test.bean.category.ParentCategory;
 import com.test.repo.ParentCategoryRepo;
 import com.test.service.ParentCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

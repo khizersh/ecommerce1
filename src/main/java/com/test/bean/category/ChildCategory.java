@@ -1,8 +1,6 @@
-package com.test.bean;
+package com.test.bean.category;
 
 import javax.persistence.*;
-
-import java.util.*;
 
 
 @Entity
@@ -23,9 +21,9 @@ public class ChildCategory {
 
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_attribute")
-    private List<ChildCategoryAttribute> attributeList = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "parent_attribute")
+//    private List<ChildCategoryAttribute> attributeList = new ArrayList<>();
 
 
     @Transient
@@ -34,14 +32,14 @@ public class ChildCategory {
 
    //getter setter
 
-
-    public List<ChildCategoryAttribute> getAttributeList() {
-        return attributeList;
-    }
-
-    public void setAttributeList(List<ChildCategoryAttribute> attributeList) {
-        this.attributeList = attributeList;
-    }
+//
+//    public List<ChildCategoryAttribute> getAttributeList() {
+//        return attributeList;
+//    }
+//
+//    public void setAttributeList(List<ChildCategoryAttribute> attributeList) {
+//        this.attributeList = attributeList;
+//    }
 
     public Integer getParentId() {
         return parentId;

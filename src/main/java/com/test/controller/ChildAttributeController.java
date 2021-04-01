@@ -1,13 +1,15 @@
 package com.test.controller;
 
-import com.test.bean.ChildAttribute;
-import com.test.bean.ParentAttributes;
+import com.test.bean.attribute.ChildAttribute;
+import com.test.bean.attribute.ParentAttributes;
+import com.test.dto.ChildAttributeDto;
 import com.test.repo.ChildAttributeRepo;
 import com.test.repo.ParentAttributeRepo;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/child-attribute")
@@ -35,6 +37,21 @@ public class ChildAttributeController {
 
         ChildAttribute child = childAttributeRepo.getOne(id);
         return service.getSuccessResponse(child);
+    }
+    @GetMapping("/parent/{id}")
+    public ResponseEntity getAttributeByParentId(@PathVariable Integer id){
+        if(!parentAttributeRepo.existsById(id)){
+            return service.getErrorResponse("Invalid Request!");
+        }
+        ParentAttributes parent = parentAttributeRepo.getOne(id);
+        List<ChildAttributeDto> list = new ArrayList<>();
+
+        for (ChildAttribute i: childAttributeRepo.findByParentAttributes(parent)) {
+            if(i.getParentAttributes().getActive()){
+            list.add(convertDto(i));
+            }
+        }
+        return service.getSuccessResponse(list);
     }
 
     @PostMapping
@@ -69,8 +86,18 @@ public class ChildAttributeController {
         if(id == null){
             return service.getErrorResponse("Invalid Request!");
         }
+        if(childAttributeRepo.existsById(id)){
+            childAttributeRepo.deleteById(id);
+            return service.getSuccessResponse("delete successfully!");
+        }
 
-        ChildAttribute child = childAttributeRepo.getOne(id);
-        return service.getSuccessResponse(child);
+        return service.getErrorResponse("Invalid Request!");
+    }
+
+    public ChildAttributeDto convertDto(ChildAttribute child){
+        ChildAttributeDto dto = new ChildAttributeDto();
+        dto.setId(child.getId());
+        dto.setTitle(child.getTitle());
+        return dto;
     }
 }

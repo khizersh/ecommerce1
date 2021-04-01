@@ -1,8 +1,7 @@
 package com.test.controller;
 
 
-import com.test.bean.ChildAttribute;
-import com.test.bean.ChildCategoryAttribute;
+import com.test.bean.category.ChildCategoryAttribute;
 import com.test.repo.ChildCategoryAttributeRepo;
 import com.test.repo.ParentAttributeRepo;
 import com.test.utility.GlobalService;

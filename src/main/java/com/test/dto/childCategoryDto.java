@@ -1,10 +1,5 @@
 package com.test.dto;
 
-import com.test.bean.ChildAttribute;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class childCategoryDto {
 
@@ -15,7 +10,7 @@ public class childCategoryDto {
     private Integer parentCategoryId;
     private String parentCategoryTitle;
 
-    private List<ParentAttributeDto> attributeList = new ArrayList<>();
+
 
 
 //    getter setter
@@ -61,11 +56,5 @@ public class childCategoryDto {
         this.parentCategoryTitle = parentCategoryTitle;
     }
 
-    public List<ParentAttributeDto> getAttributeList() {
-        return attributeList;
-    }
 
-    public void setAttributeList(List<ParentAttributeDto> attributeList) {
-        this.attributeList = attributeList;
-    }
 }

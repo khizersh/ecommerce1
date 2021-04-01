@@ -1,19 +1,12 @@
 package com.test.controller;
 
-import com.test.bean.ChildAttribute;
-import com.test.bean.ChildCategory;
-import com.test.bean.ChildCategoryAttribute;
-import com.test.bean.ParentAttributes;
-import com.test.dto.ChildAttributeDto;
-import com.test.dto.ParentAttributeDto;
+import com.test.bean.category.ChildCategory;
+import com.test.bean.category.ParentCategory;
 import com.test.dto.childCategoryDto;
-import com.test.repo.ChildAttributeRepo;
-import com.test.repo.ChildCategoryAttributeRepo;
-import com.test.repo.ParentAttributeRepo;
+import com.test.repo.*;
 import com.test.service.ChildCategoryService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -38,6 +31,12 @@ public class ChildCategoryController {
     @Autowired
     private GlobalService service;
 
+    @Autowired
+    private ChildCategoryRepo repo;
+
+    @Autowired
+    private ParentCategoryRepo parentRepo;
+
     @GetMapping
     public ResponseEntity getAll(){
 
@@ -60,27 +59,31 @@ public class ChildCategoryController {
         return service.getSuccessResponse(childCategoryService.getById(id));
 
     }
+    @GetMapping("/parent/{id}")
+    public ResponseEntity getListByParentId(@PathVariable Integer id){
+        if(!parentRepo.existsById(id)){
+            return service.getErrorResponse("Parent category not found!");
+        }
+        ParentCategory parent = parentRepo.getOne(id);
+        List<ChildCategory> list = repo.findByParentCategory(parent);
+
+        return service.getSuccessResponse(list);
+
+    }
+
 
     @PostMapping
     public ResponseEntity addCategory(@RequestBody ChildCategory cat){
         if(cat == null){
             return service.getErrorResponse("Enter all fields!");
         }
-        if(cat.getAttributeList().size() == 0){
-            return service.getErrorResponse("Please add attribute!");
+        if(cat.getActive() != null){
+            cat.setActive(false);
         }
-        List<ChildCategoryAttribute> list = new ArrayList<>();
-        for ( ChildCategoryAttribute i: cat.getAttributeList()) {
-           if(parentAttributeRepo.existsById(i.getParentAttributeId())){
-               ParentAttributes pcat = parentAttributeRepo.getOne(i.getParentAttributeId());
-               ChildCategoryAttribute att = new ChildCategoryAttribute();
-               att.setParentAttributes(pcat);
-               list.add(att);
-
-           }
+        if(cat.getCategoryName() == null){
+            return service.getErrorResponse("Enter title!");
         }
-        cat.setAttributeList(list);
-        return (childCategoryService.addCategory(cat));
+        return  service.getSuccessResponse(childCategoryService.addCategory(cat));
 
     }
 
@@ -101,7 +104,7 @@ public class ChildCategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCategory(@PathVariable Integer id ){
-        System.out.println("Delete: "+ id);
+
         if(childCategoryService.deleteCategory(id)){
             return ResponseEntity.ok().build();
         }else{

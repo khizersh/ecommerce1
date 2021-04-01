@@ -1,8 +1,8 @@
 package com.test.repo;
 
 import java.util.*;
-import com.test.bean.ChildAttribute;
-import com.test.bean.ParentAttributes;
+import com.test.bean.attribute.ChildAttribute;
+import com.test.bean.attribute.ParentAttributes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

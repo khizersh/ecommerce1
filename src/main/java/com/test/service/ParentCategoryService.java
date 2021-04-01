@@ -1,6 +1,6 @@
 package com.test.service;
 
-import com.test.bean.ParentCategory;
+import com.test.bean.category.ParentCategory;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
