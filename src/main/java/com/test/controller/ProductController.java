@@ -14,6 +14,7 @@ import com.test.dto.ChildAttributeDto;
 import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
 import com.test.repo.*;
+import com.test.service.ProductService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,8 @@ public class ProductController {
     @Autowired
     private GlobalService service;
     @Autowired
+    private ProductService productService;
+    @Autowired
     private ChildCategoryRepo childCatRepo;
 
 //    attribute
@@ -48,6 +51,8 @@ public class ProductController {
     private ChildAttributeRepo childAttributeRepo;
     @Autowired
     private AttributeImageRepo attributeImageRepo;
+
+    
 //    end
 
     @Autowired
@@ -57,7 +62,7 @@ public class ProductController {
     public ResponseEntity getAll(){
         List<ProductDto> list = new ArrayList<>();
         for (Product i:productRepo.findAll() ) {
-            list.add(convertDto(i , false));
+            list.add(productService.convertDto(i , false));
         }
         return service.getSuccessResponse(productRepo.findAll());
     }
@@ -72,7 +77,7 @@ public class ProductController {
         }
         Product pro = productRepo.getOne(id);
 
-        ProductDto dto = convertDto(pro , true);
+        ProductDto dto = productService.convertDto(pro , true);
 
 //        if(pro.getCategory() != null){
 //        dto.setCategoryDto(service.convertChildCategoryDto(pro.getCategory()));
@@ -126,7 +131,6 @@ public class ProductController {
         }
         product.setImageList(imageModels);
         List<ProductAttribute> listParent = new ArrayList<>();
-
 
 
         for (ProductAttribute i: product.getAttributeList()){
@@ -243,8 +247,6 @@ public class ProductController {
     }
 
 
-
-
     public Boolean setAttributePrice(Product pro){
 
         int loopNo = pro.getAttributeList().size();
@@ -258,140 +260,74 @@ public class ProductController {
 
     public Boolean attributeLoops(int count , List<ProductAttribute>  list, Integer pid , String pName){
 
-        switch(count) {
-            case 1:
-                for(ProductSubAttribute i: list.get(0).getSubAttributeList()){
-                       AttributePrice price = new AttributePrice();
-                       price.setAttribute_1(i.getChildAttributeName());
-                       price.setProductId(pid);
-                       price.setProductName(pName);
-                       priceRepo.save(price);
-               }
-                return true;
+         if(count == 1) {
+             for (ProductSubAttribute i : list.get(0).getSubAttributeList()) {
+                 AttributePrice price = new AttributePrice();
+                 price.setAttribute_1(i.getChildAttributeName());
+                 price.setProductId(pid);
+                 price.setProductName(pName);
+                 priceRepo.save(price);
+             }
+             return true;
+         }
 
-            case 2:
-                System.out.println("count 2");
-               for(ProductSubAttribute i: list.get(0).getSubAttributeList()){
-                   for(ProductSubAttribute j: list.get(1).getSubAttributeList()){
+           if(count == 2) {
+               System.out.println("count 2");
+               for (ProductSubAttribute i : list.get(0).getSubAttributeList()) {
+                   for (ProductSubAttribute j : list.get(1).getSubAttributeList()) {
                        AttributePrice price = new AttributePrice();
                        price.setAttribute_1(i.getChildAttributeName());
-                       price.setAttribute_1(j.getChildAttributeName());
+                       price.setAttribute_2(j.getChildAttributeName());
                        price.setProductId(pid);
                        price.setProductName(pName);
                        priceRepo.save(price);
                    }
                }
-                return true;
+               return true;
+           }
 
-            case 3:
-                System.out.println("count 3");
-                for(ProductSubAttribute i: list.get(0).getSubAttributeList()){
-                    for(ProductSubAttribute j: list.get(1).getSubAttributeList()){
-                        for(ProductSubAttribute k: list.get(2).getSubAttributeList()){
-                        AttributePrice price = new AttributePrice();
-                        price.setAttribute_1(i.getChildAttributeName());
-                        price.setAttribute_2(j.getChildAttributeName());
-                        price.setAttribute_3(k.getChildAttributeName());
-                            price.setProductId(pid);
-                            price.setProductName(pName);
-                            priceRepo.save(price);
-                        }
-                    }
-                }
-                return true;
-            case 4:
-                System.out.println("count 4");
-                for(ProductSubAttribute i: list.get(0).getSubAttributeList()){
-                    for(ProductSubAttribute j: list.get(1).getSubAttributeList()){
-                        for(ProductSubAttribute k: list.get(2).getSubAttributeList()) {
-                            for (ProductSubAttribute l: list.get(3).getSubAttributeList()) {
-                                AttributePrice price = new AttributePrice();
-                                price.setAttribute_1(i.getChildAttributeName());
-                                price.setAttribute_2(j.getChildAttributeName());
-                                price.setAttribute_3(k.getChildAttributeName());
-                                price.setAttribute_3(l.getChildAttributeName());
-                                price.setProductId(pid);
-                                price.setProductName(pName);
-                                priceRepo.save(price);
-                            }
-                        }
-                    }
-                }
-                return true;
-            default:
-               return false;
-        }
+         if(count == 3) {
+             System.out.println("count 3");
+             for (ProductSubAttribute i : list.get(0).getSubAttributeList()) {
+                 for (ProductSubAttribute j : list.get(1).getSubAttributeList()) {
+                     for (ProductSubAttribute k : list.get(2).getSubAttributeList()) {
+                         AttributePrice price = new AttributePrice();
+                         price.setAttribute_1(i.getChildAttributeName());
+                         price.setAttribute_2(j.getChildAttributeName());
+                         price.setAttribute_3(k.getChildAttributeName());
+                         price.setProductId(pid);
+                         price.setProductName(pName);
+                         priceRepo.save(price);
+                     }
+                 }
+             }
+             return true;
+         }
+           if(count == 3) {
+               System.out.println("count 4");
+               for (ProductSubAttribute i : list.get(0).getSubAttributeList()) {
+                   for (ProductSubAttribute j : list.get(1).getSubAttributeList()) {
+                       for (ProductSubAttribute k : list.get(2).getSubAttributeList()) {
+                           for (ProductSubAttribute l : list.get(3).getSubAttributeList()) {
+                               AttributePrice price = new AttributePrice();
+                               price.setAttribute_1(i.getChildAttributeName());
+                               price.setAttribute_2(j.getChildAttributeName());
+                               price.setAttribute_3(k.getChildAttributeName());
+                               price.setAttribute_3(l.getChildAttributeName());
+                               price.setProductId(pid);
+                               price.setProductName(pName);
+                               priceRepo.save(price);
+                           }
+                       }
+                   }
+               }
+               return true;
+           }
 
 
+        return false;
     }
 //
-    public ProductDto convertDto(Product pro ,Boolean isDetail){
-        ProductDto dto = new ProductDto();
-        dto.setId(pro.getId());
-        dto.setTitle(pro.getTitle());
-        if(pro.getCategory() != null){
-        dto.setCategoryId(pro.getCategory().getId());
-        dto.setCategoryName(pro.getCategory().getCategoryName());
-        }
-        dto.setDescription(pro.getDescription());
-        if(pro.getImageList().size() != 0){
 
-            if(!isDetail){
-            List<ImageModel> list = new ArrayList<>();
-                ImageModel image = new ImageModel();
-                image = pro.getImageList().get(0);
-                image.setPicByte(service.decompressByteArray(image.getPicByte()));
-                list.add(image);
-                dto.setImageList(list);
-            }
-            else{
-                pro.getImageList().forEach(i -> {
-                    i.setPicByte(service.decompressByteArray( i.getPicByte()));
-                });
-                dto.setImageList(pro.getImageList());
-                if(pro.getCategory() != null){
-
-                }
-            }
-        }
-
-        if(isDetail) {
-            List<ParentAttributeDto> pList = new ArrayList<>();
-            for (ProductAttribute i : pro.getAttributeList()) {
-                ParentAttributeDto pa = new ParentAttributeDto();
-                pa.setId(i.getParentAttributeId());
-                pa.setParentTitle(i.getParentAttributeName());
-                pa.setMulti(i.getMultiImage());
-
-                List<ChildAttributeDto> clist = new ArrayList<>();
-                for (ProductSubAttribute j : i.getSubAttributeList()) {
-                    ChildAttributeDto ca = new ChildAttributeDto();
-                    ca.setId(j.getChildAttributeId());
-                    ca.setTitle(j.getChildAttributeName());
-
-                    if (i.getMultiImage()) {
-
-                        List<ImageModel> imageList = new ArrayList<>();
-                        for (AttributeImages k : attributeImageRepo.findByAttributeIdAndProductId(j.getChildAttributeId(), pro.getId())) {
-                           ImageModel image = new ImageModel();
-                           image.setId(k.getImage().getId());
-                            image.setName(k.getImage().getName());
-                            image.setType(k.getImage().getType());
-                            image.setPicByte(service.decompressByteArray( k.getImage().getPicByte()));
-                            imageList.add(image);
-
-                        }
-                        ca.setAttributeImage(imageList);
-                    }
-                    clist.add(ca);
-                }
-                pa.setChildAttributeList(clist);
-                pList.add(pa);
-            }
-            dto.setAttributeList(pList);
-        }
-
-        return dto;
-    }
 
 }
