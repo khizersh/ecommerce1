@@ -13,11 +13,20 @@ public class ProductDto {
     private String description;
     private Integer categoryId;
     private String categoryName;
+    private Integer sequence;
     private  List<ImageModel> imageList = new ArrayList<>();
     private  List<ParentAttributeDto> attributeList = new ArrayList<>();
 
 //    getter setter
 
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
+    }
 
     public List<ParentAttributeDto> getAttributeList() {
         return attributeList;
