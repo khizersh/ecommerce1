@@ -10,4 +10,7 @@ import java.util.*;
 public interface SectionItemsRepo extends JpaRepository<SectionItems, Integer> {
 
     public List<SectionItems> findBySectionId(Integer id);
+
+    public List<SectionItems> findBySequence(Integer id);
+
 }

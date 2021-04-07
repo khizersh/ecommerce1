@@ -69,7 +69,7 @@ public class ProductService {
                     ca.setId(j.getChildAttributeId());
                     ca.setTitle(j.getChildAttributeName());
 
-                    if (i.getMultiImage()) {
+                    if (i.getMultiImage() != null &&  i.getMultiImage() == true) {
 
                         List<ImageModel> imageList = new ArrayList<>();
                         for (AttributeImages k : attributeImageRepo.findByAttributeIdAndProductId(j.getChildAttributeId(), pro.getId())) {

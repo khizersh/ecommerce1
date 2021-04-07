@@ -1,8 +1,10 @@
 package com.test.controller;
 
 import com.test.bean.product.Product;
+import com.test.bean.sections.PositionClass;
 import com.test.bean.sections.ProductSections;
 import com.test.bean.sections.SectionItems;
+import com.test.bean.sections.SortBySequence;
 import com.test.dto.ProductDto;
 import com.test.dto.ProductSectionDto;
 import com.test.repo.ProductRepo;
@@ -84,7 +86,10 @@ public class SectionItemController {
         dto.setTitle(sec.getTitle());
 //        dto.set
        List<ProductDto> list = new ArrayList<>();
-        for (SectionItems j : itemsRepo.findBySectionId(id)) {
+       List<SectionItems> listItems = itemsRepo.findBySectionId(id);
+        Collections.sort(listItems, new SortBySequence());
+
+        for (SectionItems j : listItems) {
             Product product = productRepo.getOne(j.getProductId());
             if(product != null){
             ProductDto pro = productService.convertDto(product , false);
@@ -92,10 +97,52 @@ public class SectionItemController {
             list.add(pro);
             }
         }
+
         dto.setProductList(list);
 
         return service.getSuccessResponse(dto);
 
     }
 
+
+    @PostMapping("/position")
+    public ResponseEntity changePosition(@RequestBody PositionClass pos){
+
+        if(pos.getFrom() == null){
+            return service.getErrorResponse("Select Product!");
+        }
+        if(pos.getTo() == null){
+            return service.getErrorResponse("Enter position!");
+        }
+        if(pos.getId() == null){
+            return service.getErrorResponse("Select Product!");
+        }
+
+        List<SectionItems>  listFrom =  itemsRepo.findBySequence(pos.getFrom());
+        List<SectionItems>  listTo =  itemsRepo.findBySequence(pos.getTo());
+        SectionItems itemTo = new SectionItems();
+        SectionItems itemFrom = new SectionItems();
+
+        if(listTo.size() > 0){
+            itemTo = listTo.get(0);
+        }
+        if(listFrom.size() > 0){
+            itemFrom = listFrom.get(0);
+        }
+
+
+        if(itemTo ==  null) {
+            itemFrom.setSequence(pos.getTo());
+            itemsRepo.save(itemFrom);
+        }else{
+            itemFrom.setSequence(pos.getTo());
+            itemTo.setSequence(pos.getFrom());
+            itemsRepo.save(itemFrom);
+            itemsRepo.save(itemTo);
+        }
+
+        return service.getSuccessResponse("Position changed successfully!");
+    }
+
 }
+

@@ -20,6 +20,9 @@ public class ProductDto {
 //    getter setter
 
 
+    public ProductDto() {
+    }
+
     public Integer getSequence() {
         return sequence;
     }

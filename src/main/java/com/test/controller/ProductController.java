@@ -64,7 +64,21 @@ public class ProductController {
         for (Product i:productRepo.findAll() ) {
             list.add(productService.convertDto(i , false));
         }
-        return service.getSuccessResponse(productRepo.findAll());
+        return service.getSuccessResponse(list);
+    }
+
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity getProductListByCategoryId(@PathVariable Integer id){
+        List<ProductDto> list = new ArrayList<>();
+        ChildCategory cat = childCatRepo.getOne(id);
+        if(cat != null){
+
+        for (Product i:productRepo.findProductByCategory(cat)) {
+            list.add(productService.convertDto(i , false));
+        }
+        }
+        return service.getSuccessResponse(list);
     }
 
     @GetMapping("/detail/{id}")
@@ -79,10 +93,7 @@ public class ProductController {
 
         ProductDto dto = productService.convertDto(pro , true);
 
-//        if(pro.getCategory() != null){
-//        dto.setCategoryDto(service.convertChildCategoryDto(pro.getCategory()));
-//
-//        }
+
 
 
         return service.getSuccessResponse(dto);
