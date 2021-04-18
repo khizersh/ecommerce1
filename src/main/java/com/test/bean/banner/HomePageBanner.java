@@ -15,7 +15,7 @@ public class HomePageBanner {
     private String description;
     private String url;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private ImageModel image;
 
 //    getter stter

@@ -39,6 +39,7 @@ public class AttributePriceController {
     @PostMapping("/update")
     public ResponseEntity updatePrice(@RequestBody List<AttributePrice> priceList){
 
+        List<Double> priceArray = new ArrayList<>();
         if(priceList.size() > 0) {
 
             for (AttributePrice price: priceList) {
@@ -55,23 +56,29 @@ public class AttributePriceController {
                             attributePrice.setPrice(price.getPrice());
                             attributePrice.setDiscount(true);
                             priceRepo.save(attributePrice);
+                            priceArray.add(price.getDiscountPrice());
 
                     }
                 }else{
                     if(price.getPrice() != null){
                         attributePrice.setPrice(price.getPrice());
                         priceRepo.save(attributePrice);
+                        priceArray.add(price.getPrice());
                     }
                 }
 
 
                 }
             }
+//            setting product active
+          Double max = Collections.max(priceArray);
+          Double min = Collections.min(priceArray);
             Product pro = productRepo.getOne(priceList.get(0).getProductId());
+            pro.setPriceRange("" + min + " - " + max);
             if(pro.getPriceSet() == null || pro.getPriceSet() == false){
                 pro.setPriceSet(true);
-                productRepo.save(pro);
             }
+                productRepo.save(pro);
 
         }
         return service.getSuccessResponse(priceList);

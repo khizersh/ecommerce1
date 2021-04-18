@@ -19,6 +19,8 @@ public class Product {
 
     private Boolean priceSet = false;
 
+    private String priceRange;
+
 
     @ManyToOne
     private ChildCategory category;
@@ -38,6 +40,14 @@ public class Product {
 
 //    getter setter
 
+
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
+    }
 
     public List<ProductAttribute> getAttributeList() {
         return attributeList;

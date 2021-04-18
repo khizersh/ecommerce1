@@ -14,6 +14,7 @@ public class ProductDto {
     private Integer categoryId;
     private String categoryName;
     private Integer sequence;
+    private String range;
     private  List<ImageModel> imageList = new ArrayList<>();
     private  List<ParentAttributeDto> attributeList = new ArrayList<>();
 
@@ -21,6 +22,14 @@ public class ProductDto {
 
 
     public ProductDto() {
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
     }
 
     public Integer getSequence() {
