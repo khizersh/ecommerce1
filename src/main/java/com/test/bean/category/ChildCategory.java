@@ -1,5 +1,7 @@
 package com.test.bean.category;
 
+import com.test.bean.product.ImageModel;
+
 import javax.persistence.*;
 
 
@@ -15,16 +17,18 @@ public class ChildCategory {
 
     private Boolean isActive;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id")
     private ParentCategory parentCategory;
 
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image")
+    private ImageModel image;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "parent_attribute")
-//    private List<ChildCategoryAttribute> attributeList = new ArrayList<>();
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "banner")
+    private ImageModel banner;
 
     @Transient
     private Integer parentId;
@@ -32,14 +36,22 @@ public class ChildCategory {
 
    //getter setter
 
-//
-//    public List<ChildCategoryAttribute> getAttributeList() {
-//        return attributeList;
-//    }
-//
-//    public void setAttributeList(List<ChildCategoryAttribute> attributeList) {
-//        this.attributeList = attributeList;
-//    }
+
+    public ImageModel getImage() {
+        return image;
+    }
+
+    public void setImage(ImageModel image) {
+        this.image = image;
+    }
+
+    public ImageModel getBanner() {
+        return banner;
+    }
+
+    public void setBanner(ImageModel banner) {
+        this.banner = banner;
+    }
 
     public Integer getParentId() {
         return parentId;

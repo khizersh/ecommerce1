@@ -1,6 +1,8 @@
 package com.test.dto;
 
 
+import com.test.bean.product.ImageModel;
+
 public class childCategoryDto {
 
     private Integer id;
@@ -9,12 +11,30 @@ public class childCategoryDto {
     private Boolean active;
     private Integer parentCategoryId;
     private String parentCategoryTitle;
+    private ImageModel image;
+    private ImageModel banner;
 
 
 
 
 //    getter setter
 
+
+    public ImageModel getImage() {
+        return image;
+    }
+
+    public void setImage(ImageModel image) {
+        this.image = image;
+    }
+
+    public ImageModel getBanner() {
+        return banner;
+    }
+
+    public void setBanner(ImageModel banner) {
+        this.banner = banner;
+    }
 
     public String getTitle() {
         return title;

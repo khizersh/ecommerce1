@@ -1,7 +1,11 @@
 package com.test.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.bean.category.ChildCategory;
 import com.test.bean.category.ParentCategory;
+import com.test.bean.product.ImageModel;
+import com.test.bean.product.Product;
 import com.test.dto.childCategoryDto;
 import com.test.repo.*;
 import com.test.service.ChildCategoryService;
@@ -9,8 +13,13 @@ import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.*;
+
+import static com.test.utility.GlobalService.compressBytes;
 
 @RestController
 @RequestMapping("/api/childCategory")
@@ -73,7 +82,9 @@ public class ChildCategoryController {
 
 
     @PostMapping
-    public ResponseEntity addCategory(@RequestBody ChildCategory cat){
+    public ResponseEntity addCategory(@RequestParam String category ,  @RequestParam(value = "image") MultipartFile image , @RequestParam(value = "banner") MultipartFile banner ) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ChildCategory cat = mapper.readValue(category, ChildCategory.class);
         if(cat == null){
             return service.getErrorResponse("Enter all fields!");
         }
@@ -83,6 +94,11 @@ public class ChildCategoryController {
         if(cat.getCategoryName() == null){
             return service.getErrorResponse("Enter title!");
         }
+        ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
+        ImageModel ban = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
+
+        cat.setImage(img);
+        cat.setBanner(ban);
         return  service.getSuccessResponse(childCategoryService.addCategory(cat));
 
     }

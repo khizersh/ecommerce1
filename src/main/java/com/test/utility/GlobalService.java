@@ -3,6 +3,7 @@ package com.test.utility;
 
 
 import com.test.bean.category.ChildCategory;
+import com.test.bean.product.ImageModel;
 import com.test.dto.childCategoryDto;
 import com.test.repo.ChildAttributeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,14 @@ public class GlobalService {
         dto.setTitle(child.getCategoryName());
         dto.setActive(child.getActive());
         dto.setId(child.getId());
+        dto.setParentCategoryId(child.getParentCategory().getId());
+        if(child.getImage() != null){
+        ImageModel img = new ImageModel(child.getImage().getName(), child.getImage().getType() , decompressBytes(child.getImage().getPicByte()) );
+        ImageModel banner = new ImageModel(child.getBanner().getName(), child.getBanner().getType() , decompressBytes(child.getBanner().getPicByte()) );
+        dto.setImage(img);
+        dto.setBanner(banner);
+
+        }
         dto.setParentCategoryId(child.getParentCategory().getId());
         dto.setParentCategoryTitle(child.getParentCategory().getCategoryName());
 

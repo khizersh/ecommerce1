@@ -5,6 +5,7 @@ import com.test.bean.category.ParentCategory;
 import com.test.repo.ChildCategoryRepo;
 import com.test.repo.ParentCategoryRepo;
 import com.test.service.ChildCategoryService;
+import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class ChildCategoryImpl  implements ChildCategoryService {
     @Autowired
     private ParentCategoryRepo parentCategoryRepo;
 
+    @Autowired
+    private GlobalService service;
+
     @Override
     public List<ChildCategory> getAll() {
         return repo.findAll();
@@ -32,7 +36,7 @@ public class ChildCategoryImpl  implements ChildCategoryService {
 
         ChildCategory cat = repo.getOne(id);
 
-        return ResponseEntity.ok(cat);
+        return ResponseEntity.ok(service.convertChildCategoryDto(cat) );
     }
 
     @Override
@@ -41,8 +45,13 @@ public class ChildCategoryImpl  implements ChildCategoryService {
         if (!repo.existsById(id)){
             flag = false;
         }else{
-            repo.deleteById(id);
+            try {
+            repo.deleteByid(id);
             flag = true;
+
+            }catch (Exception e){
+                return false;
+            }
         }
         return flag;
     }
@@ -99,7 +108,7 @@ public class ChildCategoryImpl  implements ChildCategoryService {
         if (!repo.existsById(id) ) {
             flag = false;
         }else{
-            repo.deleteById(id);
+            repo.deleteByid(id);
             flag = true;
         }
 

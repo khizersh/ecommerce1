@@ -2,6 +2,7 @@ package com.test.controller;
 
 import com.test.bean.category.ChildCategory;
 import com.test.bean.category.ParentCategory;
+import com.test.bean.product.ImageModel;
 import com.test.dto.CategoryWithChild;
 import com.test.dto.ChildCat;
 import com.test.repo.ChildCategoryRepo;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+
+import static com.test.utility.GlobalService.compressBytes;
+import static com.test.utility.GlobalService.decompressBytes;
 
 @RestController
 @RequestMapping("api/parentCategory")
@@ -36,7 +40,7 @@ public class ParentCategoryController {
 
         List<ParentCategory> list = service.getAll();
         List<CategoryWithChild> finalList = new ArrayList<>();
-//        CategoryWithChild;
+
         for (ParentCategory i: list) {
            List<ChildCat>  childList = new ArrayList<>();
             CategoryWithChild parent = new CategoryWithChild();
@@ -73,5 +77,25 @@ public class ParentCategoryController {
     public ResponseEntity deleteCategory(@PathVariable Integer id ){
 
         return ResponseEntity.ok(service.delete(id));
+    }
+
+    public ChildCat convertDto(ChildCategory cat , boolean detail){
+        ChildCat dto = new ChildCat();
+        dto.setId(cat.getId());
+        dto.setActive(cat.getActive());
+        dto.setChildTitle(cat.getCategoryName());
+
+        if(detail){
+            if(cat.getImage() != null){
+                ImageModel img = new ImageModel(cat.getImage().getName(), cat.getImage().getType() , decompressBytes(cat.getImage().getPicByte()) );
+                ImageModel banner = new ImageModel(cat.getBanner().getName(), cat.getBanner().getType() , decompressBytes(cat.getBanner().getPicByte()) );
+                dto.setImage(img);
+                dto.setBanner(banner);
+
+            }
+        }
+
+        return dto;
+
     }
 }
