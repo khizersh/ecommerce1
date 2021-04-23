@@ -95,24 +95,28 @@ public class ChildCategoryController {
             return service.getErrorResponse("Enter title!");
         }
         ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
-        ImageModel ban = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
+        ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
 
         cat.setImage(img);
         cat.setBanner(ban);
-        return  service.getSuccessResponse(childCategoryService.addCategory(cat));
+        childCategoryService.addCategory(cat);
+        return  service.getSuccessResponse("success");
 
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity updateCategory(@RequestBody ChildCategory cat , @PathVariable Integer id){
+    @PostMapping("/update")
+    public ResponseEntity updateCategory(@RequestParam String category ,  @RequestParam(value = "image" , required = false) MultipartFile image , @RequestParam(value = "banner" , required = false) MultipartFile banner ) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ChildCategory cat = mapper.readValue(category, ChildCategory.class);
         if(cat == null){
             return service.getErrorResponse("Enter all fields!");
         }
-        if(id == null){
+        if(cat.getId()  == null){
             return service.getErrorResponse("Enter id!");
         }
-
-        return service.getSuccessResponse(childCategoryService.updateCategory(id , cat));
+        childCategoryService.updateCategory(cat , image , banner);
+        return service.getSuccessResponse("success");
 
     }
 

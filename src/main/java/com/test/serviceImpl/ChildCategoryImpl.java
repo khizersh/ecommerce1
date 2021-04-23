@@ -2,6 +2,7 @@ package com.test.serviceImpl;
 
 import com.test.bean.category.ChildCategory;
 import com.test.bean.category.ParentCategory;
+import com.test.bean.product.ImageModel;
 import com.test.repo.ChildCategoryRepo;
 import com.test.repo.ParentCategoryRepo;
 import com.test.service.ChildCategoryService;
@@ -10,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+
+import static com.test.utility.GlobalService.compressBytes;
 
 @Service
 public class ChildCategoryImpl  implements ChildCategoryService {
@@ -80,9 +85,9 @@ public class ChildCategoryImpl  implements ChildCategoryService {
     }
 
     @Override
-    public ResponseEntity updateCategory(Integer id, ChildCategory cat) {
+    public ResponseEntity updateCategory( ChildCategory cat , MultipartFile image , MultipartFile banner ) throws IOException {
 
-        ChildCategory catDb = repo.getOne(id);
+        ChildCategory catDb = repo.getOne(cat.getId());
         if(catDb == null){
             return new ResponseEntity("Not Found!",HttpStatus.NOT_FOUND);
         }
@@ -96,6 +101,14 @@ public class ChildCategoryImpl  implements ChildCategoryService {
         }
         if(cat.getActive() != null){
             catDb.setActive(cat.getActive());
+        }
+        if(image != null){
+            ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
+           catDb.setImage(img);
+        }
+        if(banner != null){
+            ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
+            catDb.setBanner(ban);
         }
 
 

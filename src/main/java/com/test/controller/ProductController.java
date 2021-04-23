@@ -181,6 +181,20 @@ public class ProductController {
 
     }
 
+
+    @DeleteMapping("/{id}")
+    public  ResponseEntity deleteProduc(@PathVariable Integer id )  {
+
+        if(!productRepo.existsById(id)){
+            return service.getErrorResponse("Image not found!");
+        }
+
+        productRepo.deleteById(id);
+
+        return service.getSuccessResponse("Product deleted");
+
+    }
+
     @PostMapping("/attribute-image")
     public ResponseEntity addAttributeImage(@RequestParam String attribute ,@RequestParam(value = "imageList") List<MultipartFile> imageList ) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
