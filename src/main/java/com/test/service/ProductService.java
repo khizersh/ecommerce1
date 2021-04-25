@@ -10,6 +10,7 @@ import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
 import com.test.repo.AttributeImageRepo;
 import com.test.utility.GlobalService;
+import com.test.utility.ImageURl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,17 +39,15 @@ public class ProductService {
         if(pro.getImageList().size() != 0){
 
             if(!isDetail){
-                List<ImageModel> list = new ArrayList<>();
-                ImageModel image = new ImageModel();
+                List<ImageURl> list = new ArrayList<>();
+                ImageURl image = new ImageURl();
                 image = pro.getImageList().get(0);
-                image.setPicByte(service.decompressByteArray(image.getPicByte()));
+//                image.setPicByte(service.decompressByteArray(image.getPicByte()));
                 list.add(image);
                 dto.setImageList(list);
             }
             else{
-                pro.getImageList().forEach(i -> {
-                    i.setPicByte(service.decompressByteArray( i.getPicByte()));
-                });
+
                 dto.setImageList(pro.getImageList());
                 if(pro.getCategory() != null){
 
@@ -72,14 +71,10 @@ public class ProductService {
 
                     if (i.getMultiImage() != null &&  i.getMultiImage() == true) {
 
-                        List<ImageModel> imageList = new ArrayList<>();
+                        List<String> imageList = new ArrayList<>();
                         for (AttributeImages k : attributeImageRepo.findByAttributeIdAndProductId(j.getChildAttributeId(), pro.getId())) {
-                            ImageModel image = new ImageModel();
-                            image.setId(k.getImage().getId());
-                            image.setName(k.getImage().getName());
-                            image.setType(k.getImage().getType());
-                            image.setPicByte(service.decompressByteArray( k.getImage().getPicByte()));
-                            imageList.add(image);
+
+                            imageList.add(k.getImage());
 
                         }
                         ca.setAttributeImage(imageList);

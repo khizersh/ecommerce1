@@ -9,9 +9,7 @@ public class AttributeImages {
     private Integer id;
     private Integer attributeId;
     private Integer productId;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private ImageModel image;
+    private String image;
 
 //    getter setter
 
@@ -40,11 +38,11 @@ public class AttributeImages {
         this.attributeId = attributeId;
     }
 
-    public ImageModel getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(ImageModel image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

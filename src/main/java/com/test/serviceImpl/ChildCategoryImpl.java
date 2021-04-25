@@ -6,6 +6,7 @@ import com.test.bean.product.ImageModel;
 import com.test.repo.ChildCategoryRepo;
 import com.test.repo.ParentCategoryRepo;
 import com.test.service.ChildCategoryService;
+import com.test.service.FileStorageService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,8 @@ public class ChildCategoryImpl  implements ChildCategoryService {
 
     @Autowired
     private GlobalService service;
+    @Autowired
+    private FileStorageService fileService;
 
     @Override
     public List<ChildCategory> getAll() {
@@ -103,12 +106,16 @@ public class ChildCategoryImpl  implements ChildCategoryService {
             catDb.setActive(cat.getActive());
         }
         if(image != null){
-            ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
-           catDb.setImage(img);
+//            ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
+//           catDb.setImage(img);
+           String img = fileService.storeAndReturnFile(image);
+            catDb.setImage(img);
         }
         if(banner != null){
-            ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
-            catDb.setBanner(ban);
+//            ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
+//            catDb.setBanner(ban);
+            String ban = fileService.storeAndReturnFile(banner);
+            catDb.setImage(ban);
         }
 
 

@@ -6,23 +6,24 @@ public class ChildCat {
 
     private Integer id;
     private String childTitle;
-    private ImageModel image;
-    private ImageModel banner;
+    private String image;
+    private String banner;
     private Boolean active;
 
-    public ImageModel getImage() {
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(ImageModel image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public ImageModel getBanner() {
+    public String getBanner() {
         return banner;
     }
 
-    public void setBanner(ImageModel banner) {
+    public void setBanner(String banner) {
         this.banner = banner;
     }
 

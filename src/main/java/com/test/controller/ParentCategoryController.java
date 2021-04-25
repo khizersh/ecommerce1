@@ -87,10 +87,8 @@ public class ParentCategoryController {
 
         if(detail){
             if(cat.getImage() != null){
-                ImageModel img = new ImageModel(cat.getImage().getName(), cat.getImage().getType() , decompressBytes(cat.getImage().getPicByte()) );
-                ImageModel banner = new ImageModel(cat.getBanner().getName(), cat.getBanner().getType() , decompressBytes(cat.getBanner().getPicByte()) );
-                dto.setImage(img);
-                dto.setBanner(banner);
+                dto.setImage(cat.getImage());
+                dto.setBanner(cat.getBanner());
 
             }
         }

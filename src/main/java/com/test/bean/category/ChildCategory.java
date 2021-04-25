@@ -21,14 +21,10 @@ public class ChildCategory {
     @JoinColumn(name = "parent_id")
     private ParentCategory parentCategory;
 
+    private String image;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image")
-    private ImageModel image;
+    private String banner;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "banner")
-    private ImageModel banner;
 
     @Transient
     private Integer parentId;
@@ -37,19 +33,19 @@ public class ChildCategory {
    //getter setter
 
 
-    public ImageModel getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(ImageModel image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public ImageModel getBanner() {
+    public String getBanner() {
         return banner;
     }
 
-    public void setBanner(ImageModel banner) {
+    public void setBanner(String banner) {
         this.banner = banner;
     }
 

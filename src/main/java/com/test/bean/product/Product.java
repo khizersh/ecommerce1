@@ -2,6 +2,7 @@ package com.test.bean.product;
 
 import com.test.bean.category.ChildCategory;
 import com.test.bean.product_attribute.ProductAttribute;
+import com.test.utility.ImageURl;
 
 import javax.persistence.*;
 import java.util.*;
@@ -33,12 +34,13 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private List<ImageModel> imageList = new ArrayList<>();
+    private List<ImageURl> imageList = new ArrayList<>();
 
     @Transient
     private Integer categoryId;
 
 //    getter setter
+
 
 
     public String getPriceRange() {
@@ -105,14 +107,13 @@ public class Product {
         this.category = category;
     }
 
-    public List<ImageModel> getImageList() {
+    public List<ImageURl> getImageList() {
         return imageList;
     }
 
-    public void setImageList(List<ImageModel> imageList) {
+    public void setImageList(List<ImageURl> imageList) {
         this.imageList = imageList;
     }
-
 
     @Override
     public String toString() {

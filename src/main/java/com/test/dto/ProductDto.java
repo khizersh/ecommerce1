@@ -1,6 +1,7 @@
 package com.test.dto;
 
 import com.test.bean.product.ImageModel;
+import com.test.utility.ImageURl;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -15,7 +16,7 @@ public class ProductDto {
     private String categoryName;
     private Integer sequence;
     private String range;
-    private  List<ImageModel> imageList = new ArrayList<>();
+    private  List<ImageURl> imageList = new ArrayList<>();
     private  List<ParentAttributeDto> attributeList = new ArrayList<>();
 
 //    getter setter
@@ -97,12 +98,11 @@ public class ProductDto {
     }
 
 
-
-    public List<ImageModel> getImageList() {
+    public List<ImageURl> getImageList() {
         return imageList;
     }
 
-    public void setImageList(List<ImageModel> imageList) {
+    public void setImageList(List<ImageURl> imageList) {
         this.imageList = imageList;
     }
 }

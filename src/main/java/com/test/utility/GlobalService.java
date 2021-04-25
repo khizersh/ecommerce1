@@ -6,6 +6,7 @@ import com.test.bean.category.ChildCategory;
 import com.test.bean.product.ImageModel;
 import com.test.dto.childCategoryDto;
 import com.test.repo.ChildAttributeRepo;
+import com.test.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.zip.Inflater;
 public class GlobalService {
     @Autowired
     private ChildAttributeRepo childAttributeRepo;
+
 
     public ResponseEntity getSuccessResponse(Object obj){
 
@@ -52,10 +54,9 @@ public class GlobalService {
         dto.setId(child.getId());
         dto.setParentCategoryId(child.getParentCategory().getId());
         if(child.getImage() != null){
-        ImageModel img = new ImageModel(child.getImage().getName(), child.getImage().getType() , decompressBytes(child.getImage().getPicByte()) );
-        ImageModel banner = new ImageModel(child.getBanner().getName(), child.getBanner().getType() , decompressBytes(child.getBanner().getPicByte()) );
-        dto.setImage(img);
-        dto.setBanner(banner);
+
+        dto.setImage(child.getImage());
+        dto.setBanner(child.getBanner());
 
         }
         dto.setParentCategoryId(child.getParentCategory().getId());

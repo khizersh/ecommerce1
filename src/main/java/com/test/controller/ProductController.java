@@ -14,8 +14,10 @@ import com.test.dto.ChildAttributeDto;
 import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
 import com.test.repo.*;
+import com.test.service.FileStorageService;
 import com.test.service.ProductService;
 import com.test.utility.GlobalService;
+import com.test.utility.ImageURl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,8 +57,14 @@ public class ProductController {
     
 //    end
 
+//    @Autowired
+//    private ImageRepository imageRepository;
     @Autowired
-    private ImageRepository imageRepository;
+    private ImageUrlRepo imageRepository;
+
+
+    @Autowired
+    private FileStorageService fileService;
 
     @GetMapping
     public ResponseEntity getAll(){
@@ -129,7 +137,7 @@ public class ProductController {
         }
         ChildCategory childCategory = childCatRepo.getOne(product.getCategoryId());
         product.setCategory(childCategory);
-        List<ImageModel> imageModels = new ArrayList<>();
+        List<ImageURl> imageUrls = new ArrayList<>();
         if(imageList == null){
             return service.getErrorResponse("Please select images!");
         }
@@ -137,10 +145,12 @@ public class ProductController {
             return service.getErrorResponse("Please select images!");
         }
         for (MultipartFile i: imageList){
-        ImageModel img = new ImageModel(i.getOriginalFilename(), i.getContentType() , compressBytes(i.getBytes()) );
-        imageModels.add(img);
+            ImageURl imageURl = new ImageURl();
+            imageURl.setImage(fileService.storeAndReturnFile(i));
+            imageUrls.add(imageURl);
+
         }
-        product.setImageList(imageModels);
+        product.setImageList(imageUrls);
         List<ProductAttribute> listParent = new ArrayList<>();
 
 
@@ -204,7 +214,8 @@ public class ProductController {
         }
         for (MultipartFile i: imageList){
             AttributeImages attributeImages = new AttributeImages();
-            ImageModel img = new ImageModel(i.getOriginalFilename(), i.getContentType() , compressBytes(i.getBytes()) );
+//            ImageModel img = new ImageModel(i.getOriginalFilename(), i.getContentType() , compressBytes(i.getBytes()) );
+            String img = fileService.storeAndReturnFile(i);
             attributeImages.setProductId(att.getProductId());
             attributeImages.setAttributeId(att.getAttributeId());
             attributeImages.setImage(img);
@@ -244,14 +255,13 @@ public class ProductController {
         if(!imageRepository.existsById(id)){
             return service.getErrorResponse("Image not found!");
         }
-          ImageModel imageDb = imageRepository.getOne(id);
+          ImageURl imageDb = imageRepository.getOne(id);
         if(imageFile != null){
-            imageDb.setPicByte(compressBytes(imageFile.getBytes()));
-            imageDb.setName(imageFile.getOriginalFilename());
-            imageDb.setType(imageFile.getContentType());
+
+            imageDb.setImage(fileService.storeAndReturnFile(imageFile));
         }
 
-        ImageModel savedImage =  imageRepository.save(imageDb);
+        ImageURl savedImage =  imageRepository.save(imageDb);
 
         return service.getSuccessResponse(savedImage);
 
