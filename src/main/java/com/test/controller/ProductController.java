@@ -70,7 +70,7 @@ public class ProductController {
     public ResponseEntity getAll(){
         List<ProductDto> list = new ArrayList<>();
         for (Product i:productRepo.findAll() ) {
-            list.add(productService.convertDto(i , false));
+            list.add(productService.convertDto(i , true));
         }
         return service.getSuccessResponse(list);
     }

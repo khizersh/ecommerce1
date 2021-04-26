@@ -49,7 +49,7 @@ public class SectionController {
             for (SectionItems j : itemsRepo.findBySectionId(i.getId())) {
                 Product product = productRepo.getOne(j.getProductId());
                 if(product != null){
-                    productList.add(productService.convertDto(product , false));
+                    productList.add(productService.convertDto(product , true));
                 }
             }
           dto.setProductList(productList);

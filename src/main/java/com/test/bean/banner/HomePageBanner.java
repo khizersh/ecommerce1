@@ -14,11 +14,9 @@ public class HomePageBanner {
     private String title;
     private String description;
     private String url;
+    private String image;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private ImageModel image;
-
-//    getter stter
+//    getter setter
 
     public Integer getId() {
         return id;
@@ -52,11 +50,12 @@ public class HomePageBanner {
         this.url = url;
     }
 
-    public ImageModel getImage() {
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(ImageModel image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
