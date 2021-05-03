@@ -59,6 +59,19 @@ public class SectionController {
         return service.getSuccessResponse(list);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteSection(@PathVariable Integer id){
+
+
+        if(id != null){
+            if(sectionRepo.existsById(id)){
+                sectionRepo.deleteById(id);
+                return service.getSuccessResponse("Deleted successfully!");
+            }
+        }
+        return service.getSuccessResponse("Not found!");
+    }
+
 
 
     @PostMapping
