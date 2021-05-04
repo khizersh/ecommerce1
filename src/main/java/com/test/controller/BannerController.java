@@ -34,6 +34,11 @@ public class BannerController {
        return service.getSuccessResponse(bannerRepo.findAll());
     }
 
+    @GetMapping("/awake")
+    public ResponseEntity awake(){
+       return service.getSuccessResponse("awake");
+    }
+
     @PostMapping
     public ResponseEntity add(@RequestParam String banner, @RequestParam MultipartFile file   ) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
