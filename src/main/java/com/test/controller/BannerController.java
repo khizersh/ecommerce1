@@ -71,10 +71,10 @@ public class BannerController {
         }
         if(file != null){
             String img = fileService.storeAndReturnFile(file);
-            ban.setImage(img);
+            db.setImage(img);
         }
 
-        return service.getSuccessResponse(bannerRepo.save(ban));
+        return service.getSuccessResponse(bannerRepo.save(db));
     }
 
 
