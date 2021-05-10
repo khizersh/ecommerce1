@@ -75,6 +75,7 @@ public class AttributePriceController {
           Double min = Collections.min(priceArray);
             Product pro = productRepo.getOne(priceList.get(0).getProductId());
             pro.setPriceRange("" + min + " - " + max);
+            pro.setPriceSet(true);
             if(pro.getPriceSet() == null || pro.getPriceSet() == false){
                 pro.setPriceSet(true);
             }

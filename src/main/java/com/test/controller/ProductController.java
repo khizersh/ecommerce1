@@ -69,7 +69,7 @@ public class ProductController {
     @GetMapping
     public ResponseEntity getAll(){
         List<ProductDto> list = new ArrayList<>();
-        for (Product i:productRepo.findAll() ) {
+        for (Product i:productRepo.findByOrderByIdAsc() ) {
             list.add(productService.convertDto(i , true));
         }
         return service.getSuccessResponse(list);

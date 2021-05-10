@@ -10,5 +10,6 @@ import java.util.*;
 public interface ProductRepo extends JpaRepository<Product , Integer> {
 
     public List<Product> findProductByCategory(ChildCategory  cat);
+    public List<Product> findByOrderByIdAsc();
 
 }
