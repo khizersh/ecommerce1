@@ -6,12 +6,30 @@ public class ParentAttributeDto {
 
     private Integer id;
     private String parentTitle;
-    private  Boolean multi;
+    private Integer parentAttributeId;
+    private Boolean multi;
+    private Integer productId;
     private List<ChildAttributeDto> childAttributeList = new ArrayList<>();
 
 
 //    getter setter
 
+
+    public Integer getParentAttributeId() {
+        return parentAttributeId;
+    }
+
+    public void setParentAttributeId(Integer parentAttributeId) {
+        this.parentAttributeId = parentAttributeId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
 
     public Boolean getMulti() {
         return multi;

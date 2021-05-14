@@ -11,6 +11,7 @@ public class ProductAttribute {
     private Integer parentAttributeId;
     private String parentAttributeName;
     private Boolean multiImage;
+    private Integer pId;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn
@@ -18,6 +19,14 @@ public class ProductAttribute {
 
 //    getter setter
 
+
+    public Integer getpId() {
+        return pId;
+    }
+
+    public void setpId(Integer pId) {
+        this.pId = pId;
+    }
 
     public Boolean getMultiImage() {
         return multiImage;
@@ -57,5 +66,17 @@ public class ProductAttribute {
 
     public void setSubAttributeList(List<ProductSubAttribute> subAttributeList) {
         this.subAttributeList = subAttributeList;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductAttribute{" +
+                "id=" + id +
+                ", parentAttributeId=" + parentAttributeId +
+                ", parentAttributeName='" + parentAttributeName + '\'' +
+                ", multiImage=" + multiImage +
+                ", pId=" + pId +
+                ", subAttributeList=" + subAttributeList +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.test.dto;
 
 
+import com.test.bean.product.AttributeImages;
 import com.test.bean.product.ImageModel;
 import com.test.utility.ImageURl;
 
@@ -10,9 +11,28 @@ public class ChildAttributeDto {
 
     private Integer id;
     private String title;
+    private Integer parentId;
     private List<String> attributeImage = new ArrayList<>();
+    private List<AttributeImages> attributeImageFull = new ArrayList<>();
 
 //    getter setter
+
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<AttributeImages> getAttributeImageFull() {
+        return attributeImageFull;
+    }
+
+    public void setAttributeImageFull(List<AttributeImages> attributeImageFull) {
+        this.attributeImageFull = attributeImageFull;
+    }
 
     public Integer getId() {
         return id;

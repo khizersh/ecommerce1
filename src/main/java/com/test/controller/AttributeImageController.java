@@ -4,9 +4,7 @@ import com.test.repo.AttributeImageRepo;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/attribute-image")
@@ -21,5 +19,18 @@ public class AttributeImageController {
     @GetMapping
     public ResponseEntity getAll(){
         return service.getSuccessResponse(attributeImageRepo.findAll());
+    }
+
+    @DeleteMapping("/{id}")
+    public  ResponseEntity deleteAttributeImage(@PathVariable Integer id )  {
+
+        if(!attributeImageRepo.existsById(id)){
+            return service.getErrorResponse("Image not found!");
+        }
+
+        attributeImageRepo.deleteById(id);
+
+        return service.getSuccessResponse("Product deleted");
+
     }
 }

@@ -14,20 +14,35 @@ public class ProductSubAttribute {
     private Integer id;
     private Integer childAttributeId;
     private String childAttributeName;
+    private Integer parentID;
+
+    @Transient
+    private Integer productId;
 
 
 
 //    getter setter
 
 
+    public Integer getProductId() {
+        return productId;
+    }
 
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getParentID() {
+        return parentID;
+    }
+
+    public void setParentID(Integer parentID) {
+        this.parentID = parentID;
+    }
 
     public Integer getId() {
         return id;
     }
-
-
-
 
     public void setId(Integer id) {
         this.id = id;

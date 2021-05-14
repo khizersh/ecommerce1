@@ -10,9 +10,7 @@ import com.test.bean.product.ImageModel;
 import com.test.bean.product.Product;
 import com.test.bean.product_attribute.ProductAttribute;
 import com.test.bean.product_attribute.ProductSubAttribute;
-import com.test.dto.ChildAttributeDto;
-import com.test.dto.ParentAttributeDto;
-import com.test.dto.ProductDto;
+import com.test.dto.*;
 import com.test.repo.*;
 import com.test.service.FileStorageService;
 import com.test.service.ProductService;
@@ -54,15 +52,14 @@ public class ProductController {
     @Autowired
     private AttributeImageRepo attributeImageRepo;
 
+    @Autowired
+    private ProductSubAtrributeRepo produSubAttributeRepo;
+
     
 //    end
 
-//    @Autowired
-//    private ImageRepository imageRepository;
     @Autowired
     private ImageUrlRepo imageRepository;
-
-
     @Autowired
     private FileStorageService fileService;
 
@@ -107,6 +104,66 @@ public class ProductController {
         return service.getSuccessResponse(dto);
     }
 
+    @GetMapping("/full/{id}")
+    public ResponseEntity getProductFullDetail(@PathVariable Integer id){
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+        if(!productRepo.existsById(id)){
+            return service.getErrorResponse("Product not found!");
+        }
+        Product pro = productRepo.getOne(id);
+
+        ProductDto dto = productService.productDetailFull(pro);
+
+        return service.getSuccessResponse(dto);
+    }
+    @PostMapping("/sub")
+    public ResponseEntity removeSubAttributeOfProduct(@RequestBody  ProductSubAttribute att){
+        if(att.getParentID() == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+        if(att.getChildAttributeId() == null){
+            return service.getErrorResponse("Invalid product!");
+        }
+        try{
+            produSubAttributeRepo.deleteSub(att.getChildAttributeId() , att.getParentID());
+            priceRepo.deleteByProductId(att.getProductId());
+            setAttributePrice(productRepo.getOne(att.getProductId()));
+            return service.getSuccessResponse("Success");
+        }catch (Exception e){
+
+        }
+
+        return service.getErrorResponse( "Failed");
+
+    }
+    @DeleteMapping("/remove-parent/{id}")
+    public ResponseEntity removeAttributeOfProduct(@PathVariable  Integer id){
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+
+         ProductAttribute productAttribute = productAttributeRepo.getOne(id);
+        int productId = productAttribute.getpId();
+
+
+        if(productAttribute == null){
+            return service.getErrorResponse("Invalid product!");
+        }
+
+        try{
+            productAttributeRepo.deleteById(id);
+            produSubAttributeRepo.deleteSubAttributeByParentId(id);
+            priceRepo.deleteByProductId(productId);
+            setAttributePrice(productRepo.getOne(productId));
+            return service.getSuccessResponse("Success");
+        }catch (Exception e){
+            return service.getErrorResponse( "Failed");
+        }
+
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable Integer id){
         if(id == null){
@@ -120,6 +177,60 @@ public class ProductController {
         return service.getSuccessResponse(pro);
     }
 
+    @PostMapping("/parent")
+    public ResponseEntity addParentAttribute(@RequestBody ProductAttribute attribute){
+
+        ProductAttribute att = new ProductAttribute();
+        if(attribute.getpId() == null){
+            return service.getErrorResponse("Invalid Request!");
+        }
+        if(attribute.getParentAttributeId() == null){
+            return service.getErrorResponse("Invalid Request!");
+        }
+
+        if(!productRepo.existsById(attribute.getpId())){
+            return service.getErrorResponse("Invalid Request!");
+        }
+        ParentAttributes db = parentAttributeRepo.getOne(attribute.getParentAttributeId());
+
+        att.setpId(attribute.getpId());
+        att.setParentAttributeId(attribute.getParentAttributeId());
+        att.setParentAttributeName(db.getTitle());
+        att.setMultiImage(attribute.getMultiImage());
+
+        ProductAttribute p =  productAttributeRepo.save(att);
+//        produSubAttributeRepo.deleteSub(att.getChildAttributeId() , att.getParentID());
+//        priceRepo.deleteByProductId(p.getpId());
+//        setAttributePrice(productRepo.getOne(p.getpId()));
+        return service.getSuccessResponse("success");
+    }
+
+    @PostMapping("/child")
+    public ResponseEntity addChildAttribute(@RequestBody ProductSubAttribute attribute){
+
+        ProductSubAttribute att = new ProductSubAttribute();
+        if(attribute.getParentID() == null){
+            return service.getErrorResponse("Invalid Request!");
+        }
+        if(attribute.getChildAttributeId() == null){
+            return service.getErrorResponse("Invalid Request!");
+        }
+
+        if(!productAttributeRepo.existsById(attribute.getParentID())){
+            return service.getErrorResponse("Invalid Request!");
+        }
+        ChildAttribute db = childAttributeRepo.getOne(attribute.getChildAttributeId());
+
+        att.setChildAttributeId(db.getId());
+        att.setChildAttributeName(db.getTitle());
+        att.setParentID(attribute.getParentID());
+//        deleteByProductId
+        ProductSubAttribute savedAtt = produSubAttributeRepo.save(att);
+        priceRepo.deleteByProductId(attribute.getProductId());
+
+        setAttributePrice(productRepo.getOne(attribute.getProductId()));
+        return service.getSuccessResponse("Success");
+    }
 
     @PostMapping
     public ResponseEntity addProduct(@RequestParam String productString , @RequestParam(value = "imageList") List<MultipartFile> imageList) throws Exception {
@@ -180,6 +291,16 @@ public class ProductController {
 
         Product savedProduct =  productRepo.save(product);
 
+        for (ProductAttribute i: savedProduct.getAttributeList()) {
+            i.setpId(savedProduct.getId());
+            productAttributeRepo.save(i);
+            for (ProductSubAttribute j:i.getSubAttributeList()) {
+                j.setParentID(i.getId());
+                produSubAttributeRepo.save(j);
+            }
+        }
+
+
         boolean flag =  setAttributePrice(savedProduct);
 
         if(flag){
@@ -204,6 +325,8 @@ public class ProductController {
         return service.getSuccessResponse("Product deleted");
 
     }
+
+
 
     @PostMapping("/attribute-image")
     public ResponseEntity addAttributeImage(@RequestParam String attribute ,@RequestParam(value = "imageList") List<MultipartFile> imageList ) throws IOException {
@@ -284,8 +407,24 @@ public class ProductController {
 
     public Boolean setAttributePrice(Product pro){
 
-        int loopNo = pro.getAttributeList().size();
-       boolean flag = attributeLoops(loopNo , pro.getAttributeList()  , pro.getId() , pro.getTitle());
+        List<ProductAttribute> list = productAttributeRepo.findByPid(pro.getId());
+        list.get(0).getSubAttributeList();
+
+        for (ProductAttribute i: list) {
+
+            List<ProductSubAttribute> childList = produSubAttributeRepo.findByParentId(i.getId());
+
+            if(childList.size() > 0){
+                i.setSubAttributeList(childList);
+            }
+
+        }
+
+        int loopNo = list.size();
+        for (ProductAttribute i:list ) {
+            System.out.println("Loop: "+i.toString());
+        }
+       boolean flag = attributeLoops(loopNo ,  list , pro.getId() , pro.getTitle());
        if(flag){
            return true;
        }
@@ -363,6 +502,7 @@ public class ProductController {
         return false;
     }
 //
+
 
 
 }
