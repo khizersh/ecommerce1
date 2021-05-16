@@ -80,7 +80,7 @@ public class ProductController {
         if(cat != null){
 
         for (Product i:productRepo.findProductByCategory(cat)) {
-            list.add(productService.convertDto(i , false));
+            list.add(productService.convertDto(i , true));
         }
         }
         return service.getSuccessResponse(list);

@@ -49,16 +49,11 @@ public class ProductService {
                 List<ImageURl> list = new ArrayList<>();
                 ImageURl image = new ImageURl();
                 image = pro.getImageList().get(0);
-//                image.setPicByte(service.decompressByteArray(image.getPicByte()));
                 list.add(image);
                 dto.setImageList(list);
             }
             else{
-
                 dto.setImageList(pro.getImageList());
-                if(pro.getCategory() != null){
-
-                }
             }
         }
 
