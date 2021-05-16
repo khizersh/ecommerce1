@@ -106,16 +106,14 @@ public class ChildCategoryImpl  implements ChildCategoryService {
             catDb.setActive(cat.getActive());
         }
         if(image != null){
-//            ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
-//           catDb.setImage(img);
-           String img = fileService.storeAndReturnFile(image);
+            String img = fileService.storeAndReturnFile(image);
             catDb.setImage(img);
         }
         if(banner != null){
 //            ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
 //            catDb.setBanner(ban);
             String ban = fileService.storeAndReturnFile(banner);
-            catDb.setImage(ban);
+            catDb.setBanner(ban);
         }
 
 
