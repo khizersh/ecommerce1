@@ -5,6 +5,7 @@ import com.test.bean.category.ParentCategory;
 import com.test.bean.product.ImageModel;
 import com.test.repo.ChildCategoryRepo;
 import com.test.repo.ParentCategoryRepo;
+import com.test.service.AmazonClient;
 import com.test.service.ChildCategoryService;
 import com.test.service.FileStorageService;
 import com.test.utility.GlobalService;
@@ -30,8 +31,12 @@ public class ChildCategoryImpl  implements ChildCategoryService {
 
     @Autowired
     private GlobalService service;
+
     @Autowired
     private FileStorageService fileService;
+
+    @Autowired
+    private AmazonClient amazonClient;
 
     @Override
     public List<ChildCategory> getAll() {
@@ -106,13 +111,13 @@ public class ChildCategoryImpl  implements ChildCategoryService {
             catDb.setActive(cat.getActive());
         }
         if(image != null){
-            String img = fileService.storeAndReturnFile(image);
+            String img = amazonClient.uploadFile(image);
             catDb.setImage(img);
         }
         if(banner != null){
 //            ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
 //            catDb.setBanner(ban);
-            String ban = fileService.storeAndReturnFile(banner);
+            String ban = amazonClient.uploadFile(banner);
             catDb.setBanner(ban);
         }
 

@@ -8,6 +8,7 @@ import com.test.bean.product.ImageModel;
 import com.test.bean.product.Product;
 import com.test.dto.childCategoryDto;
 import com.test.repo.*;
+import com.test.service.AmazonClient;
 import com.test.service.ChildCategoryService;
 import com.test.service.FileStorageService;
 import com.test.utility.GlobalService;
@@ -49,6 +50,8 @@ public class ChildCategoryController {
 
     @Autowired
     private FileStorageService fileService;
+    @Autowired
+    private AmazonClient amazonClient;
 
     @GetMapping
     public ResponseEntity getAll(){
@@ -98,13 +101,9 @@ public class ChildCategoryController {
         if(cat.getCategoryName() == null){
             return service.getErrorResponse("Enter title!");
         }
-//        ImageModel img = new ImageModel(image.getOriginalFilename(), image.getContentType() , compressBytes(image.getBytes()) );
-//        ImageModel ban = new ImageModel(banner.getOriginalFilename(), banner.getContentType() , compressBytes(banner.getBytes()) );
-//
-//        cat.setImage(img);
-//        cat.setBanner(ban);
-        String im =  fileService.storeAndReturnFile(image);
-        String ban =  fileService.storeAndReturnFile(banner);
+
+        String im =  amazonClient.uploadFile(image);
+        String ban =  amazonClient.uploadFile(banner);
         cat.setImage(im);
         cat.setBanner(ban);
         childCategoryService.addCategory(cat);

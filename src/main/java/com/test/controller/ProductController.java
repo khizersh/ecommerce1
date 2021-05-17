@@ -12,6 +12,7 @@ import com.test.bean.product_attribute.ProductAttribute;
 import com.test.bean.product_attribute.ProductSubAttribute;
 import com.test.dto.*;
 import com.test.repo.*;
+import com.test.service.AmazonClient;
 import com.test.service.FileStorageService;
 import com.test.service.ProductService;
 import com.test.utility.GlobalService;
@@ -32,7 +33,6 @@ public class ProductController {
 
     @Autowired
     private ProductRepo productRepo;
-
     @Autowired
     private GlobalService service;
     @Autowired
@@ -62,6 +62,11 @@ public class ProductController {
     private ImageUrlRepo imageRepository;
     @Autowired
     private FileStorageService fileService;
+    @Autowired
+    private AmazonClient amazonClient;
+
+
+
 
     @GetMapping
     public ResponseEntity getAll(){
@@ -257,7 +262,8 @@ public class ProductController {
         }
         for (MultipartFile i: imageList){
             ImageURl imageURl = new ImageURl();
-            imageURl.setImage(fileService.storeAndReturnFile(i));
+//            imageURl.setImage(fileService.storeAndReturnFile(i));
+            imageURl.setImage(amazonClient.uploadFile(i));
             imageUrls.add(imageURl);
 
         }
@@ -316,9 +322,15 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public  ResponseEntity deleteProduc(@PathVariable Integer id )  {
 
+
         if(!productRepo.existsById(id)){
             return service.getErrorResponse("Image not found!");
         }
+        Product pro = productRepo.getOne(id);
+        for (ImageURl imageURl : pro.getImageList()) {
+            amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
+        }
+
 
         productRepo.deleteById(id);
 
@@ -338,7 +350,8 @@ public class ProductController {
         for (MultipartFile i: imageList){
             AttributeImages attributeImages = new AttributeImages();
 //            ImageModel img = new ImageModel(i.getOriginalFilename(), i.getContentType() , compressBytes(i.getBytes()) );
-            String img = fileService.storeAndReturnFile(i);
+//            String img = fileService.storeAndReturnFile(i);
+            String img = amazonClient.uploadFile(i);
             attributeImages.setProductId(att.getProductId());
             attributeImages.setAttributeId(att.getAttributeId());
             attributeImages.setImage(img);
@@ -380,8 +393,7 @@ public class ProductController {
         }
           ImageURl imageDb = imageRepository.getOne(id);
         if(imageFile != null){
-
-            imageDb.setImage(fileService.storeAndReturnFile(imageFile));
+            imageDb.setImage(amazonClient.uploadFile(imageFile));
         }
 
         ImageURl savedImage =  imageRepository.save(imageDb);

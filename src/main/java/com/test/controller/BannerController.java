@@ -6,6 +6,7 @@ import com.test.bean.banner.HomePageBanner;
 import com.test.bean.product.AttributeImages;
 import com.test.bean.product.ImageModel;
 import com.test.repo.BannerRepo;
+import com.test.service.AmazonClient;
 import com.test.service.FileStorageService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class BannerController {
     private BannerRepo bannerRepo;
     @Autowired
     private FileStorageService fileService;
+    @Autowired
+    private AmazonClient amazonClient;
 
     @GetMapping
     public ResponseEntity getAll(){
@@ -52,7 +55,9 @@ public class BannerController {
         if(file == null){
             return service.getErrorResponse("Select image!");
         }
-        String img = fileService.storeAndReturnFile(file);
+
+//        String img = fileService.storeAndReturnFile(file);
+        String img = amazonClient.uploadFile(file);
         ban.setImage(img);
         return service.getSuccessResponse(bannerRepo.save(ban));
     }
@@ -75,7 +80,7 @@ public class BannerController {
             db.setUrl(ban.getUrl());
         }
         if(file != null){
-            String img = fileService.storeAndReturnFile(file);
+            String img = amazonClient.uploadFile(file);
             db.setImage(img);
         }
 
@@ -84,7 +89,7 @@ public class BannerController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity edit(@PathVariable Integer id  ) throws IOException {
+    public ResponseEntity deleteBanner(@PathVariable Integer id  ) throws IOException {
 
         if(id == null){
             return service.getErrorResponse("Invalid request!");
