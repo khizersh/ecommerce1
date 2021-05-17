@@ -76,8 +76,7 @@ public class AttributePriceController {
             Product pro = productRepo.getOne(priceList.get(0).getProductId());
             pro.setPriceRange("" + min + " - " + max);
             pro.setPriceSet(true);
-
-                productRepo.save(pro);
+            productRepo.save(pro);
 
         }
         return service.getSuccessResponse(priceList);

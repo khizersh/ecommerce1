@@ -42,39 +42,6 @@ public class Product {
 //    getter setter
 
 
-
-    public String getPriceRange() {
-        return priceRange;
-    }
-
-    public void setPriceRange(String priceRange) {
-        this.priceRange = priceRange;
-    }
-
-    public List<ProductAttribute> getAttributeList() {
-        return attributeList;
-    }
-
-    public void setAttributeList(List<ProductAttribute> attributeList) {
-        this.attributeList = attributeList;
-    }
-
-    public Boolean getPriceSet() {
-        return priceSet;
-    }
-
-    public void setPriceSet(Boolean priceSet) {
-        this.priceSet = priceSet;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -99,6 +66,22 @@ public class Product {
         this.description = description;
     }
 
+    public Boolean getPriceSet() {
+        return priceSet;
+    }
+
+    public void setPriceSet(Boolean priceSet) {
+        this.priceSet = priceSet;
+    }
+
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
+    }
+
     public ChildCategory getCategory() {
         return category;
     }
@@ -107,12 +90,28 @@ public class Product {
         this.category = category;
     }
 
+    public List<ProductAttribute> getAttributeList() {
+        return attributeList;
+    }
+
+    public void setAttributeList(List<ProductAttribute> attributeList) {
+        this.attributeList = attributeList;
+    }
+
     public List<ImageURl> getImageList() {
         return imageList;
     }
 
     public void setImageList(List<ImageURl> imageList) {
         this.imageList = imageList;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
