@@ -22,6 +22,8 @@ public class Product {
 
     private String priceRange;
 
+    private String keywords;
+
 
     @ManyToOne
     private ChildCategory category;
@@ -39,8 +41,27 @@ public class Product {
     @Transient
     private Integer categoryId;
 
+    @Transient
+    private List<String> points;
+
 //    getter setter
 
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public List<String> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<String> points) {
+        this.points = points;
+    }
 
     public Integer getId() {
         return id;
