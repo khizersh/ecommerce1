@@ -11,6 +11,7 @@ import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -109,6 +110,38 @@ public class CouponController {
         if(coupon == null){
             return service.getErrorResponse("invalid request!");
         }
+        return service.getSuccessResponse(coupon);
+    }
+
+  @GetMapping("/validate/{code}")
+    public ResponseEntity validateCoupon(@PathVariable String code) throws ParseException {
+        if(code == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+      System.out.println("code: "+code);
+        Coupon coupon = null;
+
+      List<Coupon> list = couponRepo.findAll();
+      for (Coupon coupon1 : list) {
+          if(coupon1.getCode().equals(code)){
+              coupon = coupon1;
+          }
+      }
+        if(coupon == null){
+            return service.getErrorResponse("invalid request!");
+        }
+      SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+      Date expiry = sdformat.parse(coupon.getExpiryDate());
+      Date currentDate = new Date();
+      if(coupon.getExpired()){
+          return service.getErrorResponse("Expired");
+      }
+      if(currentDate.compareTo(expiry) > 0) {
+          coupon.setExpired(true);
+          couponRepo.save(coupon);
+          return service.getErrorResponse("Expired");
+      }
+
         return service.getSuccessResponse(coupon);
     }
 
