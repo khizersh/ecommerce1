@@ -52,13 +52,12 @@ public class CheckoutController {
             if(checkout.getCouponId() == null){
             return service.getErrorResponse("Invalid request!");
             }else{
-                if(Double.compare(checkout.getCouponAmount() + checkout.getTotalAmount() , checkout.getNetAmount())  != 0){
+                if(Double.compare( checkout.getTotalAmount() - checkout.getCouponAmount() , checkout.getNetAmount())  != 0){
                     return service.getErrorResponse("amount not matched!");
                 }
             }
         }else{
             if( Double.compare(checkout.getTotalAmount() ,  checkout.getNetAmount()) != 0){
-                System.out.println("total: "+checkout.getTotalAmount() + " net: "+checkout.getNetAmount());
                 return service.getErrorResponse("amount not matched");
             }
         }
@@ -111,7 +110,6 @@ public class CheckoutController {
 
         }
         if(Double.compare(productPrice , checkout.getTotalAmount())  != 0){
-            System.out.println("productPrice: "+productPrice);
             return service.getErrorResponse("Invalid amount");
         }
         checkout.setProductList(list);

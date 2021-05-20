@@ -444,6 +444,7 @@ public class ProductController {
     }
 
 
+
     public Boolean attributeLoops(int count , List<ProductAttribute>  list, Integer pid , String pName){
 
          if(count == 1) {

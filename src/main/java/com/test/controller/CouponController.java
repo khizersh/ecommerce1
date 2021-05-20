@@ -128,7 +128,7 @@ public class CouponController {
           }
       }
         if(coupon == null){
-            return service.getErrorResponse("invalid request!");
+            return service.getErrorResponse("coupon not found!");
         }
       SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
       Date expiry = sdformat.parse(coupon.getExpiryDate());

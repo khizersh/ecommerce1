@@ -66,7 +66,7 @@ public class BulletPointsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity edit(@PathVariable Integer id){
+    public ResponseEntity delete(@PathVariable Integer id){
         if(id == null){
             return service.getErrorResponse("Invalid request!");
         }

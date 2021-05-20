@@ -2,6 +2,7 @@ package com.test.service;
 
 import com.test.bean.product.AttributeImages;
 import com.test.bean.product.ImageModel;
+import com.test.bean.product.Points;
 import com.test.bean.product.Product;
 import com.test.bean.product_attribute.ProductAttribute;
 import com.test.bean.product_attribute.ProductSubAttribute;
@@ -9,6 +10,7 @@ import com.test.dto.ChildAttributeDto;
 import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
 import com.test.repo.AttributeImageRepo;
+import com.test.repo.PointsRepo;
 import com.test.repo.ProductAttributeRepo;
 import com.test.repo.ProductSubAtrributeRepo;
 import com.test.utility.GlobalService;
@@ -27,6 +29,9 @@ public class ProductService {
 
     @Autowired
     private AttributeImageRepo attributeImageRepo;
+
+    @Autowired
+    private PointsRepo pointsRepo;
 
     @Autowired
     private ProductAttributeRepo productAttributeRepo;
@@ -87,6 +92,13 @@ public class ProductService {
                 pList.add(pa);
             }
             dto.setAttributeList(pList);
+
+
+            List<Points> bulletList = new ArrayList<>();
+            for (Points points : pointsRepo.findByProductId(pro.getId())) {
+                bulletList.add(points);
+            }
+            dto.setBulletList(bulletList);
         }
 
         return dto;
@@ -139,6 +151,13 @@ public class ProductService {
             dto.setAttributeList(pList);
 
         }
+
+
+        List<Points> bulletList = new ArrayList<>();
+        for (Points points : pointsRepo.findByProductId(pro.getId())) {
+            bulletList.add(points);
+        }
+        dto.setBulletList(bulletList);
         return dto;
     }
 }
