@@ -57,14 +57,14 @@ public class UserService {
     private Boolean sendVerificationEmail(User user, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
-        String fromAddress = "muh.khizer61@gmail.com";
-        String senderName = "test123";
+        String fromAddress = "moh.khizer16@gmail.com";
+        String senderName = "The Jackter";
         String subject = "Please verify your registration";
         String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "ABC Company.";
+                + "Thejackter.com.";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);

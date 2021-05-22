@@ -43,6 +43,10 @@ public class ProductService {
         dto.setId(pro.getId());
         dto.setTitle(pro.getTitle());
         dto.setRange(pro.getPriceRange());
+        if(pro.getKeywords() != null){
+
+        dto.setKeywords(pro.getKeywords());
+        }
         if(pro.getCategory() != null){
             dto.setCategoryId(pro.getCategory().getId());
             dto.setCategoryName(pro.getCategory().getCategoryName());
@@ -110,6 +114,9 @@ public class ProductService {
         dto.setId(pro.getId());
         dto.setTitle(pro.getTitle());
         dto.setRange(pro.getPriceRange());
+        if(pro.getKeywords() != null){
+            dto.setKeywords(pro.getKeywords());
+        }
         if(pro.getCategory() != null){
             dto.setCategoryId(pro.getCategory().getId());
             dto.setCategoryName(pro.getCategory().getCategoryName());

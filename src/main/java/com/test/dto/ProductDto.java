@@ -17,12 +17,21 @@ public class ProductDto {
     private String categoryName;
     private Integer sequence;
     private String range;
+    private String keywords;
     private  List<ImageURl> imageList = new ArrayList<>();
     private  List<ParentAttributeDto> attributeList = new ArrayList<>();
     private  List<Points> bulletList = new ArrayList<>();
 
 //    getter setter
 
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
 
     public List<Points> getBulletList() {
         return bulletList;

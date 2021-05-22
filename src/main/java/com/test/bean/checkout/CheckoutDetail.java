@@ -12,6 +12,7 @@ public class CheckoutDetail {
     private Integer id;
     private Integer productId;
     private String productTitle;
+    private String productImage;
     private Integer quantity;
     private Double price;
     @ManyToOne
@@ -19,6 +20,16 @@ public class CheckoutDetail {
 
     @Transient
     private Integer priceId;
+//    getter setter
+
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 
     public Double getPrice() {
         return price;

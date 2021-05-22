@@ -24,7 +24,8 @@ public class BulletPointsController {
         if(id == null){
             return service.getErrorResponse("Invalid request!");
         }
-        return service.getSuccessResponse(pointsRepo.findByProductId(id));
+        List<Points> list = pointsRepo.findByProductId(id);
+        return service.getSuccessResponse(list);
 
     }
 

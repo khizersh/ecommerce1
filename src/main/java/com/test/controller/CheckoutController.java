@@ -2,11 +2,14 @@ package com.test.controller;
 
 import com.test.bean.checkout.Checkout;
 import com.test.bean.checkout.CheckoutDetail;
+import com.test.bean.checkout.Status;
+import com.test.bean.coupon.Coupon;
 import com.test.bean.product.AttributePrice;
 import com.test.bean.product.Points;
 import com.test.bean.product.Product;
 import com.test.repo.AttributePriceRepo;
 import com.test.repo.CheckoutRepo;
+import com.test.repo.CouponRepo;
 import com.test.repo.ProductRepo;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +30,8 @@ public class CheckoutController {
     private AttributePriceRepo attributePriceRepo;
     @Autowired
     private ProductRepo productRepo;
+    @Autowired
+    private CouponRepo couponRepo;
 
     @Autowired
     private GlobalService service;
@@ -33,7 +39,7 @@ public class CheckoutController {
 
     @GetMapping
     public ResponseEntity getAll(){
-        return service.getSuccessResponse(checkoutRepo.findAll());
+        return service.getSuccessResponse(checkoutRepo.findByOrderByIdAsc());
 
     }
     @GetMapping("/{id}")
@@ -55,6 +61,8 @@ public class CheckoutController {
                 if(Double.compare( checkout.getTotalAmount() - checkout.getCouponAmount() , checkout.getNetAmount())  != 0){
                     return service.getErrorResponse("amount not matched!");
                 }
+                Coupon cop = couponRepo.getOne(checkout.getCouponId());
+                checkout.setCouponTitle(cop.getTitle());
             }
         }else{
             if( Double.compare(checkout.getTotalAmount() ,  checkout.getNetAmount()) != 0){
@@ -106,6 +114,7 @@ public class CheckoutController {
             detail1.setQuantity(detail.getQuantity());
             detail1.setAttributePrice(price);
             detail1.setProductTitle(product.getTitle());
+            detail1.setProductImage(product.getImageList().get(0).getImage());
             list.add(detail1);
 
         }
@@ -113,6 +122,8 @@ public class CheckoutController {
             return service.getErrorResponse("Invalid amount");
         }
         checkout.setProductList(list);
+        checkout.setStatus(Status.Unpaid);
+        checkout.setOrderDate(new Date());
 
         return service.getSuccessResponse(checkoutRepo.save(checkout));
 

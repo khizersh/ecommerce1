@@ -103,9 +103,6 @@ public class ProductController {
 
         ProductDto dto = productService.convertDto(pro , true);
 
-
-
-
         return service.getSuccessResponse(dto);
     }
 
@@ -377,12 +374,13 @@ public class ProductController {
         }
         if(!product.getDescription().isEmpty()){
             productDb.setDescription(product.getDescription());
+        }  if(!product.getKeywords().isEmpty()){
+            productDb.setKeywords(product.getKeywords());
         }
 
         Product savedProduct =  productRepo.save(productDb);
         return service.getSuccessResponse(savedProduct);
     }
-
 
 
     @PutMapping("/image/{id}")

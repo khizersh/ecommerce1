@@ -2,6 +2,7 @@ package com.test.bean.checkout;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,14 +14,53 @@ public class Checkout {
     private Boolean coupon;
     private Integer couponId;
     private Double couponAmount;
+    private String couponTitle;
+    private Date orderDate;
+    private Date shipmentDate;
     private Double totalAmount;
     private Double netAmount;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "checkout_id")
     private List<CheckoutDetail> productList = new ArrayList<>();
 
 //getter setter
+
+
+    public String getCouponTitle() {
+        return couponTitle;
+    }
+
+    public void setCouponTitle(String couponTitle) {
+        this.couponTitle = couponTitle;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getShipmentDate() {
+        return shipmentDate;
+    }
+
+    public void setShipmentDate(Date shipmentDate) {
+        this.shipmentDate = shipmentDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public List<CheckoutDetail> getProductList() {
         return productList;
     }

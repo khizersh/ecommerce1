@@ -4,16 +4,14 @@ import com.test.service.StripeService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.stripe.model.Coupon;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
+@RequestMapping("/api/order")
 public class PaymentController {
     @Value("${stripe.keys.public}")
     private String API_PUBLIC_KEY;

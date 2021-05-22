@@ -118,7 +118,7 @@ public class CouponController {
         if(code == null){
             return service.getErrorResponse("Invalid request!");
         }
-      System.out.println("code: "+code);
+
         Coupon coupon = null;
 
       List<Coupon> list = couponRepo.findAll();

@@ -1,12 +1,18 @@
 package com.test.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.bean.User;
+import com.test.bean.product.Product;
 import com.test.repo.UserRepository;
+import com.test.service.AmazonClient;
 import com.test.serviceImpl.UserService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -23,33 +29,13 @@ public class UserController {
 
         @Autowired
         private UserRepository userRepo;
+        @Autowired
+        private AmazonClient amazonClient;
 
 
-        @PostMapping("/process_register")
-        public ResponseEntity processRegister(@RequestBody User user, HttpServletRequest request)
-                throws UnsupportedEncodingException, MessagingException {
-
-            User userDb = userRepo.findByEmail(user.getEmail());
-
-            if(userDb != null){
-                return globalService.getErrorResponse("Email already exist! please try another one.");
-            }
-
-           Boolean flag =  service.register(user, getSiteURL(request));
-
-           if(flag){
-           return globalService.getSuccessResponse("Check email for verification");
-
-           }
-//            return "register_success";
-           return globalService.getErrorResponse("Email not send");
-        }
-
-
-
-        private String getSiteURL(HttpServletRequest request) {
-            String siteURL = request.getRequestURL().toString();
-            return siteURL.replace(request.getServletPath(), "");
+        @GetMapping
+        public ResponseEntity getAllUsers() {
+           return globalService.getSuccessResponse(userRepo.findByOrderByIdAsc());
         }
 
         @GetMapping("/verify")
@@ -60,6 +46,53 @@ public class UserController {
                 return globalService.getErrorResponse("Error");
             }
         }
+
+        @DeleteMapping("/{id}")
+        public ResponseEntity deleteUser(@PathVariable Long id) {
+            if (id == null) {
+                return globalService.getErrorResponse("Invalid request");
+            } else {
+                if(!userRepo.existsById(id)){
+                return globalService.getErrorResponse("User not found!");
+                }
+                userRepo.deleteById(id);
+                return globalService.getSuccessResponse("User removed successfully");
+            }
+        }
+        @PostMapping("/process_register")
+        public ResponseEntity processRegister(@RequestParam String user, @RequestParam(required = false) MultipartFile image , HttpServletRequest request)
+                throws UnsupportedEncodingException, MessagingException, JsonProcessingException {
+
+            ObjectMapper mapper = new ObjectMapper();
+            User user1 = mapper.readValue(user, User.class);
+
+            User userDb = userRepo.findByEmail(user1.getEmail());
+
+            if(userDb != null){
+                return globalService.getErrorResponse("Email already exist! please try another one.");
+            }
+            if(image != null){
+              String photo =  amazonClient.uploadFile(image);
+                System.out.println("photo: "+photo);
+              user1.setUserImage(photo);
+            }
+
+           Boolean flag =  service.register(user1, getSiteURL(request));
+
+           if(flag){
+           return globalService.getSuccessResponse("Check email for verification");
+
+           }
+           return globalService.getErrorResponse("Email not send");
+        }
+
+
+
+        private String getSiteURL(HttpServletRequest request) {
+            String siteURL = request.getRequestURL().toString();
+            return siteURL.replace(request.getServletPath(), "");
+        }
+
     }
 
 
