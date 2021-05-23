@@ -2,8 +2,10 @@ package com.test.controller.review;
 
 import com.test.bean.User;
 import com.test.bean.product.Points;
+import com.test.bean.product.Product;
 import com.test.bean.review.ProductReview;
 import com.test.repo.PointsRepo;
+import com.test.repo.ProductRepo;
 import com.test.repo.ReviewRepo;
 import com.test.repo.UserRepository;
 import com.test.utility.GlobalService;
@@ -26,6 +28,9 @@ public class ReviewController {
     private ReviewRepo reviewRepo;
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private ProductRepo productRepo;
 
 
     @GetMapping()
@@ -66,10 +71,32 @@ public class ReviewController {
         if(user == null  ){
             return service.getErrorResponse("Invalid request!");
         }
+        Product pro = productRepo.getOne(review.getProductId());
+        if(pro == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+        List<ProductReview> list = reviewRepo.findByProductId(pro.getId());
+        Double totalReview = 0.0 , avg = 0.0;
+        for (ProductReview i : list) {
+            totalReview += i.getReviewCount();
+        }
+        if(list.size() > 0){
+        avg = Math.ceil(totalReview / list.size());
+        pro.setReview(avg);
+        pro.setReviewCount(list.size());
+        }else{
+            avg = Math.ceil(totalReview / list.size());
+            pro.setReview(review.getReviewCount());
+            pro.setReviewCount(1);
+        }
+        productRepo.save(pro);
 
-        List<ProductReview> list;
-        list = reviewRepo.findByUserAndProduct( review.getProductId(),review.getUserId());
-        if(list.size() > 0 ){
+
+
+
+
+
+        if(reviewRepo.findByUserAndProduct( review.getProductId(),review.getUserId()).size() > 0 ){
             return service.getErrorResponse("You can review this product only once!");
         }
 

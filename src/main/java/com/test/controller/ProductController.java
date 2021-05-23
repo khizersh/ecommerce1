@@ -290,6 +290,8 @@ public class ProductController {
         }
         product.setAttributeList(listParent);
 
+        product.setReview(0.0);
+        product.setReviewCount(0);
 
 
         Product savedProduct =  productRepo.save(product);

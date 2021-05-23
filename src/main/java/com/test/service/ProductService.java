@@ -51,6 +51,10 @@ public class ProductService {
             dto.setCategoryId(pro.getCategory().getId());
             dto.setCategoryName(pro.getCategory().getCategoryName());
         }
+        if(pro.getReview() != null){
+            dto.setReview(pro.getReview());
+            dto.setReviewCount(pro.getReviewCount());
+        }
         dto.setDescription(pro.getDescription());
         if(pro.getImageList().size() != 0){
 
@@ -120,6 +124,10 @@ public class ProductService {
         if(pro.getCategory() != null){
             dto.setCategoryId(pro.getCategory().getId());
             dto.setCategoryName(pro.getCategory().getCategoryName());
+        }
+        if(pro.getReview() != null){
+            dto.setReview(pro.getReview());
+            dto.setReviewCount(pro.getReviewCount());
         }
         dto.setDescription(pro.getDescription());
         if(pro.getImageList().size() != 0) {

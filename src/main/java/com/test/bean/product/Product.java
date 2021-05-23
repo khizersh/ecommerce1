@@ -15,37 +15,44 @@ public class Product {
     private Integer id;
 
     private String title;
-
     private String description;
-
     private Boolean priceSet = false;
-
     private String priceRange;
-
     private String keywords;
-
-
+    private Double review;
+    private Integer reviewCount;
     @ManyToOne
     private ChildCategory category;
-
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private List<ProductAttribute> attributeList = new ArrayList<>();
-
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private List<ImageURl> imageList = new ArrayList<>();
 
     @Transient
     private Integer categoryId;
-
     @Transient
     private List<String> points;
 
 //    getter setter
 
+
+    public Double getReview() {
+        return review;
+    }
+
+    public void setReview(Double review) {
+        this.review = review;
+    }
+
+    public Integer getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(Integer reviewCount) {
+        this.reviewCount = reviewCount;
+    }
 
     public String getKeywords() {
         return keywords;

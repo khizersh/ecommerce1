@@ -17,6 +17,8 @@ public class ProductDto {
     private String categoryName;
     private Integer sequence;
     private String range;
+    private Double review;
+    private Integer reviewCount;
     private String keywords;
     private  List<ImageURl> imageList = new ArrayList<>();
     private  List<ParentAttributeDto> attributeList = new ArrayList<>();
@@ -24,6 +26,22 @@ public class ProductDto {
 
 //    getter setter
 
+
+    public Double getReview() {
+        return review;
+    }
+
+    public void setReview(Double review) {
+        this.review = review;
+    }
+
+    public Integer getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(Integer reviewCount) {
+        this.reviewCount = reviewCount;
+    }
 
     public String getKeywords() {
         return keywords;
