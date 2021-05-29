@@ -2,6 +2,7 @@ package com.test.serviceImpl;
 
 import com.test.bean.User;
 import com.test.repo.UserRepository;
+import com.test.utility.UserLoginType;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -43,6 +44,7 @@ public class UserService {
         String randomCode = RandomString.make(64);
         user.setVerificationCode(randomCode);
         user.setEnabled(false);
+        user.setUserType(UserLoginType.normal);
 
 
        if(sendVerificationEmail(user, siteURL)){

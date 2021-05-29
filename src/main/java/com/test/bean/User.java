@@ -1,5 +1,7 @@
 package com.test.bean;
 
+import com.test.utility.UserLoginType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,10 +34,21 @@ public class User {
     @Column(name = "verification_code", length = 64)
     private String verificationCode;
 
+
+    private UserLoginType userType;
+
     private boolean enabled;
 
 //    getter setter
 
+
+    public UserLoginType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserLoginType userType) {
+        this.userType = userType;
+    }
 
     public String getUserImage() {
         return userImage;

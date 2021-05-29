@@ -109,8 +109,7 @@ public class AttributePriceController {
             price =  returnPrice(size , obj.getList() ,list );
 
         }
-        if(price == 0){
-
+        if(price == 0 || price == null ){
         return service.getErrorResponse("Invalid Selection!");
         }
         return service.getSuccessResponse(price);

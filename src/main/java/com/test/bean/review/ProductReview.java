@@ -14,10 +14,22 @@ public class ProductReview {
     private Double reviewCount;
     private String review;
     private Integer productId;
+    private String productImage;
     private Long userId;
     private String userName;
     private String userImage;
     private Date date;
+
+
+//    getter setter
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 
     public Long getId() {
         return id;
