@@ -42,6 +42,7 @@ public class User {
 //    getter setter
 
 
+
     public UserLoginType getUserType() {
         return userType;
     }

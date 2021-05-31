@@ -1,5 +1,6 @@
 package com.test.controller;
 
+import com.test.bean.User;
 import com.test.bean.checkout.Checkout;
 import com.test.bean.checkout.CheckoutDetail;
 import com.test.bean.checkout.Status;
@@ -7,15 +8,16 @@ import com.test.bean.coupon.Coupon;
 import com.test.bean.product.AttributePrice;
 import com.test.bean.product.Points;
 import com.test.bean.product.Product;
-import com.test.repo.AttributePriceRepo;
-import com.test.repo.CheckoutRepo;
-import com.test.repo.CouponRepo;
-import com.test.repo.ProductRepo;
+import com.test.repo.*;
+import com.test.serviceImpl.UserService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +34,10 @@ public class CheckoutController {
     private ProductRepo productRepo;
     @Autowired
     private CouponRepo couponRepo;
+    @Autowired
+    private UserRepository userRepo;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private GlobalService service;
@@ -52,7 +58,23 @@ public class CheckoutController {
     }
 
     @PostMapping
-    public ResponseEntity addCheckout(@RequestBody Checkout checkout){
+    public ResponseEntity addCheckout(@RequestBody Checkout checkout , HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+
+        if(checkout.getUserId() == null){
+            return service.getErrorResponse("Invalid User!");
+        }
+        User user = userRepo.getOne(checkout.getUserId());
+
+        if(!user.isEnabled()){
+
+            boolean fl =  userService.sendVerificationEmail(user , userService.getSiteURL(request));
+
+            if(fl){
+                return service.getSuccessResponse("Please verify your email first! Verification send to your email!");
+            }
+            return service.getErrorResponse("User not verified. Something went wrong please try again later!");
+        }
+
 
         if(checkout.getCoupon()){
             if(checkout.getCouponId() == null){

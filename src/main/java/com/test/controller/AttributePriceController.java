@@ -102,29 +102,31 @@ public class AttributePriceController {
         if(obj.getProductId() == null){
             return service.getErrorResponse("Invalid request!");
         }
-        Double price = 0.0;
+        AttributeResponse price = null;
         if(obj.getList().size() > 0){
             int size = obj.getList().size();
             List< AttributePrice> list = priceRepo.findByProductId(obj.getProductId());
             price =  returnPrice(size , obj.getList() ,list );
 
         }
-        if(price == 0 || price == null ){
+        if( price == null ){
         return service.getErrorResponse("Invalid Selection!");
         }
         return service.getSuccessResponse(price);
     }
 
-    public Double returnPrice(int count , List<String> list, List<AttributePrice> dbList){
-        Double price = 0.0;
+    public AttributeResponse returnPrice(int count , List<String> list, List<AttributePrice> dbList){
+        AttributeResponse price = null;
         if(count == 1){
             for (AttributePrice i: dbList){
                 for (String j: list) {
                     if(i.getAttribute_1().equals(j)){
                         if(i.getDiscount()){
-                            price = i.getDiscountPrice();
+                            price.setPriceId(i.getId());
+                            price.setPrice(i.getDiscountPrice());
                         }else{
-                            price = i.getPrice();
+                            price.setPriceId(i.getId());
+                            price.setPrice(i.getPrice());
                         }
                     }
                 }
@@ -134,9 +136,11 @@ public class AttributePriceController {
                 if(i.getAttribute_1().equals(list.get(0)) && i.getAttribute_2().equals(list.get(1)) ||
                         i.getAttribute_1().equals(list.get(1)) && i.getAttribute_2().equals(list.get(0))  ){
                     if(i.getDiscount()){
-                        price = i.getDiscountPrice();
+                        price.setPriceId(i.getId());
+                        price.setPrice(i.getDiscountPrice());
                     }else{
-                        price = i.getPrice();
+                        price.setPriceId(i.getId());
+                        price.setPrice(i.getPrice());
                     }
                 }
             }
@@ -145,9 +149,11 @@ public class AttributePriceController {
             for (AttributePrice i: dbList){
                 if(i.getAttribute_1().equals(list.get(0)) && i.getAttribute_2().equals(list.get(1)) && i.getAttribute_3().equals(list.get(2))  ){
                     if(i.getDiscount()){
-                        price = i.getDiscountPrice();
+                        price.setPriceId(i.getId());
+                        price.setPrice(i.getDiscountPrice());
                     }else{
-                        price = i.getPrice();
+                        price.setPriceId(i.getId());
+                        price.setPrice(i.getPrice());
                     }
                 }
             }
@@ -156,9 +162,11 @@ public class AttributePriceController {
             for (AttributePrice i: dbList){
                 if(i.getAttribute_1().equals(list.get(0)) && i.getAttribute_2().equals(list.get(1)) && i.getAttribute_3().equals(list.get(2))  && i.getAttribute_4().equals(list.get(23)) ){
                     if(i.getDiscount()){
-                        price = i.getDiscountPrice();
+                        price.setPriceId(i.getId());
+                        price.setPrice(i.getDiscountPrice());
                     }else{
-                        price = i.getPrice();
+                        price.setPriceId(i.getId());
+                        price.setPrice(i.getPrice());
                     }
                 }
             }
@@ -186,5 +194,26 @@ class AttributePriced{
 
     public void setList(List<String> list) {
         this.list = list;
+    }
+}
+class AttributeResponse{
+    private Integer priceId;
+    private Double price;
+
+
+    public Integer getPriceId() {
+        return priceId;
+    }
+
+    public void setPriceId(Integer priceId) {
+        this.priceId = priceId;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

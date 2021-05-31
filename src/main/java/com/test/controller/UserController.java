@@ -23,10 +23,8 @@ public class UserController {
 
         @Autowired
         private UserService service;
-
         @Autowired
         private GlobalService globalService;
-
         @Autowired
         private UserRepository userRepo;
         @Autowired
@@ -59,6 +57,25 @@ public class UserController {
                 return globalService.getSuccessResponse("User removed successfully");
             }
         }
+
+        @GetMapping("/sendVerificationCode/{email}")
+        public ResponseEntity sendVerificationCode(@PathVariable String email , HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+            if(email == null){
+                return globalService.getErrorResponse("Invalid request!");
+            }
+            User user = userRepo.findByEmail(email);
+
+
+            boolean flag =  service.sendVerificationEmail(user , service.getSiteURL(request));
+
+            if(flag){
+                return globalService.getSuccessResponse("Verification code send successfully!");
+            }
+            return globalService.getErrorResponse("Something went wrong please try again later!");
+
+        }
+
+
         @PostMapping("/process_register")
         public ResponseEntity processRegister(@RequestParam String user, @RequestParam(required = false) MultipartFile image , HttpServletRequest request)
                 throws UnsupportedEncodingException, MessagingException, JsonProcessingException {
@@ -73,11 +90,10 @@ public class UserController {
             }
             if(image != null){
               String photo =  amazonClient.uploadFile(image);
-                System.out.println("photo: "+photo);
               user1.setUserImage(photo);
             }
 
-           Boolean flag =  service.register(user1, getSiteURL(request));
+           Boolean flag =  service.register(user1, service.getSiteURL(request));
 
            if(flag){
            return globalService.getSuccessResponse("Check email for verification");
@@ -88,10 +104,7 @@ public class UserController {
 
 
 
-        private String getSiteURL(HttpServletRequest request) {
-            String siteURL = request.getRequestURL().toString();
-            return siteURL.replace(request.getServletPath(), "");
-        }
+
 
     }
 
