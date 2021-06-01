@@ -102,7 +102,7 @@ public class AttributePriceController {
         if(obj.getProductId() == null){
             return service.getErrorResponse("Invalid request!");
         }
-        AttributeResponse price = null;
+        AttributeResponse price = new AttributeResponse();
         if(obj.getList().size() > 0){
             int size = obj.getList().size();
             List< AttributePrice> list = priceRepo.findByProductId(obj.getProductId());
@@ -116,7 +116,7 @@ public class AttributePriceController {
     }
 
     public AttributeResponse returnPrice(int count , List<String> list, List<AttributePrice> dbList){
-        AttributeResponse price = null;
+        AttributeResponse price = new AttributeResponse();
         if(count == 1){
             for (AttributePrice i: dbList){
                 for (String j: list) {
