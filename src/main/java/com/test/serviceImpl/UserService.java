@@ -81,7 +81,7 @@ public class UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getFullName());
-        String verifyURL = siteURL + "/verify?code=" + user.getVerificationCode();
+        String verifyURL = siteURL + "/verify/user?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", verifyURL);
 

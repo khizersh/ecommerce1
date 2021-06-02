@@ -115,7 +115,7 @@ public class CouponController {
         return service.getSuccessResponse(coupon);
     }
 
-  @GetMapping("/validate/{code}")
+  @PostMapping("/validate/{code}")
     public ResponseEntity validateCoupon(@PathVariable String code) throws ParseException {
         if(code == null){
             return service.getErrorResponse("Invalid request!");

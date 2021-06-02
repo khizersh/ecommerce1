@@ -36,7 +36,7 @@ public class UserController {
            return globalService.getSuccessResponse(userRepo.findByOrderByIdAsc());
         }
 
-        @GetMapping("/verify")
+        @PostMapping("/verify")
         public ResponseEntity verifyUser(@RequestParam String code) {
             if (service.verify(code)) {
                 return globalService.getSuccessResponse("Verified success");
@@ -89,6 +89,7 @@ public class UserController {
                 return globalService.getErrorResponse("Email already exist! please try another one.");
             }
             if(image != null){
+                System.out.println("image is");
               String photo =  amazonClient.uploadFile(image);
               user1.setUserImage(photo);
             }
