@@ -70,7 +70,7 @@ public class CheckoutController {
             boolean fl =  userService.sendVerificationEmail(user , userService.getSiteURL(request));
 
             if(fl){
-                return service.getSuccessResponse("Please verify your email first! Verification send to your email!");
+                return service.getErrorResponse("Please verify your email first! Verification send to your email!");
             }
             return service.getErrorResponse("User not verified. Something went wrong please try again later!");
         }

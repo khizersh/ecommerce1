@@ -20,7 +20,7 @@ public class Checkout {
     private Date shipmentDate;
     private Double totalAmount;
     private Double netAmount;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Status status;
 
     @OneToMany(cascade = CascadeType.ALL)

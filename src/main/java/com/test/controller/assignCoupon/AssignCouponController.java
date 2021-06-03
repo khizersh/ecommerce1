@@ -42,7 +42,7 @@ public class AssignCouponController {
        return service.getSuccessResponse("Delete successfully!");
     }
 
-    @GetMapping("/user/assign")
+    @PostMapping("/user/assign")
     public ResponseEntity assignCoupon(@RequestBody AssignCoupon coup){
 
         if(coup.getUserId() == null){
@@ -63,6 +63,7 @@ public class AssignCouponController {
 
         coup.setCouponTitle(coupon.getTitle());
         coup.setUserName(user.getFullName());
+        coup.setUsed(false);
         coup.setPercentageOff(coupon.getPercentageOff());
        return service.getSuccessResponse(assignRepo.save(coup));
     }
