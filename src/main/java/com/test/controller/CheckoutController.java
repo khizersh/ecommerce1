@@ -92,6 +92,18 @@ public class CheckoutController {
             }
         }
 
+        double productPrice = 0.0;
+        if(checkout.getExpidet() != null){
+            if(checkout.getExpidet()){
+                if(Double.compare(checkout.getExpidetAmount() , 0)  < 0){
+                return service.getErrorResponse("Invalid Expidet amount");
+                }else{
+                    productPrice = checkout.getExpidetAmount();
+                }
+            }
+
+        }
+
         if(checkout.getTotalAmount() <= 0){
             return service.getErrorResponse("Invalid total amount!");
         }
@@ -99,7 +111,7 @@ public class CheckoutController {
         if(checkout.getNetAmount() <= 0){
             return service.getErrorResponse("Invalid net amount!");
         }
-        double productPrice = 0.0;
+
         List<CheckoutDetail> list = new ArrayList<>();
         for (CheckoutDetail detail : checkout.getProductList()) {
 

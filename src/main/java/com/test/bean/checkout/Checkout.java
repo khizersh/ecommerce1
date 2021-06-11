@@ -20,6 +20,8 @@ public class Checkout {
     private Date shipmentDate;
     private Double totalAmount;
     private Double netAmount;
+    private Double expidetAmount;
+    private Boolean expidet;
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
@@ -29,6 +31,22 @@ public class Checkout {
 
 //getter setter
 
+
+    public Double getExpidetAmount() {
+        return expidetAmount;
+    }
+
+    public void setExpidetAmount(Double expidetAmount) {
+        this.expidetAmount = expidetAmount;
+    }
+
+    public Boolean getExpidet() {
+        return expidet;
+    }
+
+    public void setExpidet(Boolean expidet) {
+        this.expidet = expidet;
+    }
 
     public Long getUserId() {
         return userId;

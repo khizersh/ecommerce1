@@ -46,13 +46,13 @@ public class StripeService {
             }
             return id;
         }
-        public String createCharge(String email, String token, int amount) {
+        public String createCharge(String email, String token, int amount , String currency) {
             String id = null;
             try {
                 Stripe.apiKey = API_SECRET_KEY;
                 Map<String, Object> chargeParams = new HashMap<>();
                 chargeParams.put("amount", amount);
-                chargeParams.put("currency", "usd");
+                chargeParams.put("currency", currency);
                 chargeParams.put("description", "Charge for " + email);
                 chargeParams.put("source", token); // ^ obtained with Stripe.js
 

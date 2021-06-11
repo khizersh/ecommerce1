@@ -32,7 +32,7 @@ public class PaymentController {
         }
 
         //create charge
-        String chargeId = stripeService.createCharge(email, token, 1); //$9.99 USD
+        String chargeId = stripeService.createCharge(email, token, 1 , "usd"); //$9.99 USD
         if (chargeId == null) {
             return  service.getErrorResponse ( "An error occurred while trying to create a charge.");
         }
