@@ -36,7 +36,6 @@ public class StripeService {
                 // add customer unique id here to track them in your web application
                 customerParams.put("description", "Customer for " + email);
                 customerParams.put("email", email);
-
                 customerParams.put("source", token); // ^ obtained with Stripe.js
                 //create a new customer
                 Customer customer = Customer.create(customerParams);
@@ -54,6 +53,7 @@ public class StripeService {
                 chargeParams.put("amount", amount);
                 chargeParams.put("currency", currency);
                 chargeParams.put("description", "Charge for " + email);
+                chargeParams.put("customer", email);
                 chargeParams.put("source", token); // ^ obtained with Stripe.js
 
                 //create a charge

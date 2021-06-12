@@ -27,11 +27,20 @@ public class Order {
     private String postalCode;
     private String phoneNo;
     private String suggestion;
+    private String chargeId;
     @Enumerated(EnumType.STRING)
     private Status orderStatus;
 
 //    getter setter
 
+
+    public String getChargeId() {
+        return chargeId;
+    }
+
+    public void setChargeId(String chargeId) {
+        this.chargeId = chargeId;
+    }
 
     public Long getUserId() {
         return userId;
