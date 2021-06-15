@@ -1,14 +1,25 @@
 package com.test.controller.order;
 
+import com.test.bean.User;
+import com.test.bean.checkout.Checkout;
+import com.test.bean.checkout.CheckoutDetail;
 import com.test.bean.checkout.Status;
 import com.test.bean.order.Order;
+import com.test.bean.order.OrderResponse;
+import com.test.bean.order.OrderResponseDetail;
+import com.test.repo.CheckoutRepo;
 import com.test.repo.OrderRepo;
+import com.test.repo.UserRepository;
+import com.test.service.OrderService;
 import com.test.service.StripeService;
 import com.test.utility.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/order")
@@ -25,6 +36,15 @@ public class OrderController {
 
     @Autowired
     private OrderRepo orderRepo;
+
+    @Autowired
+    private CheckoutRepo checkoutRepo;
+
+    @Autowired
+    private UserRepository userRepo;
+
+    @Autowired
+    private OrderService orderService;
 
 
     @PostMapping("/stripe")
@@ -67,6 +87,31 @@ public class OrderController {
 
 
         return  service.getSuccessResponse( orderRepo.save(order));
+    }
+
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity getOrderMainByUser(@PathVariable Long id){
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+
+       List<OrderResponse> list =  orderService.getOrderByUserId(id);
+
+       return service.getSuccessResponse(list);
+
+    }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity getOrderDetailByCheckoutId(@PathVariable Integer id){
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+
+       List<CheckoutDetail> list =  orderService.getOrderDetailByCheckoutId(id);
+
+       return service.getSuccessResponse(list);
+
     }
 
 }
