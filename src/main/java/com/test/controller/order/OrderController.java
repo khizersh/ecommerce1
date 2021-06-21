@@ -47,6 +47,11 @@ public class OrderController {
     private OrderService orderService;
 
 
+    @GetMapping
+    public ResponseEntity getAllOrder(){
+        return service.getSuccessResponse(orderRepo.findAll());
+    }
+
     @PostMapping("/stripe")
     public ResponseEntity createCharge(@RequestBody Order order) {
         //validate data

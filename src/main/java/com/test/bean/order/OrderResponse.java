@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 
 public class OrderResponse {
 
+    private Integer orderId;
+    private Integer checkoutId;
     private Long userId;
     private String email;
     private String fullName;
@@ -24,6 +26,23 @@ public class OrderResponse {
     private Double totalAmount;
     private Double netAmount;
     private Double expidetAmount;
+
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getCheckoutId() {
+        return checkoutId;
+    }
+
+    public void setCheckoutId(Integer checkoutId) {
+        this.checkoutId = checkoutId;
+    }
 
     public Long getUserId() {
         return userId;

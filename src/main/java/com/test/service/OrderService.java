@@ -37,6 +37,8 @@ public class OrderService {
             OrderResponse rep = new OrderResponse();
             Checkout check = checkoutRepo.getOne(order.getCheckoutId());
 
+            rep.setOrderId(order.getId());
+            rep.setCheckoutId(check.getId());
             rep.setFullName(order.getFullName());
             rep.setEmail(order.getEmail());
             rep.setPhoneNo(order.getPhoneNo());
