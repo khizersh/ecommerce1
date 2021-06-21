@@ -45,6 +45,7 @@ public class StripeService {
             }
             return id;
         }
+
         public String createCharge(String email, String token, int amount , String currency) {
             String id = null;
             try {
@@ -53,9 +54,8 @@ public class StripeService {
                 chargeParams.put("amount", amount);
                 chargeParams.put("currency", currency);
                 chargeParams.put("description", "Charge for " + email);
-                chargeParams.put("customer", email);
                 chargeParams.put("source", token); // ^ obtained with Stripe.js
-
+                createCustomer(email , token);
                 //create a charge
                 Charge charge = Charge.create(chargeParams);
                 id = charge.getId();

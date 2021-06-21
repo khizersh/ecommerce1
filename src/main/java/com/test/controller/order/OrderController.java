@@ -76,7 +76,7 @@ public class OrderController {
         }
 
         //create charge
-        String chargeId = stripeService.createCharge(order.getEmail(),order.getToken(), 1 , "usd"); //$9.99 USD
+        String chargeId = stripeService.createCharge(order.getEmail(),order.getToken(), 100 , "usd"); //$9.99 USD
         if (chargeId == null) {
             return  service.getErrorResponse ( "An error occurred while trying to create a charge.");
         }
