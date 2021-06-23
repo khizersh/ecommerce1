@@ -1,15 +1,13 @@
 package com.test.service;
 
+import com.stripe.exception.StripeException;
+import com.stripe.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 import com.stripe.Stripe;
-import com.stripe.model.Charge;
-import com.stripe.model.Coupon;
-import com.stripe.model.Customer;
-import com.stripe.model.Subscription;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +53,7 @@ public class StripeService {
                 chargeParams.put("currency", currency);
                 chargeParams.put("description", "Charge for " + email);
                 chargeParams.put("source", token); // ^ obtained with Stripe.js
-                createCustomer(email , token);
+//                createCustomer(email , token);
                 //create a charge
                 Charge charge = Charge.create(chargeParams);
                 id = charge.getId();
@@ -65,6 +63,18 @@ public class StripeService {
             return id;
         }
 
+//        public Token createToken() throws StripeException {
+//            Map<String, Object> card = new HashMap<>();
+//            card.put("number", "4242424242424242");
+//            card.put("exp_month", 6);
+//            card.put("exp_year", 2022);
+//            card.put("cvc", "314");
+//            Map<String, Object> params = new HashMap<>();
+//            params.put("card", card);
+//
+//            Token token = Token.create(params);
+//            return token;
+//        }
 
         public String createSubscription(String customerId, String plan, String coupon) {
             String id = null;
