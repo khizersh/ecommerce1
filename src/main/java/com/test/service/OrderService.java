@@ -26,44 +26,61 @@ public class OrderService {
     @Autowired
     private UserRepository userRepo;
 
+    public OrderResponse convertDto(Order order){
+        OrderResponse rep = new OrderResponse();
+        Checkout check = checkoutRepo.getOne(order.getCheckoutId());
 
-    public List<OrderResponse> getOrderByUserId(Long id){
-        User user = userRepo.getOne(id);
+        if(order.getOrderDate() != null){
+            rep.setOrderDate(order.getOrderDate());
+        }
+        rep.setOrderStatus(order.getOrderStatus());
+        rep.setShipStatus(order.getShipStatus());
+        rep.setOrderId(order.getId());
+        rep.setCheckoutId(check.getId());
+        rep.setFullName(order.getFullName());
+        rep.setEmail(order.getEmail());
+        rep.setPhoneNo(order.getPhoneNo());
+        rep.setCountry(order.getCountry());
+        rep.setState(order.getState());
+        rep.setCity(order.getCity());
+        rep.setUserId(order.getUserId());
+        rep.setAddressLine1(order.getAddressLine1());
+        rep.setAddressLine2(order.getAddressLine2());
+        rep.setPostalCode(order.getPostalCode());
+        rep.setTotalAmount(check.getTotalAmount());
+        rep.setCouponAmount(check.getCouponAmount());
+        rep.setNetAmount(check.getNetAmount());
 
-        List<Order> orderList = orderRepo.findByUserId(id);
+        return rep;
+    }
+
+
+    public  List<OrderResponse> setDtoList(List<Order> list){
         List<OrderResponse> responseList = new ArrayList<>();
 
-        for (Order order : orderList) {
-            OrderResponse rep = new OrderResponse();
-            Checkout check = checkoutRepo.getOne(order.getCheckoutId());
-
-            rep.setOrderId(order.getId());
-            rep.setCheckoutId(check.getId());
-            rep.setFullName(order.getFullName());
-            rep.setEmail(order.getEmail());
-            rep.setPhoneNo(order.getPhoneNo());
-            rep.setCountry(order.getCountry());
-            rep.setState(order.getState());
-            rep.setCity(order.getCity());
-            rep.setUserId(order.getUserId());
-            rep.setAddressLine1(order.getAddressLine1());
-            rep.setAddressLine2(order.getAddressLine2());
-            rep.setPostalCode(order.getPostalCode());
-            rep.setTotalAmount(check.getTotalAmount());
-            rep.setCouponAmount(check.getCouponAmount());
-            rep.setNetAmount(check.getNetAmount());
-            responseList.add(rep);
+        for (Order order : list) {
+            responseList.add(convertDto(order));
 
         }
-            return responseList;
+        return responseList;
+    }
+
+    public List<OrderResponse> getOrderByUserId(Long id){
+
+        List<Order> orderList = orderRepo.findByUserId(id);
+        List<OrderResponse> responseList =  setDtoList(orderList);
+        return  responseList;
+
+    }
+    public List<OrderResponse> getAllOrder(){
+        List<Order> orderList = orderRepo.findByOrderByIdDesc();
+        List<OrderResponse> responseList =  setDtoList(orderList);
+        return  responseList;
     }
     public List<CheckoutDetail>  getOrderDetailByCheckoutId(int id){
         Checkout check = checkoutRepo.getOne(id);
-
         List<CheckoutDetail> list = new ArrayList<>();
-
         list = check.getProductList();
-
         return list;
 
 

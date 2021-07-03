@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -49,7 +50,19 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity getAllOrder(){
-        return service.getSuccessResponse(orderRepo.findAll());
+        return service.getSuccessResponse(orderService.getAllOrder());
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity getOrderById(@PathVariable Integer id){
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+        Order order = orderRepo.getOne(id);
+
+        return service.getSuccessResponse(orderService.convertDto(order));
+
     }
 
     @PostMapping("/stripe")
@@ -79,6 +92,11 @@ public class OrderController {
         if(order.getFullName() == null){
             return  service.getErrorResponse ( "name required!");
         }
+        Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
+        if(orderDb != null){
+            return  service.getErrorResponse ( "Checkout already exist!");
+        }
+
 
         //create charge
         String chargeId = stripeService.createCharge(order.getEmail(),order.getToken(), 100 , "usd"); //$9.99 USD
@@ -88,6 +106,8 @@ public class OrderController {
 
         order.setChargeId(chargeId);
         order.setOrderStatus(Status.Paid);
+        order.setShipStatus(Status.Pending);
+        order.setOrderDate(new Date());
         // You may want to store charge id along with order information
 
 
@@ -117,6 +137,19 @@ public class OrderController {
 
        return service.getSuccessResponse(list);
 
+    }
+
+
+    @GetMapping("/checkout/{id}")
+    public ResponseEntity getOrderByCheckoutId(@PathVariable Integer id){
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+       Order order  =  orderRepo.findByCheckoutId(id);
+        if(order == null){
+            return service.getErrorResponse("No data found");
+        }
+       return service.getSuccessResponse(order);
     }
 
 }

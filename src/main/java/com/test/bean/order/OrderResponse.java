@@ -4,6 +4,7 @@ import com.test.bean.checkout.Status;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Date;
 
 public class OrderResponse {
 
@@ -22,11 +23,29 @@ public class OrderResponse {
     private String suggestion;
     @Enumerated(EnumType.STRING)
     private Status orderStatus;
+    @Enumerated(EnumType.STRING)
+    private Status shipStatus;
     private Double couponAmount;
     private Double totalAmount;
     private Double netAmount;
     private Double expidetAmount;
+    private Date orderDate;
 
+    public Status getShipStatus() {
+        return shipStatus;
+    }
+
+    public void setShipStatus(Status shipStatus) {
+        this.shipStatus = shipStatus;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 
     public Integer getOrderId() {
         return orderId;

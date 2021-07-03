@@ -10,15 +10,11 @@ public class AttributePrice {
     private Integer id;
 
     private String attribute_1;
-
     private String attribute_2;
-
     private String attribute_3;
-
     private String attribute_4;
 
     private Double price;
-
     private Double discountPrice;
 
     private Boolean discount = false;

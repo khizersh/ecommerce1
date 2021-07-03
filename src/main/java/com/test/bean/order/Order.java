@@ -4,6 +4,7 @@ import com.test.bean.checkout.Status;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "customer_order")
@@ -28,11 +29,30 @@ public class Order {
     private String phoneNo;
     private String suggestion;
     private String chargeId;
+    private Date orderDate;
     @Enumerated(EnumType.STRING)
     private Status orderStatus;
+    @Enumerated(EnumType.STRING)
+    private Status shipStatus;
 
 //    getter setter
 
+
+    public Status getShipStatus() {
+        return shipStatus;
+    }
+
+    public void setShipStatus(Status shipStatus) {
+        this.shipStatus = shipStatus;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 
     public String getChargeId() {
         return chargeId;
