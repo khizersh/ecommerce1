@@ -22,7 +22,6 @@ public class SearchController {
 
     @GetMapping("/{keyword}")
     public ResponseEntity getResultByKeyword(@PathVariable String keyword){
-
         return service.getSuccessResponse(productRepo.findByKeywordsContainingIgnoreCase(keyword));
     }
 }

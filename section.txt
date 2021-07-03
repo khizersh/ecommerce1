@@ -1,0 +1,1422 @@
+
+[
+        {
+            "id": 1,
+            "title": "New Arrivals",
+            "productList": [
+                {
+                    "id": 1,
+                    "title": "Jacket 1",
+                    "priceSet": null,
+                    "description": "Jacket 1",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "120.0 - 120.0",
+                    "review": 4.5,
+                    "reviewCount": 1,
+                    "keywords": "fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg",
+                    "imageList": [
+                        {
+                            "id": 1,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"
+                        },
+                        {
+                            "id": 2,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 3,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 4,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 1,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 1,
+                            "point": "this is product 1",
+                            "productId": 1
+                        },
+                        {
+                            "id": 2,
+                            "point": "this is product 1",
+                            "productId": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "jacket 2",
+                    "priceSet": null,
+                    "description": "jacket 2",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "140.0 - 140.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf",
+                    "imageList": [
+                        {
+                            "id": 5,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 6,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 3,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 4,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 3,
+                            "point": "asgasfasfasfsafasf",
+                            "productId": 2
+                        },
+                        {
+                            "id": 4,
+                            "point": "asfasfasf",
+                            "productId": 2
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "title": "jacket 3",
+                    "priceSet": null,
+                    "description": "jacket 3",
+                    "categoryId": 2,
+                    "categoryName": "Cotton",
+                    "sequence": null,
+                    "range": "135.0 - 135.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "asdasdasd,dsfsdgsdg,dfhgdfh",
+                    "imageList": [
+                        {
+                            "id": 7,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"
+                        },
+                        {
+                            "id": 8,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"
+                        },
+                        {
+                            "id": 9,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"
+                        },
+                        {
+                            "id": 10,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 5,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 3,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 5,
+                            "point": "Size: large",
+                            "productId": 3
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "title": "Jacket 1",
+                    "priceSet": null,
+                    "description": "Jacket 1",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "120.0 - 120.0",
+                    "review": 4.5,
+                    "reviewCount": 1,
+                    "keywords": "fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg",
+                    "imageList": [
+                        {
+                            "id": 1,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"
+                        },
+                        {
+                            "id": 2,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 3,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 4,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 1,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 1,
+                            "point": "this is product 1",
+                            "productId": 1
+                        },
+                        {
+                            "id": 2,
+                            "point": "this is product 1",
+                            "productId": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "jacket 2",
+                    "priceSet": null,
+                    "description": "jacket 2",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "140.0 - 140.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf",
+                    "imageList": [
+                        {
+                            "id": 5,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 6,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 3,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 4,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 3,
+                            "point": "asgasfasfasfsafasf",
+                            "productId": 2
+                        },
+                        {
+                            "id": 4,
+                            "point": "asfasfasf",
+                            "productId": 2
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "title": "jacket 3",
+                    "priceSet": null,
+                    "description": "jacket 3",
+                    "categoryId": 2,
+                    "categoryName": "Cotton",
+                    "sequence": null,
+                    "range": "135.0 - 135.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "asdasdasd,dsfsdgsdg,dfhgdfh",
+                    "imageList": [
+                        {
+                            "id": 7,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"
+                        },
+                        {
+                            "id": 8,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"
+                        },
+                        {
+                            "id": 9,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"
+                        },
+                        {
+                            "id": 10,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 5,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 3,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 5,
+                            "point": "Size: large",
+                            "productId": 3
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "title": "Jacket 6",
+                    "priceSet": null,
+                    "description": "<p>Jacket 6</p>",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "111.0 - 111.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "Jacket 6,asfas",
+                    "imageList": [
+                        {
+                            "id": 15,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747113-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 16,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747362-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 17,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747433-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 8,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 6,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 8,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 8,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 8,
+                            "point": "<p>Jacket 6</p>",
+                            "productId": 6
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "title": "Jacket 5",
+                    "priceSet": null,
+                    "description": "<p>Jacket 5</p>",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "133.0 - 133.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "Jacket 5,asfgasg,asgasgfasg",
+                    "imageList": [
+                        {
+                            "id": 12,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685481-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 13,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685756-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                        },
+                        {
+                            "id": 14,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685828-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 7,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 5,
+                            "childAttributeList": [
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 7,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 7,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 9,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 5,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 9,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661418166-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661419914-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661420012-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 7,
+                            "point": "<p>Jacket 5 Jacket 5</p>",
+                            "productId": 5
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "title": "jacket 4",
+                    "priceSet": null,
+                    "description": "<p>jacket 4</p>",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "122.0 - 122.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "sdasfasg,gsdhsdf,dgsdhgdfhg",
+                    "imageList": [
+                        {
+                            "id": 11,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569037448-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 6,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 4,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 6,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041067-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041250-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041361-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 6,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043345-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043463-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043551-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 6,
+                            "point": "<ul><li>Size : Large , Medium , Small</li><li>Color: Black , Brown</li></ul>",
+                            "productId": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Hot Shops",
+            "productList": [
+                {
+                    "id": 1,
+                    "title": "Jacket 1",
+                    "priceSet": null,
+                    "description": "Jacket 1",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "120.0 - 120.0",
+                    "review": 4.5,
+                    "reviewCount": 1,
+                    "keywords": "fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg",
+                    "imageList": [
+                        {
+                            "id": 1,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"
+                        },
+                        {
+                            "id": 2,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 3,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 4,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 1,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 1,
+                            "point": "this is product 1",
+                            "productId": 1
+                        },
+                        {
+                            "id": 2,
+                            "point": "this is product 1",
+                            "productId": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "jacket 2",
+                    "priceSet": null,
+                    "description": "jacket 2",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "140.0 - 140.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf",
+                    "imageList": [
+                        {
+                            "id": 5,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 6,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 3,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 4,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 3,
+                            "point": "asgasfasfasfsafasf",
+                            "productId": 2
+                        },
+                        {
+                            "id": 4,
+                            "point": "asfasfasf",
+                            "productId": 2
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "title": "jacket 3",
+                    "priceSet": null,
+                    "description": "jacket 3",
+                    "categoryId": 2,
+                    "categoryName": "Cotton",
+                    "sequence": null,
+                    "range": "135.0 - 135.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "asdasdasd,dsfsdgsdg,dfhgdfh",
+                    "imageList": [
+                        {
+                            "id": 7,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"
+                        },
+                        {
+                            "id": 8,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"
+                        },
+                        {
+                            "id": 9,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"
+                        },
+                        {
+                            "id": 10,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 5,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 3,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 5,
+                            "point": "Size: large",
+                            "productId": 3
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "title": "Jacket 1",
+                    "priceSet": null,
+                    "description": "Jacket 1",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "120.0 - 120.0",
+                    "review": 4.5,
+                    "reviewCount": 1,
+                    "keywords": "fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg",
+                    "imageList": [
+                        {
+                            "id": 1,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"
+                        },
+                        {
+                            "id": 2,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 3,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 4,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 1,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 1,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 1,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 2,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 1,
+                            "point": "this is product 1",
+                            "productId": 1
+                        },
+                        {
+                            "id": 2,
+                            "point": "this is product 1",
+                            "productId": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "jacket 2",
+                    "priceSet": null,
+                    "description": "jacket 2",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "140.0 - 140.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf",
+                    "imageList": [
+                        {
+                            "id": 5,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 6,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 3,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 3,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 4,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 2,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 4,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 3,
+                            "point": "asgasfasfasfsafasf",
+                            "productId": 2
+                        },
+                        {
+                            "id": 4,
+                            "point": "asfasfasf",
+                            "productId": 2
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "title": "jacket 3",
+                    "priceSet": null,
+                    "description": "jacket 3",
+                    "categoryId": 2,
+                    "categoryName": "Cotton",
+                    "sequence": null,
+                    "range": "135.0 - 135.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "asdasdasd,dsfsdgsdg,dfhgdfh",
+                    "imageList": [
+                        {
+                            "id": 7,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"
+                        },
+                        {
+                            "id": 8,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"
+                        },
+                        {
+                            "id": 9,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"
+                        },
+                        {
+                            "id": 10,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 5,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 3,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 5,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 5,
+                            "point": "Size: large",
+                            "productId": 3
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "title": "Jacket 6",
+                    "priceSet": null,
+                    "description": "<p>Jacket 6</p>",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "111.0 - 111.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "Jacket 6,asfas",
+                    "imageList": [
+                        {
+                            "id": 15,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747113-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 16,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747362-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                        },
+                        {
+                            "id": 17,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747433-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 8,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 6,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 8,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 8,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 8,
+                            "point": "<p>Jacket 6</p>",
+                            "productId": 6
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "title": "Jacket 5",
+                    "priceSet": null,
+                    "description": "<p>Jacket 5</p>",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "133.0 - 133.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "Jacket 5,asfgasg,asgasgfasg",
+                    "imageList": [
+                        {
+                            "id": 12,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685481-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                        },
+                        {
+                            "id": 13,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685756-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                        },
+                        {
+                            "id": 14,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685828-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 7,
+                            "parentTitle": "Size",
+                            "parentAttributeId": null,
+                            "multi": null,
+                            "productId": 5,
+                            "childAttributeList": [
+                                {
+                                    "id": 2,
+                                    "title": "Medium",
+                                    "parentId": 7,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 1,
+                                    "title": "Large",
+                                    "parentId": 7,
+                                    "attributeImage": [],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 9,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 5,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 9,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661418166-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661419914-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661420012-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 7,
+                            "point": "<p>Jacket 5 Jacket 5</p>",
+                            "productId": 5
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "title": "jacket 4",
+                    "priceSet": null,
+                    "description": "<p>jacket 4</p>",
+                    "categoryId": 1,
+                    "categoryName": "Leather",
+                    "sequence": null,
+                    "range": "122.0 - 122.0",
+                    "review": 0.0,
+                    "reviewCount": 0,
+                    "keywords": "sdasfasg,gsdhsdf,dgsdhgdfhg",
+                    "imageList": [
+                        {
+                            "id": 11,
+                            "image": "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569037448-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"
+                        }
+                    ],
+                    "attributeList": [
+                        {
+                            "id": 6,
+                            "parentTitle": "Color",
+                            "parentAttributeId": null,
+                            "multi": true,
+                            "productId": 4,
+                            "childAttributeList": [
+                                {
+                                    "id": 3,
+                                    "title": "Black",
+                                    "parentId": 6,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041067-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041250-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041361-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Brown",
+                                    "parentId": 6,
+                                    "attributeImage": [
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043345-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043463-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg",
+                                        "https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043551-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"
+                                    ],
+                                    "attributeImageFull": []
+                                }
+                            ]
+                        }
+                    ],
+                    "bulletList": [
+                        {
+                            "id": 6,
+                            "point": "<ul><li>Size : Large , Medium , Small</li><li>Color: Black , Brown</li></ul>",
+                            "productId": 4
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+[{"id":1,"title":"NewArrivals","productList":[{"id":1,"title":"Jacket1","priceSet":null,"description":"Jacket1","categoryId":1,"categoryName":"Leather","sequence":null,"range":"120.0-120.0","review":4.5,"reviewCount":1,"keywords":"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg","imageList":[{"id":1,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"},{"id":2,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":3,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":4,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":1,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":1,"childAttributeList":[{"id":1,"title":"Large","parentId":1,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":1,"attributeImage":[],"attributeImageFull":[]}]},{"id":2,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":1,"childAttributeList":[{"id":3,"title":"Black","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":1,"point":"thisisproduct1","productId":1},{"id":2,"point":"thisisproduct1","productId":1}]},{"id":2,"title":"jacket2","priceSet":null,"description":"jacket2","categoryId":1,"categoryName":"Leather","sequence":null,"range":"140.0-140.0","review":0.0,"reviewCount":0,"keywords":"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf","imageList":[{"id":5,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":6,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":3,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":2,"childAttributeList":[{"id":1,"title":"Large","parentId":3,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":3,"attributeImage":[],"attributeImageFull":[]}]},{"id":4,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":2,"childAttributeList":[{"id":3,"title":"Black","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":3,"point":"asgasfasfasfsafasf","productId":2},{"id":4,"point":"asfasfasf","productId":2}]},{"id":3,"title":"jacket3","priceSet":null,"description":"jacket3","categoryId":2,"categoryName":"Cotton","sequence":null,"range":"135.0-135.0","review":0.0,"reviewCount":0,"keywords":"asdasdasd,dsfsdgsdg,dfhgdfh","imageList":[{"id":7,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"},{"id":8,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"},{"id":9,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"},{"id":10,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"}],"attributeList":[{"id":5,"parentTitle":"Color","parentAttributeId":null,"multi":null,"productId":3,"childAttributeList":[{"id":3,"title":"Black","parentId":5,"attributeImage":[],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":5,"attributeImage":[],"attributeImageFull":[]}]}],"bulletList":[{"id":5,"point":"Size:large","productId":3}]},{"id":1,"title":"Jacket1","priceSet":null,"description":"Jacket1","categoryId":1,"categoryName":"Leather","sequence":null,"range":"120.0-120.0","review":4.5,"reviewCount":1,"keywords":"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg","imageList":[{"id":1,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"},{"id":2,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":3,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":4,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":1,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":1,"childAttributeList":[{"id":1,"title":"Large","parentId":1,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":1,"attributeImage":[],"attributeImageFull":[]}]},{"id":2,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":1,"childAttributeList":[{"id":3,"title":"Black","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":1,"point":"thisisproduct1","productId":1},{"id":2,"point":"thisisproduct1","productId":1}]},{"id":2,"title":"jacket2","priceSet":null,"description":"jacket2","categoryId":1,"categoryName":"Leather","sequence":null,"range":"140.0-140.0","review":0.0,"reviewCount":0,"keywords":"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf","imageList":[{"id":5,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":6,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":3,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":2,"childAttributeList":[{"id":1,"title":"Large","parentId":3,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":3,"attributeImage":[],"attributeImageFull":[]}]},{"id":4,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":2,"childAttributeList":[{"id":3,"title":"Black","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":3,"point":"asgasfasfasfsafasf","productId":2},{"id":4,"point":"asfasfasf","productId":2}]},{"id":3,"title":"jacket3","priceSet":null,"description":"jacket3","categoryId":2,"categoryName":"Cotton","sequence":null,"range":"135.0-135.0","review":0.0,"reviewCount":0,"keywords":"asdasdasd,dsfsdgsdg,dfhgdfh","imageList":[{"id":7,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"},{"id":8,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"},{"id":9,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"},{"id":10,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"}],"attributeList":[{"id":5,"parentTitle":"Color","parentAttributeId":null,"multi":null,"productId":3,"childAttributeList":[{"id":3,"title":"Black","parentId":5,"attributeImage":[],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":5,"attributeImage":[],"attributeImageFull":[]}]}],"bulletList":[{"id":5,"point":"Size:large","productId":3}]},{"id":6,"title":"Jacket6","priceSet":null,"description":"<p>Jacket6</p>","categoryId":1,"categoryName":"Leather","sequence":null,"range":"111.0-111.0","review":0.0,"reviewCount":0,"keywords":"Jacket6,asfas","imageList":[{"id":15,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747113-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":16,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747362-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":17,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747433-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":8,"parentTitle":"Color","parentAttributeId":null,"multi":null,"productId":6,"childAttributeList":[{"id":3,"title":"Black","parentId":8,"attributeImage":[],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":8,"attributeImage":[],"attributeImageFull":[]}]}],"bulletList":[{"id":8,"point":"<p>Jacket6</p>","productId":6}]},{"id":5,"title":"Jacket5","priceSet":null,"description":"<p>Jacket5</p>","categoryId":1,"categoryName":"Leather","sequence":null,"range":"133.0-133.0","review":0.0,"reviewCount":0,"keywords":"Jacket5,asfgasg,asgasgfasg","imageList":[{"id":12,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685481-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":13,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685756-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"},{"id":14,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685828-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"}],"attributeList":[{"id":7,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":5,"childAttributeList":[{"id":2,"title":"Medium","parentId":7,"attributeImage":[],"attributeImageFull":[]},{"id":1,"title":"Large","parentId":7,"attributeImage":[],"attributeImageFull":[]}]},{"id":9,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":5,"childAttributeList":[{"id":3,"title":"Black","parentId":9,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661418166-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661419914-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622661420012-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":7,"point":"<p>Jacket5Jacket5</p>","productId":5}]},{"id":4,"title":"jacket4","priceSet":null,"description":"<p>jacket4</p>","categoryId":1,"categoryName":"Leather","sequence":null,"range":"122.0-122.0","review":0.0,"reviewCount":0,"keywords":"sdasfasg,gsdhsdf,dgsdhgdfhg","imageList":[{"id":11,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569037448-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"}],"attributeList":[{"id":6,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":4,"childAttributeList":[{"id":3,"title":"Black","parentId":6,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041067-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041250-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569041361-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":6,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043345-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043463-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569043551-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":6,"point":"<ul><li>Size:Large,Medium,Small</li><li>Color:Black,Brown</li></ul>","productId":4}]}]},{"id":2,"title":"HotShops","productList":[{"id":1,"title":"Jacket1","priceSet":null,"description":"Jacket1","categoryId":1,"categoryName":"Leather","sequence":null,"range":"120.0-120.0","review":4.5,"reviewCount":1,"keywords":"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg","imageList":[{"id":1,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"},{"id":2,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":3,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":4,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":1,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":1,"childAttributeList":[{"id":1,"title":"Large","parentId":1,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":1,"attributeImage":[],"attributeImageFull":[]}]},{"id":2,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":1,"childAttributeList":[{"id":3,"title":"Black","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":1,"point":"thisisproduct1","productId":1},{"id":2,"point":"thisisproduct1","productId":1}]},{"id":2,"title":"jacket2","priceSet":null,"description":"jacket2","categoryId":1,"categoryName":"Leather","sequence":null,"range":"140.0-140.0","review":0.0,"reviewCount":0,"keywords":"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf","imageList":[{"id":5,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":6,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":3,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":2,"childAttributeList":[{"id":1,"title":"Large","parentId":3,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":3,"attributeImage":[],"attributeImageFull":[]}]},{"id":4,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":2,"childAttributeList":[{"id":3,"title":"Black","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":3,"point":"asgasfasfasfsafasf","productId":2},{"id":4,"point":"asfasfasf","productId":2}]},{"id":3,"title":"jacket3","priceSet":null,"description":"jacket3","categoryId":2,"categoryName":"Cotton","sequence":null,"range":"135.0-135.0","review":0.0,"reviewCount":0,"keywords":"asdasdasd,dsfsdgsdg,dfhgdfh","imageList":[{"id":7,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"},{"id":8,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"},{"id":9,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"},{"id":10,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"}],"attributeList":[{"id":5,"parentTitle":"Color","parentAttributeId":null,"multi":null,"productId":3,"childAttributeList":[{"id":3,"title":"Black","parentId":5,"attributeImage":[],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":5,"attributeImage":[],"attributeImageFull":[]}]}],"bulletList":[{"id":5,"point":"Size:large","productId":3}]},{"id":1,"title":"Jacket1","priceSet":null,"description":"Jacket1","categoryId":1,"categoryName":"Leather","sequence":null,"range":"120.0-120.0","review":4.5,"reviewCount":1,"keywords":"fsafasf,asfasfasf,asfasf,sdfsdg,sadasd,asgdsg","imageList":[{"id":1,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880291509-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg"},{"id":2,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292043-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":3,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292155-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":4,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880292255-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":1,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":1,"childAttributeList":[{"id":1,"title":"Large","parentId":1,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":1,"attributeImage":[],"attributeImageFull":[]}]},{"id":2,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":1,"childAttributeList":[{"id":3,"title":"Black","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297393-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(7).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297703-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297830-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298092-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":2,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880297952-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298333-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621880298559-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(12).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":1,"point":"thisisproduct1","productId":1},{"id":2,"point":"thisisproduct1","productId":1}]},{"id":2,"title":"jacket2","priceSet":null,"description":"jacket2","categoryId":1,"categoryName":"Leather","sequence":null,"range":"140.0-140.0","review":0.0,"reviewCount":0,"keywords":"xzvzxvxzv,dsgsdgsdg,sdgsdgsdg,asfasdasd,safasfasf","imageList":[{"id":5,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963693458-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":6,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963695524-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":3,"parentTitle":"Size","parentAttributeId":null,"multi":null,"productId":2,"childAttributeList":[{"id":1,"title":"Large","parentId":3,"attributeImage":[],"attributeImageFull":[]},{"id":2,"title":"Medium","parentId":3,"attributeImage":[],"attributeImageFull":[]}]},{"id":4,"parentTitle":"Color","parentAttributeId":null,"multi":true,"productId":2,"childAttributeList":[{"id":3,"title":"Black","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700553-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(8).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700666-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963700794-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":4,"attributeImage":["https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699322-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg","https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963699563-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"],"attributeImageFull":[]}]}],"bulletList":[{"id":3,"point":"asgasfasfasfsafasf","productId":2},{"id":4,"point":"asfasfasf","productId":2}]},{"id":3,"title":"jacket3","priceSet":null,"description":"jacket3","categoryId":2,"categoryName":"Cotton","sequence":null,"range":"135.0-135.0","review":0.0,"reviewCount":0,"keywords":"asdasdasd,dsfsdgsdg,dfhgdfh","imageList":[{"id":7,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801440-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(2).jpeg"},{"id":8,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801747-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(4).jpeg"},{"id":9,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801826-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(5).jpeg"},{"id":10,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1621963801891-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(6).jpeg"}],"attributeList":[{"id":5,"parentTitle":"Color","parentAttributeId":null,"multi":null,"productId":3,"childAttributeList":[{"id":3,"title":"Black","parentId":5,"attributeImage":[],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":5,"attributeImage":[],"attributeImageFull":[]}]}],"bulletList":[{"id":5,"point":"Size:large","productId":3}]},{"id":6,"title":"Jacket6","priceSet":null,"description":"<p>Jacket6</p>","categoryId":1,"categoryName":"Leather","sequence":null,"range":"111.0-111.0","review":0.0,"reviewCount":0,"keywords":"Jacket6,asfas","imageList":[{"id":15,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747113-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":16,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747362-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(13).jpeg"},{"id":17,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569747433-WhatsApp_Image_2021-04-21_at_2.26.47_PM.jpeg"}],"attributeList":[{"id":8,"parentTitle":"Color","parentAttributeId":null,"multi":null,"productId":6,"childAttributeList":[{"id":3,"title":"Black","parentId":8,"attributeImage":[],"attributeImageFull":[]},{"id":4,"title":"Brown","parentId":8,"attributeImage":[],"attributeImageFull":[]}]}],"bulletList":[{"id":8,"point":"<p>Jacket6</p>","productId":6}]},{"id":5,"title":"Jacket5","priceSet":null,"description":"<p>Jacket5</p>","categoryId":1,"categoryName":"Leather","sequence":null,"range":"133.0-133.0","review":0.0,"reviewCount":0,"keywords":"Jacket5,asfgasg,asgasgfasg","imageList":[{"id":12,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685481-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(9).jpeg"},{"id":13,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685756-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(10).jpeg"},{"id":14,"image":"https://s3.us-east-2.amazonaws.com/thejackter/jacketimages/1622569685828-WhatsApp_Image_2021-04-21_at_2.26.47_PM_(11).jpeg"}],"attributeList":[{"id":7,"parentTitle":"Size","parentAttributeId":
