@@ -73,6 +73,8 @@ public class SectionService {
             p.put("categoryName" ,pro.getCategoryName());
             p.put("sequence" ,pro.getSequence());
             p.put("range" ,pro.getRange());
+            p.put("rangeCad" ,pro.getRangeCad());
+            p.put("rangeEuro" ,pro.getRangeEuro());
             p.put("review" ,pro.getReview());
             p.put("reviewCount" ,pro.getReviewCount());
             p.put("keywords" ,pro.getKeywords());

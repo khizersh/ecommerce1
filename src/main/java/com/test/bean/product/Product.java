@@ -18,6 +18,8 @@ public class Product {
     private String description;
     private Boolean priceSet = false;
     private String priceRange;
+    private String priceRangeCad;
+    private String priceRangeEuro;
     private String keywords;
     private Double review;
     private Integer reviewCount;
@@ -37,6 +39,22 @@ public class Product {
 
 //    getter setter
 
+
+    public String getPriceRangeCad() {
+        return priceRangeCad;
+    }
+
+    public void setPriceRangeCad(String priceRangeCad) {
+        this.priceRangeCad = priceRangeCad;
+    }
+
+    public String getPriceRangeEuro() {
+        return priceRangeEuro;
+    }
+
+    public void setPriceRangeEuro(String priceRangeEuro) {
+        this.priceRangeEuro = priceRangeEuro;
+    }
 
     public Double getReview() {
         return review;

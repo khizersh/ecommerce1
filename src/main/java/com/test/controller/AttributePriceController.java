@@ -40,6 +40,8 @@ public class AttributePriceController {
     public ResponseEntity updatePrice(@RequestBody List<AttributePrice> priceList){
 
         List<Double> priceArray = new ArrayList<>();
+        List<Double> priceArrayCad = new ArrayList<>();
+        List<Double> priceArrayEuro = new ArrayList<>();
         if(priceList.size() > 0) {
 
             for (AttributePrice price: priceList) {
@@ -54,16 +56,27 @@ public class AttributePriceController {
                     if(price.getPrice() != null && price.getDiscountPrice() != null){
                             attributePrice.setDiscountPrice(price.getDiscountPrice());
                             attributePrice.setPrice(price.getPrice());
+                            attributePrice.setCadPrice(price.getCadPrice());
+                            attributePrice.setCadDiscountPrice(price.getCadDiscountPrice());
+                            attributePrice.setEuroPrice(price.getEuroPrice());
+                            attributePrice.setEuroDiscountPrice(price.getEuroDiscountPrice());
                             attributePrice.setDiscount(true);
                             priceRepo.save(attributePrice);
                             priceArray.add(price.getDiscountPrice());
+                            priceArrayCad.add(price.getCadDiscountPrice());
+                            priceArrayEuro.add(price.getEuroDiscountPrice());
+
 
                     }
                 }else{
                     if(price.getPrice() != null){
                         attributePrice.setPrice(price.getPrice());
+                        attributePrice.setCadPrice(price.getCadPrice());
+                        attributePrice.setEuroPrice(price.getEuroPrice());
                         priceRepo.save(attributePrice);
                         priceArray.add(price.getPrice());
+                        priceArrayCad.add(price.getCadPrice());
+                        priceArrayEuro.add(price.getEuroPrice());
                     }
                 }
 
@@ -74,7 +87,9 @@ public class AttributePriceController {
           Double max = Collections.max(priceArray);
           Double min = Collections.min(priceArray);
             Product pro = productRepo.getOne(priceList.get(0).getProductId());
-            pro.setPriceRange("" + min + " - " + max);
+            pro.setPriceRange("" + Collections.min(priceArray) + " - " + Collections.max(priceArray));
+            pro.setPriceRangeCad("" + Collections.min(priceArrayCad) + " - " + Collections.max(priceArrayCad));
+            pro.setPriceRangeEuro("" + Collections.min(priceArrayEuro) + " - " + Collections.max(priceArrayEuro));
             pro.setPriceSet(true);
             productRepo.save(pro);
 
@@ -124,7 +139,11 @@ public class AttributePriceController {
                         if(i.getDiscount()){
                             price.setPriceId(i.getId());
                             price.setPrice(i.getDiscountPrice());
+                            price.setCadPrice(i.getCadDiscountPrice());
+                            price.setEuroPrice(i.getEuroDiscountPrice());
                         }else{
+                            price.setCadPrice(i.getCadPrice());
+                            price.setEuroPrice(i.getEuroPrice());
                             price.setPriceId(i.getId());
                             price.setPrice(i.getPrice());
                         }
@@ -138,7 +157,11 @@ public class AttributePriceController {
                     if(i.getDiscount()){
                         price.setPriceId(i.getId());
                         price.setPrice(i.getDiscountPrice());
+                        price.setCadPrice(i.getCadDiscountPrice());
+                        price.setEuroPrice(i.getEuroDiscountPrice());
                     }else{
+                        price.setCadPrice(i.getCadPrice());
+                        price.setEuroPrice(i.getEuroPrice());
                         price.setPriceId(i.getId());
                         price.setPrice(i.getPrice());
                     }
@@ -151,7 +174,11 @@ public class AttributePriceController {
                     if(i.getDiscount()){
                         price.setPriceId(i.getId());
                         price.setPrice(i.getDiscountPrice());
+                        price.setCadPrice(i.getCadDiscountPrice());
+                        price.setEuroPrice(i.getEuroDiscountPrice());
                     }else{
+                        price.setCadPrice(i.getCadPrice());
+                        price.setEuroPrice(i.getEuroPrice());
                         price.setPriceId(i.getId());
                         price.setPrice(i.getPrice());
                     }
@@ -164,7 +191,12 @@ public class AttributePriceController {
                     if(i.getDiscount()){
                         price.setPriceId(i.getId());
                         price.setPrice(i.getDiscountPrice());
+                        price.setCadPrice(i.getCadDiscountPrice());
+                        price.setEuroPrice(i.getEuroDiscountPrice());
+
                     }else{
+                        price.setCadPrice(i.getCadPrice());
+                        price.setEuroPrice(i.getEuroPrice());
                         price.setPriceId(i.getId());
                         price.setPrice(i.getPrice());
                     }
@@ -179,6 +211,7 @@ public class AttributePriceController {
 class AttributePriced{
     private Integer productId;
     private List<String> list;
+
 
     public Integer getProductId() {
         return productId;
@@ -197,9 +230,28 @@ class AttributePriced{
     }
 }
 class AttributeResponse{
+
     private Integer priceId;
     private Double price;
+    private Double cadPrice;
+    private Double euroPrice;
 
+
+    public Double getCadPrice() {
+        return cadPrice;
+    }
+
+    public void setCadPrice(Double cadPrice) {
+        this.cadPrice = cadPrice;
+    }
+
+    public Double getEuroPrice() {
+        return euroPrice;
+    }
+
+    public void setEuroPrice(Double euroPrice) {
+        this.euroPrice = euroPrice;
+    }
 
     public Integer getPriceId() {
         return priceId;

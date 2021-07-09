@@ -16,16 +16,50 @@ public class AttributePrice {
 
     private Double price;
     private Double discountPrice;
+    private Double cadPrice;
+    private Double cadDiscountPrice;
+    private Double euroPrice;
+    private Double euroDiscountPrice;
 
     private Boolean discount = false;
-
     private Integer productId;
-
     private String productName;
 
 
 //    getter setter
 
+
+    public Double getCadPrice() {
+        return cadPrice;
+    }
+
+    public void setCadPrice(Double cadPrice) {
+        this.cadPrice = cadPrice;
+    }
+
+    public Double getCadDiscountPrice() {
+        return cadDiscountPrice;
+    }
+
+    public void setCadDiscountPrice(Double cadDiscountPrice) {
+        this.cadDiscountPrice = cadDiscountPrice;
+    }
+
+    public Double getEuroPrice() {
+        return euroPrice;
+    }
+
+    public void setEuroPrice(Double euroPrice) {
+        this.euroPrice = euroPrice;
+    }
+
+    public Double getEuroDiscountPrice() {
+        return euroDiscountPrice;
+    }
+
+    public void setEuroDiscountPrice(Double euroDiscountPrice) {
+        this.euroDiscountPrice = euroDiscountPrice;
+    }
 
     public Double getDiscountPrice() {
         return discountPrice;

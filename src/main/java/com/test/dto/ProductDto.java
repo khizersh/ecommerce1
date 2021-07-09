@@ -17,6 +17,8 @@ public class ProductDto {
     private String categoryName;
     private Integer sequence;
     private String range;
+    private String rangeCad;
+    private String rangeEuro;
     private Double review;
     private Integer reviewCount;
     private String keywords;
@@ -26,6 +28,22 @@ public class ProductDto {
 
 //    getter setter
 
+
+    public String getRangeCad() {
+        return rangeCad;
+    }
+
+    public void setRangeCad(String rangeCad) {
+        this.rangeCad = rangeCad;
+    }
+
+    public String getRangeEuro() {
+        return rangeEuro;
+    }
+
+    public void setRangeEuro(String rangeEuro) {
+        this.rangeEuro = rangeEuro;
+    }
 
     public Double getReview() {
         return review;

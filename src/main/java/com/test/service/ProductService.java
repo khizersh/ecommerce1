@@ -43,6 +43,8 @@ public class ProductService {
         dto.setId(pro.getId());
         dto.setTitle(pro.getTitle());
         dto.setRange(pro.getPriceRange());
+        dto.setRangeCad(pro.getPriceRangeCad());
+        dto.setRangeEuro(pro.getPriceRangeEuro());
         if(pro.getKeywords() != null){
 
         dto.setKeywords(pro.getKeywords());
