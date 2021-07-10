@@ -29,18 +29,15 @@ public class SectionService {
     private SectionRepo sectionRepo;
     @Autowired
     private ProductService productService;
-
     @Autowired
     private ProductRepo productRepo;
-
-
     @Autowired
     private SectionItemsRepo itemsRepo;
 
     @Cacheable("section")
-    public List<ProductSectionDto> getSections(){
+    public List<ProductSectionDto> getSections() {
         List<ProductSectionDto> list = new ArrayList<>();
-        for (ProductSections i: sectionRepo.findAll()) {
+        for (ProductSections i : sectionRepo.findAll()) {
             ProductSectionDto dto = new ProductSectionDto();
             dto.setId(i.getId());
             dto.setTitle(i.getTitle());
@@ -48,8 +45,8 @@ public class SectionService {
 
             for (SectionItems j : itemsRepo.findBySectionId(i.getId())) {
                 Product product = productRepo.getOne(j.getProductId());
-                if(product != null){
-                    productList.add(productService.convertDto(product , true));
+                if (product != null) {
+                    productList.add(productService.convertDto(product, true));
                 }
             }
             dto.setProductList(productList);
@@ -59,11 +56,19 @@ public class SectionService {
         return list;
     }
 
-    public JSONArray convertIntoJson(List<ProductDto> list){
+    public JSONArray convertIntoJson(List<ProductDto> list) {
         JSONArray productList = new JSONArray();
 
         for (ProductDto pro : list) {
+            productList.add(convertProductIntoJson(pro));
 
+        }
+            return productList;
+
+
+    }
+
+    public JSONObject convertProductIntoJson (ProductDto pro){
             JSONObject p = new JSONObject();
             p.put("id" ,pro.getId());
             p.put("title" ,pro.getTitle());
@@ -99,12 +104,12 @@ public class SectionService {
 
                 JSONArray cList = new JSONArray();
                 for (ChildAttributeDto c : attrib.getChildAttributeList()) {
-                JSONObject ca = new JSONObject();
-                ca.put("id", c.getId());
-                ca.put("title", c.getTitle());
-                ca.put("parentId", c.getParentId());
+                    JSONObject ca = new JSONObject();
+                    ca.put("id", c.getId());
+                    ca.put("title", c.getTitle());
+                    ca.put("parentId", c.getParentId());
 
-                JSONArray ccList = new JSONArray();
+                    JSONArray ccList = new JSONArray();
                     for (AttributeImages i: c.getAttributeImageFull()) {
                         JSONObject cb = new JSONObject();
                         cb.put("id",i.getId());
@@ -114,12 +119,12 @@ public class SectionService {
                         ccList.add(cb);
 
                     }
-                ca.put("attributeImageFull", ccList);
-                cList.add(ca);
+                    ca.put("attributeImageFull", ccList);
+                    cList.add(ca);
 
                 }
                 att.put("childAttributeList",cList);
-             pList.add(att);
+                pList.add(att);
             }
             p.put("attributeList" , pList);
 
@@ -136,11 +141,8 @@ public class SectionService {
             p.put("bulletList",pointList);
 
 
-            productList.add(p);
+          return p;
         }
-
-        return productList;
-    }
-
+        
 
 }

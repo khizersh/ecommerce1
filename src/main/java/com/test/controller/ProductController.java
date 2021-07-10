@@ -417,6 +417,8 @@ public class ProductController {
     }
 
 
+
+
     public Boolean setAttributePrice(Product pro){
 
         List<ProductAttribute> list = productAttributeRepo.findByPid(pro.getId());
