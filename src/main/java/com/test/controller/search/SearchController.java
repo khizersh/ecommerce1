@@ -28,12 +28,12 @@ public class SearchController {
     GlobalService service;
 
 
-    @GetMapping("/{keyword}")
+    @GetMapping("/cache/{keyword}")
     public ResponseEntity getResultByKeyword(@PathVariable String keyword){
         return service.getSuccessResponse(productRepo.findByKeywordsContainingIgnoreCase(keyword));
     }
 
-    @GetMapping("/cache/{keyword}")
+    @GetMapping("/{keyword}")
     public ResponseEntity getResultFromCache(@PathVariable String keyword) throws IOException {
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader("product.json"))
