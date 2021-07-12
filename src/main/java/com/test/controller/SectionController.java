@@ -45,7 +45,7 @@ public class SectionController {
     @Autowired
     private SectionService sectionService;
 
-    @GetMapping
+    @GetMapping("/cache")
     public ResponseEntity getAll(){
 
         List<ProductSectionDto> list = new ArrayList<>();
@@ -55,7 +55,7 @@ public class SectionController {
 
 
 
-    @GetMapping("/cache")
+    @GetMapping()
     public ResponseEntity getSectionCache() throws IOException {
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader("section.json"))
