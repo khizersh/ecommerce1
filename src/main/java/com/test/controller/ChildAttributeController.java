@@ -79,6 +79,29 @@ public class ChildAttributeController {
         return service.getSuccessResponse(childRes);
     }
 
+    @PostMapping("/update")
+    public ResponseEntity updateAttribute(@RequestBody ChildAttribute child){
+
+        if(child.getId() == null){
+            return service.getErrorResponse("Invalid request");
+        }
+        if(child == null){
+            return service.getErrorResponse("Empty Form");
+        }
+        ChildAttribute db = childAttributeRepo.getOne(child.getId());
+        if(!child.getTitle().isEmpty()){
+            db.setTitle(child.getTitle());
+        }
+
+        if(child.getParentId() != null){
+            ParentAttributes p = parentAttributeRepo.getOne(child.getParentId());
+            db.setParentAttributes(p);
+        }
+
+        ChildAttribute childRes = childAttributeRepo.save(db);
+        return service.getSuccessResponse(childRes);
+    }
+
 
 
     @DeleteMapping("/{id}")

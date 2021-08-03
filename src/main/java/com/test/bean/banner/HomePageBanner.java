@@ -15,8 +15,18 @@ public class HomePageBanner {
     private String description;
     private String url;
     private String image;
+    private String mobileImage;
 
 //    getter setter
+
+
+    public String getMobileImage() {
+        return mobileImage;
+    }
+
+    public void setMobileImage(String mobileImage) {
+        this.mobileImage = mobileImage;
+    }
 
     public Integer getId() {
         return id;

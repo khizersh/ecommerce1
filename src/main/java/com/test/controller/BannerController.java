@@ -43,7 +43,7 @@ public class BannerController {
     }
 
     @PostMapping
-    public ResponseEntity add(@RequestParam String banner, @RequestParam MultipartFile file   ) throws IOException {
+    public ResponseEntity add(@RequestParam String banner, @RequestParam MultipartFile file , @RequestParam MultipartFile mobileFile   ) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         HomePageBanner ban = mapper.readValue(banner, HomePageBanner.class);
         if(ban.getTitle().isEmpty()){
@@ -58,12 +58,14 @@ public class BannerController {
 
 //        String img = fileService.storeAndReturnFile(file);
         String img = amazonClient.uploadFile(file);
+        String mImage = amazonClient.uploadFile(mobileFile);
         ban.setImage(img);
+        ban.setMobileImage(mImage);
         return service.getSuccessResponse(bannerRepo.save(ban));
     }
 
     @PostMapping("/edit")
-    public ResponseEntity edit(@RequestParam String banner, @RequestParam(value = "file" , required = false) MultipartFile file   ) throws IOException {
+    public ResponseEntity edit(@RequestParam String banner, @RequestParam(value = "file" , required = false) MultipartFile file , @RequestParam(value = "mobileFile" , required = false) MultipartFile mobileFile   ) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         HomePageBanner ban = mapper.readValue(banner, HomePageBanner.class);
         if(ban.getId() == null){
@@ -82,6 +84,10 @@ public class BannerController {
         if(file != null){
             String img = amazonClient.uploadFile(file);
             db.setImage(img);
+        }
+        if(mobileFile != null){
+            String img = amazonClient.uploadFile(mobileFile);
+            db.setMobileImage(img);
         }
 
         return service.getSuccessResponse(bannerRepo.save(db));

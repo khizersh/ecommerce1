@@ -5,6 +5,7 @@ import com.test.repo.UserRepository;
 import com.test.utility.UserLoginType;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,9 @@ public class UserService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String username;
 
     public List<User> listAll() {
         return repo.findAll();
@@ -57,21 +61,24 @@ public class UserService {
     }
 
     public String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
+//        String siteURL = request.getRequestURL().toString();
+//        String siteURL = "http://localhost:3000";
+//        return siteURL.replace(request.getServletPath(), "");
+        String siteURL = "http://thegenuinejackets.com";
+        return siteURL;
     }
 
     public Boolean sendVerificationEmail(User user, String siteURL)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
-        String fromAddress = "moh.khizer16@gmail.com";
-        String senderName = "The Jackter";
+        String fromAddress = username;
+        String senderName = "The Genuine Jackets";
         String subject = "Please verify your registration";
         String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "Thejackter.com.";
+                + "Thegenuinejackets.com";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);

@@ -75,7 +75,7 @@ public class SectionItemController {
 
 
     @GetMapping("/section/{id}")
-    public ResponseEntity getItemsBySectionId(@PathVariable Integer id){
+    public ResponseEntity  getItemsBySectionId(@PathVariable Integer id){
 
         if(id == null){
             return service.getErrorResponse("Invalid request!");
@@ -101,6 +101,38 @@ public class SectionItemController {
         dto.setProductList(list);
 
         return service.getSuccessResponse(dto);
+
+    }
+
+
+    @PostMapping("/remove")
+    public ResponseEntity removeItem(@RequestBody Map<String , Object> body){
+
+
+        if(!body.containsKey("sectionId") || body.get("sectionId") == null ){
+            return service.getErrorResponse("Invalid request!");
+        }
+        if(!body.containsKey("sequence") || body.get("sequence") == null ){
+            return service.getErrorResponse("Invalid request!");
+        }
+        Integer sid = Integer.parseInt(body.get("sectionId").toString()) ;
+        Integer sequence = Integer.parseInt(body.get("sequence").toString()) ;
+
+       List<SectionItems> list = itemsRepo.findBySectionIdAndSequence(sid , sequence);
+
+       if ( list.size() > 0){
+           try {
+           itemsRepo.deleteById(list.get(0).getId());
+               return service.getSuccessResponse("Removed Successfully!");
+           }catch (Exception e){
+               return service.getSuccessResponse("Sorry! Please try again later");
+
+           }
+       }
+
+        return service.getErrorResponse("Sorry! Please try again later");
+
+
 
     }
 
