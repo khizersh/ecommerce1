@@ -72,7 +72,7 @@ public class ChildCategoryController {
             return service.getErrorResponse("Enter id!");
         }
 
-        return service.getSuccessResponse(childCategoryService.getById(id));
+        return service.getSuccessResponse(repo.getOne(id));
 
     }
     @GetMapping("/parent/{id}")

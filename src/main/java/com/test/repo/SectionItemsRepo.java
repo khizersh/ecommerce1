@@ -14,6 +14,7 @@ import java.util.*;
 public interface SectionItemsRepo extends JpaRepository<SectionItems, Integer> {
 
     public List<SectionItems> findBySectionId(Integer id);
+    public List<SectionItems> findByProductId(Integer id);
     @Query(value = "select * from section_item where section_id=?1 AND sequence=?2" ,nativeQuery = true)
     public List<SectionItems> findBySectionIdAndSequence(Integer sId , Integer seq);
 
@@ -21,7 +22,7 @@ public interface SectionItemsRepo extends JpaRepository<SectionItems, Integer> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "delete  from section_item where product_id = ?1",nativeQuery = true)
+    @Query(value = "delete  from section_item where product_id=?1",nativeQuery = true)
     void deleteItemByProductId(Integer pid);
 
 }

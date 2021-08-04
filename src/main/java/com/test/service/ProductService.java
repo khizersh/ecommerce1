@@ -6,6 +6,7 @@ import com.test.bean.product.Points;
 import com.test.bean.product.Product;
 import com.test.bean.product_attribute.ProductAttribute;
 import com.test.bean.product_attribute.ProductSubAttribute;
+import com.test.bean.sections.SectionItems;
 import com.test.dto.ChildAttributeDto;
 import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
@@ -190,19 +191,21 @@ public class ProductService {
 
     public Boolean deleteProduct(Integer id){
         try{
-         imageUrlRepo.deleteByProductId(id);
          Product product = productRepo.getOne(id);
 
         for (ImageURl imageURl : product.getImageList()) {
             amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
-        }
+            imageUrlRepo.deleteById(imageURl.getId());
 
-            itemsRepo.deleteItemByProductId(id);
-            for (ProductAttribute productAttribute : product.getAttributeList()) {
+        }
+        for (SectionItems sectionItems : itemsRepo.findByProductId(id)) {
+                itemsRepo.deleteById(sectionItems.getId());
+        }
+        for (ProductAttribute productAttribute : product.getAttributeList()) {
                 productSubAttributeRepo.deleteSubAttributeByParentId(productAttribute.getParentAttributeId());
                 productAttributeRepo.deleteById(productAttribute.getId());
 
-            }
+        }
             productRepo.deleteById(id);
             return true;
         }catch (Exception e){
