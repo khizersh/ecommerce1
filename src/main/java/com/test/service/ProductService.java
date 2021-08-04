@@ -9,10 +9,7 @@ import com.test.bean.product_attribute.ProductSubAttribute;
 import com.test.dto.ChildAttributeDto;
 import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
-import com.test.repo.AttributeImageRepo;
-import com.test.repo.PointsRepo;
-import com.test.repo.ProductAttributeRepo;
-import com.test.repo.ProductSubAtrributeRepo;
+import com.test.repo.*;
 import com.test.utility.GlobalService;
 import com.test.utility.ImageURl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,15 @@ public class ProductService {
 
     @Autowired
     private PointsRepo pointsRepo;
+
+    @Autowired
+    private ProductRepo productRepo;
+
+    @Autowired
+    private ImageUrlRepo imageUrlRepo;
+
+    @Autowired
+    private AmazonClient amazonClient;
 
     @Autowired
     private ProductAttributeRepo productAttributeRepo;
@@ -176,5 +182,28 @@ public class ProductService {
         }
         dto.setBulletList(bulletList);
         return dto;
+    }
+
+
+    public Boolean deleteProduct(Integer id){
+        try{
+         imageUrlRepo.deleteByProductId(id);
+         Product product = productRepo.getOne(id);
+
+        for (ImageURl imageURl : product.getImageList()) {
+            amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
+        }
+
+            for (ProductAttribute productAttribute : product.getAttributeList()) {
+                productSubAttributeRepo.deleteSubAttributeByParentId(productAttribute.getParentAttributeId());
+                productAttributeRepo.deleteById(productAttribute.getId());
+
+            }
+            productRepo.deleteById(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
     }
 }

@@ -184,6 +184,12 @@ public class ReviewController {
       if(review.getReview().isEmpty()){
           return service.getErrorResponse("Enter review!");
       }
+      if(review.getDate() == null){
+          return service.getErrorResponse("Enter date!");
+      }
+      if(review.getProductId() == null){
+          return service.getErrorResponse("Invalid request!");
+      }
       if(review.getProductId() == null){
           return service.getErrorResponse("Invalid request!");
       }
@@ -221,7 +227,7 @@ public class ReviewController {
       review.setProductImage(pro.getImageList().get(0).getImage());
       review.setUserId(id);
       review.setUserName(review.getUserName());
-      review.setDate(new Date());
+      review.setDate(review.getDate());
 
       return service.getSuccessResponse(reviewRepo.save(review));
 

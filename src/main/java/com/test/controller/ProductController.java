@@ -1,6 +1,7 @@
 package com.test.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.test.bean.attribute.ChildAttribute;
 import com.test.bean.attribute.ParentAttributes;
 import com.test.bean.category.ChildCategory;
@@ -319,21 +320,14 @@ public class ProductController {
 
 
     @DeleteMapping("/{id}")
-    public  ResponseEntity deleteProduc(@PathVariable Integer id )  {
+    public  ResponseEntity deleteProduct(@PathVariable Integer id )  {
 
 
-        if(!productRepo.existsById(id)){
-            return service.getErrorResponse("Image not found!");
-        }
-        Product pro = productRepo.getOne(id);
-        for (ImageURl imageURl : pro.getImageList()) {
-            amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
-        }
-
-
-        productRepo.deleteById(id);
-
-        return service.getSuccessResponse("Product deleted");
+       Boolean flag =  productService.deleteProduct(id);
+       if(flag){
+        return service.getSuccessResponse("Deleted successfully");
+       }
+        return service.getErrorResponse("Operation failed! try again later");
 
     }
 
