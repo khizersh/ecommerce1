@@ -3,8 +3,11 @@ package com.test.repo;
 import com.test.bean.sections.ProductSections;
 import com.test.bean.sections.SectionItems;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
@@ -15,5 +18,10 @@ public interface SectionItemsRepo extends JpaRepository<SectionItems, Integer> {
     public List<SectionItems> findBySectionIdAndSequence(Integer sId , Integer seq);
 
     public List<SectionItems> findBySequence(Integer id);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "delete  from section_item where product_id = ?1",nativeQuery = true)
+    void deleteItemByProductId(Integer pid);
 
 }

@@ -37,6 +37,9 @@ public class ProductService {
     private ImageUrlRepo imageUrlRepo;
 
     @Autowired
+    private SectionItemsRepo itemsRepo;
+
+    @Autowired
     private AmazonClient amazonClient;
 
     @Autowired
@@ -194,6 +197,7 @@ public class ProductService {
             amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
         }
 
+            itemsRepo.deleteItemByProductId(id);
             for (ProductAttribute productAttribute : product.getAttributeList()) {
                 productSubAttributeRepo.deleteSubAttributeByParentId(productAttribute.getParentAttributeId());
                 productAttributeRepo.deleteById(productAttribute.getId());
