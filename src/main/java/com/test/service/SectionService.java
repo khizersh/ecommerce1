@@ -110,15 +110,28 @@ public class SectionService {
                     ca.put("parentId", c.getParentId());
 
                     JSONArray ccList = new JSONArray();
-                    for (AttributeImages i: c.getAttributeImageFull()) {
-                        JSONObject cb = new JSONObject();
-                        cb.put("id",i.getId());
-                        cb.put("attributeId",i.getAttributeId());
-                        cb.put("productId",i.getProductId());
-                        cb.put("image",i.getImage());
-                        ccList.add(cb);
+                    if(c.getAttributeImageFull().size() > 0){
+                        for (AttributeImages i: c.getAttributeImageFull()) {
+                            JSONObject cb = new JSONObject();
+                            cb.put("id",i.getId());
+                            cb.put("attributeId",i.getAttributeId());
+                            cb.put("productId",i.getProductId());
+                            cb.put("image",i.getImage());
+                            ccList.add(cb);
 
+                        }
+                    }else{
+                        for (String img: c.getAttributeImage()) {
+                            JSONObject cb = new JSONObject();
+                            cb.put("id","");
+                            cb.put("attributeId","");
+                            cb.put("productId","");
+                            cb.put("image",img);
+                            ccList.add(cb);
+
+                        }
                     }
+
                     ca.put("attributeImageFull", ccList);
                     cList.add(ca);
 
