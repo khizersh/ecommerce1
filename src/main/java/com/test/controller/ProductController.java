@@ -86,7 +86,7 @@ public class ProductController {
         if(cat != null){
 
         for (Product i:productRepo.findProductByCategory(cat)) {
-            list.add(productService.convertDto(i , true));
+            list.add(productService.productDetailFull(i));
         }
         }
         return service.getSuccessResponse(list);
@@ -102,7 +102,7 @@ public class ProductController {
         }
         Product pro = productRepo.getOne(id);
 
-        ProductDto dto = productService.convertDto(pro , true);
+        ProductDto dto = productService.productDetailFull(pro);
 
         return service.getSuccessResponse(dto);
     }
