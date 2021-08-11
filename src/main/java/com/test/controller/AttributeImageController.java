@@ -33,10 +33,16 @@ public class AttributeImageController {
             return service.getErrorResponse("Image not found!");
         }
 
-        amazonClient.deleteFileFromS3Bucket(atm.getImage());
-        attributeImageRepo.deleteById(id);
+        try{
+//            amazonClient.deleteFileFromS3Bucket(atm.getImage());
+            attributeImageRepo.deleteById(id);
+            return service.getSuccessResponse("Product deleted");
 
-        return service.getSuccessResponse("Product deleted");
+        }catch (Exception e){
+            return service.getErrorResponse("Image not deleted!");
+
+        }
+
 
     }
 }

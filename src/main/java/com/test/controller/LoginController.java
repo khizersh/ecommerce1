@@ -39,12 +39,10 @@ public class LoginController {
         }
         if(user.getPassword() == null){
             return service.getErrorResponse("Please Provide Password");
-
         }
         String email = user.getEmail();
         String password = user.getPassword();
         User userBean =  userRepository.findByEmail(email);
-
         if(userBean == null){
             return service.getErrorResponse("User Not Found");
 

@@ -18,10 +18,20 @@ public class ProductReview {
     private Long userId;
     private String userName;
     private String userImage;
+    private String reviewImage;
     private Date date;
 
 
 //    getter setter
+
+
+    public String getReviewImage() {
+        return reviewImage;
+    }
+
+    public void setReviewImage(String reviewImage) {
+        this.reviewImage = reviewImage;
+    }
 
     public String getProductImage() {
         return productImage;

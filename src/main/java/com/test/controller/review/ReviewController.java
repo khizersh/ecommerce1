@@ -3,6 +3,7 @@ package com.test.controller.review;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.bean.User;
+import com.test.bean.banner.HomePageBanner;
 import com.test.bean.product.Points;
 import com.test.bean.product.Product;
 import com.test.bean.review.ProductReview;
@@ -58,10 +59,15 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity addReview(@RequestBody ProductReview review){
+    public ResponseEntity addReview(@RequestParam String reviewString ,  @RequestParam(value = "file" , required = false) MultipartFile file) throws JsonProcessingException {
 
+        ObjectMapper mapper = new ObjectMapper();
+        ProductReview review = mapper.readValue(reviewString, ProductReview.class);
         if(review.getReview().isEmpty()){
             return service.getErrorResponse("Enter review!");
+        }
+        if(file != null){
+            review.setReviewImage(amazonClient.uploadFile(file));
         }
         if(review.getProductId() == null){
             return service.getErrorResponse("Invalid request!");
@@ -114,7 +120,10 @@ public class ReviewController {
     }
 
     @PostMapping("/edit")
-    public ResponseEntity edit(@RequestBody ProductReview review){
+    public ResponseEntity editReview(@RequestParam String reviewString ,  @RequestParam(value = "file" , required = false) MultipartFile file) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ProductReview review = mapper.readValue(reviewString, ProductReview.class);
 
         if(review.getId() == null){
             return service.getErrorResponse("Enter review!");
@@ -124,7 +133,9 @@ public class ReviewController {
         if(db == null){
             return service.getErrorResponse("Invalid review!");
         }
-
+        if(file != null){
+            db.setReviewImage(amazonClient.uploadFile(file));
+        }
         if(!review.getReview().isEmpty()){
            db.setReview(review.getReview());
         }
@@ -140,6 +151,7 @@ public class ReviewController {
         if(review.getProductId() == null){
             return service.getErrorResponse("Invalid request!");
         }
+
 
         if(review.getUserId() == null  ){
             return service.getErrorResponse("Invalid request!");
@@ -174,7 +186,7 @@ public class ReviewController {
 
 
   @PostMapping("/admin")
-    public ResponseEntity addByAdmin(@RequestParam String reviewString  ,@RequestParam MultipartFile image) throws JsonProcessingException {
+    public ResponseEntity addByAdmin(@RequestParam String reviewString  ,@RequestParam MultipartFile image ,@RequestParam(value = "file" , required = false) MultipartFile file) throws JsonProcessingException {
 
 
 
@@ -186,6 +198,9 @@ public class ReviewController {
       }
       if(review.getDate() == null){
           return service.getErrorResponse("Enter date!");
+      }
+      if(file != null){
+          review.setReviewImage(amazonClient.uploadFile(file));
       }
       if(review.getProductId() == null){
           return service.getErrorResponse("Invalid request!");

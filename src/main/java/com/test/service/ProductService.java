@@ -141,6 +141,7 @@ public class ProductService {
             dto.setReview(pro.getReview());
             dto.setReviewCount(pro.getReviewCount());
         }
+        dto.setImageList(pro.getImageList());
         dto.setDescription(pro.getDescription());
         if(pro.getImageList().size() != 0) {
 
