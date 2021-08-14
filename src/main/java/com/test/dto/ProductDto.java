@@ -1,8 +1,8 @@
 package com.test.dto;
 
-import com.test.bean.product.ImageModel;
 import com.test.bean.product.Points;
 import com.test.utility.ImageURl;
+import com.test.utility.Gender;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -22,12 +22,30 @@ public class ProductDto {
     private Double review;
     private Integer reviewCount;
     private String keywords;
+    private Boolean discount;
+    private Gender gender;
     private  List<ImageURl> imageList = new ArrayList<>();
     private  List<ParentAttributeDto> attributeList = new ArrayList<>();
     private  List<Points> bulletList = new ArrayList<>();
 
 //    getter setter
 
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Boolean getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Boolean discount) {
+        this.discount = discount;
+    }
 
     public String getRangeCad() {
         return rangeCad;

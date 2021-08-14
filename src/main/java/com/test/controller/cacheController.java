@@ -48,7 +48,7 @@ public class cacheController {
 
         JSONArray productList = new JSONArray();
         for (Product i:productRepo.findByOrderByIdAsc() ) {
-            ProductDto pro = productService.convertDto(i , true);
+            ProductDto pro = productService.productDetailFull(i);
             productList.add(sectionService.convertProductIntoJson(pro));
         }
 
@@ -78,4 +78,7 @@ public class cacheController {
 
         return null;
     }
+
+
+
 }

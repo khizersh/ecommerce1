@@ -83,6 +83,13 @@ public class SectionService {
             p.put("review" ,pro.getReview());
             p.put("reviewCount" ,pro.getReviewCount());
             p.put("keywords" ,pro.getKeywords());
+            p.put("priceSet" ,pro.getPriceSet());
+            p.put("discount" ,pro.getDiscount());
+            if(pro.getGender() != null){
+            p.put("gender" ,pro.getGender().toString());
+            }else{
+            p.put("gender" ,"Male");
+            }
 
             JSONArray imageList = new JSONArray();
             for (ImageURl image : pro.getImageList()) {

@@ -18,11 +18,17 @@ import com.test.service.FileStorageService;
 import com.test.service.ProductService;
 import com.test.utility.GlobalService;
 import com.test.utility.ImageURl;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -73,24 +79,39 @@ public class ProductController {
     public ResponseEntity getAll(){
         List<ProductDto> list = new ArrayList<>();
         for (Product i:productRepo.findByOrderByIdAsc() ) {
-            list.add(productService.convertDto(i , true));
+            list.add(productService.productDetailFull(i));
         }
         return service.getSuccessResponse(list);
     }
 
 
     @GetMapping("/category/{id}")
-    public ResponseEntity getProductListByCategoryId(@PathVariable Integer id){
-        List<ProductDto> list = new ArrayList<>();
-        ChildCategory cat = childCatRepo.getOne(id);
-        if(cat != null){
+    public ResponseEntity getProductListByCategoryId(@PathVariable Long id) throws IOException {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader("product.json"))
+    {
+        Object obj = jsonParser.parse(reader);
+        JSONArray productList = (JSONArray) obj;
+        JSONArray returnList = new JSONArray();
 
-        for (Product i:productRepo.findProductByCategory(cat)) {
-            list.add(productService.productDetailFull(i));
+        for (int i = 0; i < productList.size(); i++) {
+            JSONObject pro = (JSONObject) productList.get(i);
+            Long key = (Long) pro.get("categoryId");
+            if(key != null){
+                if(key == id){
+                    returnList.add(productList.get(i));
+                }
+            }
         }
-        }
-        return service.getSuccessResponse(list);
+
+        return service.getSuccessResponse(returnList);
+    } catch (FileNotFoundException | ParseException e) {
+        e.printStackTrace();
     }
+
+        return null;
+    }
+
 
     @GetMapping("/detail/{id}")
     public ResponseEntity getProductDetailById(@PathVariable Integer id){
@@ -245,10 +266,13 @@ public class ProductController {
         }
         if(product.getDescription().isEmpty()){
             service.getErrorResponse("Description is empty!");
+        } if(product.getGender() != null){
+            service.getErrorResponse("select gender please!");
         }
         if(!childCatRepo.existsById(product.getCategoryId())){
             service.getErrorResponse("Invalid category!");
         }
+
         ChildCategory childCategory = childCatRepo.getOne(product.getCategoryId());
         product.setCategory(childCategory);
         List<ImageURl> imageUrls = new ArrayList<>();
@@ -331,8 +355,6 @@ public class ProductController {
 
     }
 
-
-
     @PostMapping("/attribute-image")
     public ResponseEntity addAttributeImage(@RequestParam String attribute ,@RequestParam(value = "imageList") List<MultipartFile> imageList ) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -354,30 +376,31 @@ public class ProductController {
         return service.getSuccessResponse("Success");
     }
 
+    @PostMapping("/update")
+    public ResponseEntity editProductDetail(@RequestBody Product product  ) throws Exception {
 
-
-    @PutMapping("/{id}")
-    public ResponseEntity editProductDetail(@RequestBody Product product , @PathVariable Integer id ) throws Exception {
-
-        if(!productRepo.existsById(id)){
+        if(!productRepo.existsById(product.getId())){
             return service.getErrorResponse("Invalid request!");
         }
 
-        Product productDb = productRepo.getOne(id);
+        Product productDb = productRepo.getOne(product.getId());
 
         if(!product.getTitle().isEmpty()){
             productDb.setTitle(product.getTitle());
         }
+        if(product.getGender() != null){
+            productDb.setGender(product.getGender());
+        }
         if(!product.getDescription().isEmpty()){
             productDb.setDescription(product.getDescription());
-        }  if(!product.getKeywords().isEmpty()){
+        }
+        if(!product.getKeywords().isEmpty()){
             productDb.setKeywords(product.getKeywords());
         }
 
         Product savedProduct =  productRepo.save(productDb);
         return service.getSuccessResponse(savedProduct);
     }
-
 
     @PutMapping("/image/{id}")
     public  ResponseEntity updateImage(@PathVariable Integer id ,  @RequestParam(value = "imageFile") MultipartFile imageFile) throws IOException {
@@ -395,7 +418,6 @@ public class ProductController {
         return service.getSuccessResponse(savedImage);
 
     }
-
 
     @DeleteMapping("/image/{id}")
     public  ResponseEntity deleteProductImage(@PathVariable Integer id )  {

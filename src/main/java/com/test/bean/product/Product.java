@@ -2,6 +2,7 @@ package com.test.bean.product;
 
 import com.test.bean.category.ChildCategory;
 import com.test.bean.product_attribute.ProductAttribute;
+import com.test.utility.Gender;
 import com.test.utility.ImageURl;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Product {
     private Integer id;
 
     private String title;
+    @Column(columnDefinition="TEXT")
     private String description;
     private Boolean priceSet = false;
     private String priceRange;
@@ -22,7 +24,10 @@ public class Product {
     private String priceRangeEuro;
     private String keywords;
     private Double review;
+    private Boolean discount;
     private Integer reviewCount;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     @ManyToOne
     private ChildCategory category;
     @OneToMany(cascade = CascadeType.ALL)
@@ -39,6 +44,22 @@ public class Product {
 
 //    getter setter
 
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Boolean getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Boolean discount) {
+        this.discount = discount;
+    }
 
     public String getPriceRangeCad() {
         return priceRangeCad;

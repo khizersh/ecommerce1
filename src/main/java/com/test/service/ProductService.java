@@ -13,9 +13,17 @@ import com.test.dto.ProductDto;
 import com.test.repo.*;
 import com.test.utility.GlobalService;
 import com.test.utility.ImageURl;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,11 +133,27 @@ public class ProductService {
     }
 
 //    for dashboard edit attribute
-    public ProductDto productDetailFull(Product pro ){
+    public ProductDto productDetailFull(Product pro){
         ProductDto dto = new ProductDto();
         dto.setId(pro.getId());
         dto.setTitle(pro.getTitle());
         dto.setRange(pro.getPriceRange());
+        dto.setRangeEuro(pro.getPriceRangeEuro());
+        dto.setRangeCad(pro.getPriceRangeCad());
+        if(pro.getGender() != null){
+        dto.setGender(pro.getGender());
+        }
+
+        if(pro.getDiscount() != null){
+        dto.setDiscount(true);
+        }else{
+        dto.setDiscount(false);
+        }
+        if(pro.getPriceSet() != null && pro.getPriceSet() == true){
+        dto.setPriceSet(true);
+        }else{
+        dto.setPriceSet(false);
+        }
         if(pro.getKeywords() != null){
             dto.setKeywords(pro.getKeywords());
         }
@@ -160,14 +184,10 @@ public class ProductService {
                     ca.setId(j.getChildAttributeId());
                     ca.setTitle(j.getChildAttributeName());
                     ca.setParentId(j.getParentID());
-
                     if (i.getMultiImage() != null && i.getMultiImage() == true) {
-
                         List<AttributeImages> imageList = new ArrayList<>();
                         for (AttributeImages k : attributeImageRepo.findByAttributeIdAndProductId(j.getChildAttributeId(), pro.getId())) {
-
                             imageList.add(k);
-
                         }
                         ca.setAttributeImageFull(imageList);
                     }
@@ -177,10 +197,7 @@ public class ProductService {
                 pList.add(pa);
             }
             dto.setAttributeList(pList);
-
         }
-
-
         List<Points> bulletList = new ArrayList<>();
         for (Points points : pointsRepo.findByProductId(pro.getId())) {
             bulletList.add(points);
@@ -195,7 +212,7 @@ public class ProductService {
          Product product = productRepo.getOne(id);
 
         for (ImageURl imageURl : product.getImageList()) {
-            amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
+//            amazonClient.deleteFileFromS3Bucket(imageURl.getImage());
             imageUrlRepo.deleteById(imageURl.getId());
 
         }
@@ -213,5 +230,20 @@ public class ProductService {
             return false;
         }
 
+    }
+
+
+    public JSONArray getProductListFromFile() throws IOException {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader("product.json"))
+        {
+            Object obj = jsonParser.parse(reader);
+            JSONArray productList = (JSONArray) obj;
+            return (productList);
+        } catch (FileNotFoundException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

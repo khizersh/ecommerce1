@@ -92,7 +92,7 @@ public class SectionItemController {
         for (SectionItems j : listItems) {
             Product product = productRepo.getOne(j.getProductId());
             if(product != null){
-            ProductDto pro = productService.convertDto(product , false);
+            ProductDto pro = productService.productDetailFull(product);
             pro.setSequence(j.getSequence());
             list.add(pro);
             }

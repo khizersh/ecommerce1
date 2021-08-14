@@ -42,6 +42,7 @@ public class AttributePriceController {
         List<Double> priceArray = new ArrayList<>();
         List<Double> priceArrayCad = new ArrayList<>();
         List<Double> priceArrayEuro = new ArrayList<>();
+        boolean discount = false;
         if(priceList.size() > 0) {
 
             for (AttributePrice price: priceList) {
@@ -49,10 +50,9 @@ public class AttributePriceController {
                     return service.getErrorResponse("Invalid request!");
                 }
                 if (priceRepo.existsById(price.getId())) {
-
                 AttributePrice attributePrice = priceRepo.getOne(price.getId());
-
                 if(price.getDiscount() != null && price.getDiscount() != false){
+                    discount = true;
                     if(price.getPrice() != null && price.getDiscountPrice() != null){
                             attributePrice.setDiscountPrice(price.getDiscountPrice());
                             attributePrice.setPrice(price.getPrice());
@@ -65,8 +65,6 @@ public class AttributePriceController {
                             priceArray.add(price.getDiscountPrice());
                             priceArrayCad.add(price.getCadDiscountPrice());
                             priceArrayEuro.add(price.getEuroDiscountPrice());
-
-
                     }
                 }else{
                     if(price.getPrice() != null){
@@ -84,13 +82,13 @@ public class AttributePriceController {
                 }
             }
 //            setting product active
-          Double max = Collections.max(priceArray);
-          Double min = Collections.min(priceArray);
+
             Product pro = productRepo.getOne(priceList.get(0).getProductId());
             pro.setPriceRange("" + Collections.min(priceArray) + " - " + Collections.max(priceArray));
             pro.setPriceRangeCad("" + Collections.min(priceArrayCad) + " - " + Collections.max(priceArrayCad));
             pro.setPriceRangeEuro("" + Collections.min(priceArrayEuro) + " - " + Collections.max(priceArrayEuro));
             pro.setPriceSet(true);
+            pro.setDiscount(discount);
             productRepo.save(pro);
 
         }
