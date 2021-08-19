@@ -94,7 +94,7 @@ public class OrderController {
         }
         Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
         if(orderDb != null){
-            return  service.getErrorResponse ( "Checkout already exist!");
+            return  service.getErrorResponse ( "Order already exist!");
         }
 
 
@@ -113,6 +113,53 @@ public class OrderController {
 
         return  service.getSuccessResponse( orderRepo.save(order));
     }
+
+
+    @PostMapping("/paypal")
+    public ResponseEntity createChargePaypal(@RequestBody Order order) {
+        //validate data
+        if(order.getOrderStatus() == null || !order.getOrderStatus().equals(Status.COMPLETED)){
+            return  service.getErrorResponse ( "Order not completed! please try again");
+        }
+        if(order.getAddressLine1().isEmpty()){
+            return  service.getErrorResponse ( "Address required");
+        }
+        if(order.getCheckoutId() == null){
+            return  service.getErrorResponse ( "Checkout required!");
+        }
+        if(order.getCountry() == null){
+            return  service.getErrorResponse ( "Country required!");
+        }
+        if(order.getState() == null){
+            return  service.getErrorResponse ( "State required!");
+        }
+        if(order.getCity() == null){
+            return  service.getErrorResponse ( "City required!");
+        }
+        if(order.getEmail() == null){
+            return  service.getErrorResponse ( "email required!");
+        }
+        if(order.getFullName() == null){
+            return  service.getErrorResponse ( "name required!");
+        }
+        Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
+        if(orderDb != null){
+            return  service.getErrorResponse ( "Order already exist!");
+        }
+
+
+        //create charge
+        order.setOrderStatus(Status.Paid);
+        order.setShipStatus(Status.Pending);
+        order.setOrderDate(new Date());
+        // You may want to store charge id along with order information
+
+
+        return  service.getSuccessResponse( orderRepo.save(order));
+    }
+
+
+
 
 
     @GetMapping("/user/{id}")

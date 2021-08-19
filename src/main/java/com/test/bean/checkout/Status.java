@@ -1,5 +1,5 @@
 package com.test.bean.checkout;
 
 public enum Status {
-    Pending, Cancelled, Shipped, Arrived, Unpaid , Paid
+    Pending, Cancelled, Shipped, Arrived, Unpaid , Paid , COMPLETED
 }

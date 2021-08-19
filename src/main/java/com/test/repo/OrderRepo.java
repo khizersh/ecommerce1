@@ -15,6 +15,5 @@ public interface OrderRepo extends JpaRepository<Order , Integer> {
 
     List<Order> findByOrderByIdDesc();
 
-    @Query(value = "select from customer_order where checkout_id =?1" , nativeQuery = true)
     Order findByCheckoutId(Integer id);
 }
