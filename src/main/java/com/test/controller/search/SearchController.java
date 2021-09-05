@@ -30,7 +30,13 @@ public class SearchController {
 
     @GetMapping("/cache/{keyword}")
     public ResponseEntity getResultByKeyword(@PathVariable String keyword){
+        try{
+
         return service.getSuccessResponse(productRepo.findByKeywordsContainingIgnoreCase(keyword));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
     @GetMapping("/{keyword}")

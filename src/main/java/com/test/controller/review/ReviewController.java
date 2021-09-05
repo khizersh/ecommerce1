@@ -43,8 +43,14 @@ public class ReviewController {
 
     @GetMapping()
     public ResponseEntity getAll(){
+        try{
+
         List<ProductReview> list = reviewRepo.findByOrderByIdAsc();
         return service.getSuccessResponse(list);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
     }
 
@@ -53,8 +59,14 @@ public class ReviewController {
         if(id == null){
             return service.getErrorResponse("Invalid request!");
         }
+        try{
+
         List<ProductReview> list = reviewRepo.findByProductId(id);
         return service.getSuccessResponse(list);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
     }
 
@@ -78,6 +90,9 @@ public class ReviewController {
         if(review.getUserId() == null  ){
             return service.getErrorResponse("Invalid request!");
         }
+
+        try{
+
 
         User user = userRepo.getOne(review.getUserId());
 
@@ -116,6 +131,10 @@ public class ReviewController {
         review.setDate(new Date());
 
         return service.getSuccessResponse(reviewRepo.save(review));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
     }
 
@@ -128,6 +147,8 @@ public class ReviewController {
         if(review.getId() == null){
             return service.getErrorResponse("Enter review!");
         }
+
+        try{
 
         ProductReview db = reviewRepo.getOne(review.getId());
         if(db == null){
@@ -180,6 +201,10 @@ public class ReviewController {
 
 
         return service.getSuccessResponse("edit successfully!");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
 
     }
@@ -235,6 +260,9 @@ public class ReviewController {
           pro.setReview(review.getReviewCount());
           pro.setReviewCount(1);
       }
+
+      try{
+
       productRepo.save(pro);
 
 
@@ -245,6 +273,10 @@ public class ReviewController {
       review.setDate(review.getDate());
 
       return service.getSuccessResponse(reviewRepo.save(review));
+      }catch (Exception e){
+          e.printStackTrace();
+      }
+      return service.getErrorResponse("Something went wrong!");
 
 
     }
@@ -257,8 +289,16 @@ public class ReviewController {
         if(!reviewRepo.existsById(id)){
             return service.getErrorResponse("Invalid request!");
         }
+
+        try{
+
         reviewRepo.deleteById(id);
         return service.getSuccessResponse("Delete Successfully!");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
     }
 }

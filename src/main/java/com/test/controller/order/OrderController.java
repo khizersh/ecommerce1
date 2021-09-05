@@ -13,6 +13,7 @@ import com.test.repo.UserRepository;
 import com.test.service.OrderService;
 import com.test.service.StripeService;
 import com.test.utility.GlobalService;
+import com.test.utility.PaymentMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,13 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity getAllOrder(){
+        try{
+
         return service.getSuccessResponse(orderService.getAllOrder());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
 
@@ -59,18 +66,21 @@ public class OrderController {
         if(id == null){
             return service.getErrorResponse("Invalid request!");
         }
+        try{
+
         Order order = orderRepo.getOne(id);
 
         return service.getSuccessResponse(orderService.convertDto(order));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
     }
 
     @PostMapping("/stripe")
-    public ResponseEntity createCharge(@RequestBody Order order) {
+    public ResponseEntity createChargeStripe(@RequestBody Order order) {
         //validate data
-        if (order.getToken() == null) {
-            return  service.getErrorResponse ( "Stripe payment token is missing. Please, try again later.");
-        }
         if(order.getAddressLine1().isEmpty()){
             return  service.getErrorResponse ( "Address required");
         }
@@ -92,13 +102,17 @@ public class OrderController {
         if(order.getFullName() == null){
             return  service.getErrorResponse ( "name required!");
         }
+
+
+        try{
+
         Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
         if(orderDb != null){
             return  service.getErrorResponse ( "Order already exist!");
         }
 
 
-        //create charge
+//        create charge
         String chargeId = stripeService.createCharge(order.getEmail(),order.getToken(), 100 , "usd"); //$9.99 USD
         if (chargeId == null) {
             return  service.getErrorResponse ( "An error occurred while trying to create a charge.");
@@ -112,6 +126,11 @@ public class OrderController {
 
 
         return  service.getSuccessResponse( orderRepo.save(order));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
+
     }
 
 
@@ -141,7 +160,13 @@ public class OrderController {
         }
         if(order.getFullName() == null){
             return  service.getErrorResponse ( "name required!");
+        }if(order.getPaymentMethod() == null){
+            return  service.getErrorResponse ( "Select payment method!");
         }
+
+
+        try{
+
         Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
         if(orderDb != null){
             return  service.getErrorResponse ( "Order already exist!");
@@ -156,8 +181,89 @@ public class OrderController {
 
 
         return  service.getSuccessResponse( orderRepo.save(order));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
+    @PostMapping("/card-initiate")
+    public ResponseEntity createChargeCard(@RequestBody Order order) {
+        //validate data
+
+        if(order.getAddressLine1().isEmpty()){
+            return  service.getErrorResponse ( "Address required");
+        }
+        if(order.getCheckoutId() == null){
+            return  service.getErrorResponse ( "Checkout required!");
+        }
+        if(order.getCountry() == null){
+            return  service.getErrorResponse ( "Country required!");
+        }
+        if(order.getState() == null){
+            return  service.getErrorResponse ( "State required!");
+        }
+        if(order.getCity() == null){
+            return  service.getErrorResponse ( "City required!");
+        }
+        if(order.getEmail() == null){
+            return  service.getErrorResponse ( "email required!");
+        }
+        if(order.getFullName() == null){
+            return  service.getErrorResponse ( "name required!");
+        }if(order.getPaymentMethod() == null){
+            return  service.getErrorResponse ( "Select payment method!");
+        }
+
+
+        try{
+
+        Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
+        if(orderDb != null){
+            return  service.getErrorResponse ( "Order already exist!");
+        }
+
+
+        //create charge
+        order.setOrderStatus(Status.Pending);
+        order.setShipStatus(Status.Pending);
+        order.setOrderDate(new Date());
+        // You may want to store charge id along with order information
+
+
+        return  service.getSuccessResponse( orderRepo.save(order));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
+    }
+
+    @GetMapping("/card-finalize/{id}")
+    public ResponseEntity createChargeCardFinal(@PathVariable Integer id){
+        try{
+
+        if(id == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+        Order order = orderRepo.findByCheckoutId(id);
+        if(order == null){
+            return service.getErrorResponse("Invalid request!");
+        }
+        if(!order.getPaymentMethod().equals(PaymentMethod.Card)){
+            return service.getErrorResponse("Invalid request!");
+        }
+        if(order.getOrderStatus().equals(Status.Paid)){
+            return service.getErrorResponse("Already paid!");
+        }
+        order.setOrderStatus(Status.Paid);
+
+        return service.getSuccessResponse(orderRepo.save(order));
+        }catch (Exception e){
+            return service.getErrorResponse("Something went wrong!");
+        }
+    }
 
 
 
@@ -168,9 +274,16 @@ public class OrderController {
             return service.getErrorResponse("Invalid request!");
         }
 
+        try{
        List<OrderResponse> list =  orderService.getOrderByUserId(id);
 
        return service.getSuccessResponse(list);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
+
 
     }
 
@@ -180,9 +293,15 @@ public class OrderController {
             return service.getErrorResponse("Invalid request!");
         }
 
+        try{
        List<CheckoutDetail> list =  orderService.getOrderDetailByCheckoutId(id);
 
        return service.getSuccessResponse(list);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
 
     }
 
@@ -192,11 +311,17 @@ public class OrderController {
         if(id == null){
             return service.getErrorResponse("Invalid request!");
         }
+        try{
        Order order  =  orderRepo.findByCheckoutId(id);
         if(order == null){
             return service.getErrorResponse("No data found");
         }
        return service.getSuccessResponse(order);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
 }

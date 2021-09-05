@@ -30,16 +30,28 @@ public class AssignCouponController {
         if(id == null){
             return service.getErrorResponse("Invalid response");
         }
+        try {
        return service.getSuccessResponse(assignRepo.findByUserId(id));
+
+        }catch (Exception e){
+            return service.getErrorResponse("Something went wrong!");
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id){
+
+        try{
+
         if(id == null){
             return service.getErrorResponse("Invalid response");
         }
         assignRepo.deleteById(id);
        return service.getSuccessResponse("Delete successfully!");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
     @PostMapping("/user/assign")
@@ -64,8 +76,14 @@ public class AssignCouponController {
         coup.setCouponTitle(coupon.getTitle());
         coup.setUserName(user.getFullName());
         coup.setUsed(false);
+        try{
         coup.setPercentageOff(coupon.getPercentageOff());
        return service.getSuccessResponse(assignRepo.save(coup));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
 

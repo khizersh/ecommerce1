@@ -1,6 +1,7 @@
 package com.test.bean.order;
 
 import com.test.bean.checkout.Status;
+import com.test.utility.PaymentMethod;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -34,9 +35,19 @@ public class Order {
     private Status orderStatus;
     @Enumerated(EnumType.STRING)
     private Status shipStatus;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
 
 //    getter setter
 
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
 
     public Status getShipStatus() {
         return shipStatus;

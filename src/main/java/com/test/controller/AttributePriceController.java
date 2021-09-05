@@ -30,9 +30,13 @@ public class AttributePriceController {
         if(!priceRepo.existsById(id)){
             return service.getErrorResponse("Product not found!");
         }
+        try{
         AttributePrice price = priceRepo.getOne(id);
-
         return service.getSuccessResponse(price);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
 
@@ -43,6 +47,8 @@ public class AttributePriceController {
         List<Double> priceArrayCad = new ArrayList<>();
         List<Double> priceArrayEuro = new ArrayList<>();
         boolean discount = false;
+        try{
+
         if(priceList.size() > 0) {
 
             for (AttributePrice price: priceList) {
@@ -93,6 +99,10 @@ public class AttributePriceController {
 
         }
         return service.getSuccessResponse(priceList);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
     @GetMapping("/product/{id}")
@@ -115,6 +125,8 @@ public class AttributePriceController {
         if(obj.getProductId() == null){
             return service.getErrorResponse("Invalid request!");
         }
+        try{
+
         AttributeResponse price = new AttributeResponse();
         if(obj.getList().size() > 0){
             int size = obj.getList().size();
@@ -126,6 +138,10 @@ public class AttributePriceController {
         return service.getErrorResponse("Invalid Selection!");
         }
         return service.getSuccessResponse(price);
+        }catch (Exception e){
+
+        }
+        return service.getErrorResponse("Something went wrong!");
     }
 
     public AttributeResponse returnPrice(int count , List<String> list, List<AttributePrice> dbList){

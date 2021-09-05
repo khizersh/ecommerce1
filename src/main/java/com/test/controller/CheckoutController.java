@@ -45,24 +45,40 @@ public class CheckoutController {
 
     @GetMapping
     public ResponseEntity getAll(){
+        try{
+
         return service.getSuccessResponse(checkoutRepo.findByOrderByIdAsc());
+        }catch (Exception e){
+            e.printStackTrace();
+            return service.getErrorResponse("Something went wrong!");
+        }
 
     }
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable Integer id){
+        try{
+
         if(id == null){
+
             return service.getErrorResponse("Invalid request!");
         }
         return service.getSuccessResponse(checkoutRepo.getOne(id));
-
+        }catch (Exception e){
+            e.printStackTrace();
+            return service.getErrorResponse("Something went wrong!");
+        }
     }
 
     @PostMapping
     public ResponseEntity addCheckout(@RequestBody Checkout checkout , HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-
         if(checkout.getUserId() == null){
             return service.getErrorResponse("Invalid User!");
         }
+        if(!userRepo.existsById(checkout.getUserId())){
+            return service.getErrorResponse("Invalid user! Please sign in again");
+        }
+        try{
+
         User user = userRepo.getOne(checkout.getUserId());
 
         if(!user.isEnabled()){
@@ -160,6 +176,10 @@ public class CheckoutController {
         checkout.setOrderDate(new Date());
 
         return service.getSuccessResponse(checkoutRepo.save(checkout));
+        }catch (Exception e){
+            e.printStackTrace();
+            return service.getErrorResponse("Something went wrong!");
+        }
 
     }
 
