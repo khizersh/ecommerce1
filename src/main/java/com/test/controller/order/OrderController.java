@@ -221,7 +221,9 @@ public class OrderController {
 
         Order orderDb = orderRepo.findByCheckoutId(order.getCheckoutId());
         if(orderDb != null){
+            if(orderDb.getOrderStatus().equals(Status.Paid)){
             return  service.getErrorResponse ( "Order already exist!");
+            }
         }
 
 
