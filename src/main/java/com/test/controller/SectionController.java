@@ -86,7 +86,6 @@ public class SectionController {
             try (FileWriter file = new FileWriter("section.json")) {
                 file.write(sectionList.toJSONString());
                 file.flush();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

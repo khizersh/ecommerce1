@@ -5,6 +5,7 @@ import com.test.bean.product.Points;
 import com.test.bean.product.Product;
 import com.test.bean.sections.ProductSections;
 import com.test.bean.sections.SectionItems;
+import com.test.bean.sections.SortBySequence;
 import com.test.dto.ChildAttributeDto;
 import com.test.dto.ParentAttributeDto;
 import com.test.dto.ProductDto;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.cache.annotation.Cacheable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -43,7 +45,9 @@ public class SectionService {
             dto.setTitle(i.getTitle());
             List<ProductDto> productList = new ArrayList<>();
 
-            for (SectionItems j : itemsRepo.findBySectionId(i.getId())) {
+            List<SectionItems> listItems = itemsRepo.findBySectionId(i.getId());
+            Collections.sort(listItems, new SortBySequence());
+            for (SectionItems j : listItems) {
                 Product product = productRepo.getOne(j.getProductId());
                 if (product != null) {
                     productList.add(productService.productDetailFull(product));

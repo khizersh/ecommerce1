@@ -132,7 +132,7 @@ public class ProductService {
         return dto;
     }
 
-//    for dashboard edit attribute
+//    for dashboard edit attribute and now for all
     public ProductDto productDetailFull(Product pro){
         ProductDto dto = new ProductDto();
         dto.setId(pro.getId());
@@ -140,7 +140,11 @@ public class ProductService {
         dto.setRange(pro.getPriceRange());
         dto.setRangeEuro(pro.getPriceRangeEuro());
         dto.setRangeCad(pro.getPriceRangeCad());
-        if(pro.getGender() != null){
+
+        dto.setSequence(pro.getSequence());
+        if(pro.getSequence() != null){
+        dto.setSequence(pro.getSequence());
+        }  if(pro.getGender() != null){
         dto.setGender(pro.getGender());
         }
 

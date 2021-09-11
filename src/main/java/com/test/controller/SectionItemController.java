@@ -150,6 +150,14 @@ public class SectionItemController {
             return service.getErrorResponse("Select Product!");
         }
 
+       Product product = productRepo.getOne(pos.getId());
+
+        if(product == null){
+            return service.getErrorResponse("Invalid product!");
+        }
+
+
+
         List<SectionItems>  listFrom =  itemsRepo.findBySequence(pos.getFrom());
         List<SectionItems>  listTo =  itemsRepo.findBySequence(pos.getTo());
         SectionItems itemTo = new SectionItems();
@@ -172,6 +180,9 @@ public class SectionItemController {
             itemsRepo.save(itemFrom);
             itemsRepo.save(itemTo);
         }
+        product.setSequence(pos.getTo());
+        productRepo.save(product);
+
 
         return service.getSuccessResponse("Position changed successfully!");
     }

@@ -26,6 +26,7 @@ public class Product {
     private Double review;
     private Boolean discount;
     private Integer reviewCount;
+    private Integer sequence;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     @ManyToOne
@@ -44,6 +45,14 @@ public class Product {
 
 //    getter setter
 
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
+    }
 
     public Gender getGender() {
         return gender;
